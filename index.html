@@ -1,0 +1,1052 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GymBeam – darčeky zadarmo: web (Sloty, Balík) a app</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--brand:#FF4100;--brand-d:#E03900;--brand-soft:#FFF1EA;--brand-line:#FFC9B3;--green:#7AB648;--green-d:#689F3A;--ink:#141414;--ink2:#555;--ink3:#8B8B8B;--line:#E3E3E3;--bg:#ECECEE;--warn-bg:#FFF8E1;--warn-line:#EFC24A;--warn-ink:#8A5A00;--ok:#2F9B57;--ok-soft:#EAF6EE}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg);font-size:14px;line-height:1.35}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid #2563eb;outline-offset:2px}
+
+/* toolbar + note */
+.tb{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.tb .ttl{font-weight:800;margin-right:6px}
+.grp{display:flex;align-items:center;gap:6px}
+.grp .lbl{font-size:12px;color:var(--ink3)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
+.seg button{border:0;background:#fff;padding:6px 10px;font-size:12.5px;color:var(--ink2);border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button.on{background:var(--ink);color:#fff}
+.reset{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:12.5px}
+.note{max-width:1172px;margin:14px auto 0;padding:0 16px}
+.note .box{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px;font-size:13px;line-height:1.5}
+.note h3{margin:0 0 4px;font-size:15px}
+.note .k{font-weight:700;font-size:12px;color:var(--ink3);margin-bottom:2px}
+.note ul{margin:0;padding-left:16px}
+.note .ex{grid-column:1/-1;border-top:1px solid var(--line);padding-top:10px;color:var(--ink2)}
+@media (max-width:900px){.note .box{grid-template-columns:1fr}}
+#stage{padding:16px 16px 60px;display:flex;justify-content:center}
+
+/* GymBeam shell (unchanged) */
+.desk{width:1140px;max-width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.mob{width:390px;height:820px;background:#fff;border:10px solid #1c1c1e;border-radius:40px;overflow:hidden;display:flex;flex-direction:column;flex-shrink:0}
+.mob .scroll{flex:1;overflow-y:auto;scroll-behavior:smooth}
+.promo{background:var(--brand);color:#fff;text-align:center;font-size:13px;padding:8px 12px;font-weight:600}
+.sh{display:flex;align-items:center;gap:24px;padding:14px 24px}
+.logo{font-weight:800;font-style:italic;font-size:24px;letter-spacing:-.5px}
+.search{flex:1;max-width:420px;margin:0 auto;border:1px solid var(--line);border-radius:20px;padding:8px 14px;color:var(--ink3);font-size:13px}
+.icons{display:flex;gap:14px;align-items:center;font-size:18px}
+.icons b{font-size:13px}
+.nav{display:flex;gap:26px;padding:4px 24px 12px;font-weight:700;font-size:13px;border-bottom:1px solid var(--line)}
+.mh{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+.mh .logo{font-size:22px}
+.stp{display:flex;align-items:flex-start;justify-content:center;padding:14px 16px 6px}
+.stp .s{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:70px;border:0;background:none;padding:0}
+.stp .c{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:#E9E9E9;color:var(--ink3)}
+.stp .s.on .c{background:var(--brand);color:#fff}
+.stp .s.dn .c{background:var(--ink);color:#fff}
+.stp .s span{font-size:12px;color:var(--ink3);font-weight:600}
+.stp .s.on span{color:var(--ink)}
+.stp .ln{flex:0 0 70px;height:2px;background:#D5D5D5;margin-top:13px}
+.dgrid{display:grid;grid-template-columns:1fr 330px;gap:22px;padding:18px 24px 28px;align-items:start}
+.h1row{display:flex;justify-content:space-between;align-items:baseline;margin:6px 0 10px}
+.h1row h1{font-size:20px;margin:0}
+.h1row span{font-size:13px;color:var(--ink2)}
+.mob .h1row{padding:0 16px}
+.mob .pad{padding:0 16px}
+.card{border:1px solid var(--line);border-radius:6px;background:#fff}
+.pl{display:flex;gap:12px;padding:12px;border-bottom:1px solid var(--line);position:relative}
+.pl:last-child{border-bottom:0}
+.th{border-radius:6px;display:grid;place-items:center;flex-shrink:0}
+.pl-b{flex:1;min-width:0}
+.pl-n{font-weight:700;font-size:13.5px;padding-right:22px}
+.pl-m{font-size:12px;color:var(--ink2);margin-top:3px}
+.pl-f{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px}
+.qty{display:inline-flex;align-items:center;border:1.5px solid var(--ink);border-radius:6px;height:32px}
+.qty b{width:30px;text-align:center;font-weight:500}
+.qty i{width:30px;text-align:center;font-style:normal;font-size:18px}
+.price{color:var(--brand);font-weight:800;font-size:16px;text-align:right}
+.price s{display:block;color:var(--ink3);font-weight:500;font-size:12px}
+.x{position:absolute;top:10px;right:10px;border:0;background:none;font-size:16px}
+.sum{border:1px solid var(--line);border-radius:6px;padding:14px;background:#fff}
+.sum h3{margin:0 0 12px;font-size:15px}
+.loy{border:1px solid var(--line);border-radius:6px;padding:12px 14px;font-weight:700;font-size:13px;margin-bottom:12px;display:flex;justify-content:space-between}
+.mob .loy{margin:12px 16px}
+.shipbar{background:#F3F3F3;border-radius:6px;padding:10px 12px;font-size:13px;font-weight:600}
+.shipbar i{display:block;height:4px;background:#66BB6A;border-radius:3px;margin-top:8px}
+.mob .shipbar{margin:8px 16px 12px}
+.row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;color:var(--ink2)}
+.row b{color:var(--ink)}
+.row.disc b{color:var(--ok)}
+.tot{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0 2px;border-top:1px solid var(--line);margin-top:6px}
+.tot b{font-size:16px}
+.tot span{color:var(--brand);font-weight:800;font-size:19px}
+.vat{text-align:right;font-size:11px;color:var(--ink3);margin-bottom:12px}
+.cta{width:100%;border:0;background:var(--green);color:#fff;font-weight:800;font-size:14px;padding:14px;border-radius:4px}
+.cta:hover{background:var(--green-d)}
+.code{margin:12px 0}
+.code-h{font-size:13px;font-weight:600;margin-bottom:6px}
+.code-r{display:flex}
+.code-r input{flex:1;min-width:0;border:1px solid #CFCFCF;border-right:0;border-radius:4px 0 0 4px;padding:9px 10px;font-size:13px}
+.code-r button{border:0;background:#FFB49A;color:#fff;font-weight:700;padding:0 14px;border-radius:0 4px 4px 0}
+.code-r button:hover{background:var(--brand)}
+.code-ok{display:flex;justify-content:space-between;align-items:center;background:var(--ok-soft);border-radius:6px;padding:8px 10px;font-size:13px}
+.code-ok b{color:var(--ok)}
+.code-msg{font-size:12.5px;margin-top:6px;line-height:1.4}
+.code-msg.err{color:var(--brand-d)}
+.mob .code{margin:18px 16px}
+.yel{background:var(--warn-bg);border:1px solid var(--warn-line);border-radius:6px;padding:10px 12px;font-size:13px;color:var(--warn-ink);margin:10px 0;line-height:1.45}
+.yel button{color:var(--warn-ink);font-weight:700;text-decoration:underline;background:none;border:0;padding:0}
+.mob .yel{margin:10px 16px}
+.sec h2{font-size:18px;margin:6px 0 12px}
+.mob .sec{padding:0 16px}
+.radio{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:6px;padding:12px;margin-bottom:8px;width:100%;background:#fff;text-align:left}
+.radio.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.radio .rd{width:18px;height:18px;border-radius:50%;border:2px solid #BDBDBD;flex-shrink:0}
+.radio.on .rd{border:5px solid var(--ink)}
+.radio .rb{flex:1}
+.radio .rb b{display:block;font-size:13.5px}
+.radio .rb span{font-size:12px;color:var(--ink2)}
+.radio .rp{font-weight:700;font-size:13px}
+.back{border:0;background:none;padding:0;font-size:13px;color:var(--ink2);text-decoration:underline;margin-top:10px}
+.msum{margin:16px;border:1px solid var(--line);border-radius:6px;padding:12px 14px}
+.li-s{display:flex;gap:10px;align-items:center;font-size:12.5px;padding:4px 0}
+.li-s span{flex:1;min-width:0}
+.li-s small{display:block;color:var(--ink3);font-size:11px}
+.sbar{border-top:1px solid var(--line);background:#fff;padding:10px 14px 14px;box-shadow:0 -4px 14px rgba(0,0,0,.05)}
+.sbar-r{display:flex;align-items:center;gap:12px}
+.sbar-t{flex-shrink:0}
+.sbar-t small{display:block;font-size:11px;color:var(--ink3)}
+.sbar-t b{color:var(--brand);font-size:17px}
+.sbar .cta{padding:13px}
+.guard{font-size:12.5px;background:#FFF4EF;border:1px solid var(--brand-line);color:#7A2B0A;border-radius:6px;padding:9px 11px;margin-bottom:10px;line-height:1.45}
+.gstat{display:flex;gap:8px;align-items:center;width:100%;text-align:left;border-radius:6px;padding:9px 11px;font-size:12.5px;font-weight:700;margin-bottom:10px;border:1px solid transparent;background:none}
+.gstat.warn{background:var(--brand-soft);color:var(--brand-d);border-color:var(--brand-line)}
+.gstat.ok{background:var(--ok-soft);color:var(--ok)}
+.link{border:0;background:none;padding:0;color:var(--brand);font-weight:700;font-size:12.5px;text-decoration:underline;text-underline-offset:2px}
+.link.mute{color:var(--ink3);font-weight:500}
+.link.dark{color:var(--ink)}
+.free{color:var(--green);font-weight:800}
+.tag{display:inline-block;background:var(--green);color:#fff;font-size:10px;font-weight:800;border-radius:3px;padding:2px 5px;vertical-align:middle;margin-left:6px}
+
+/* shared gift atoms */
+.pill{border:1.5px solid #CFCFCF;background:#fff;border-radius:6px;min-width:36px;padding:5px 8px;font-size:12.5px;font-weight:700}
+.pill.on{border-color:var(--ink);background:var(--ink);color:#fff}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pills.need .pill{border-color:var(--brand)}
+.mob .pill{min-width:32px;padding:5px 6px}
+.needtxt{font-size:11.5px;font-weight:700;color:var(--brand-d)}
+.bgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.bgrid.c4{grid-template-columns:repeat(4,1fr)}
+.mob .bgrid{grid-template-columns:repeat(2,1fr)}
+.bo{border:1.5px solid var(--line);border-radius:10px;padding:10px;background:#fff;position:relative;cursor:pointer;display:flex;flex-direction:column;gap:8px;transition:border-color .15s,opacity .15s}
+.bo:hover{border-color:#BDBDBD}
+.bo .img{aspect-ratio:1/1;border-radius:8px;display:grid;place-items:center;font-size:44px}
+.bo .nm{font-size:12.5px;font-weight:700;line-height:1.3}
+.bo .rad{position:absolute;top:16px;right:16px;width:24px;height:24px;border-radius:50%;border:2px solid #C9C9C9;background:#fff;display:grid;place-items:center;font-size:13px;color:#fff;font-weight:800}
+.bo .rad.chk{border-radius:6px}
+.bo.on{border-color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+.bo.on .rad{background:var(--ok);border-color:var(--ok)}
+.bo.dim{opacity:.45}
+.bo.off{opacity:.6}
+.bo.lock{cursor:default;opacity:.55}
+.decnote{display:flex;justify-content:space-between;align-items:center;gap:10px;background:#F4F4F4;border-radius:8px;padding:10px 12px;font-size:12.5px;margin-bottom:12px}
+.fullnote{background:var(--brand-soft);color:var(--brand-d);border-radius:8px;padding:8px 12px;font-size:12.5px;font-weight:700;margin-bottom:12px}
+.cnt{display:inline-block;font-size:12px;font-weight:800;border-radius:20px;padding:2px 9px;background:var(--brand-soft);color:var(--brand-d);margin-left:6px;vertical-align:1px}
+.cnt.ok{background:var(--ok-soft);color:var(--ok)}
+
+/* ===== VARIANT A · SLOTY ===== */
+.n1{margin:0 0 16px;border:1px solid var(--line);border-radius:10px;padding:16px}
+.mob .n1{margin:0 16px 16px;padding:14px}
+.n1-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:4px}
+.n1-h h2{margin:0;font-size:18px}
+.n1-h span{font-size:13px;font-weight:700;white-space:nowrap}
+.n1-sub{font-size:12.5px;color:var(--ink2);margin-bottom:14px}
+.groups{display:flex;flex-wrap:wrap;gap:16px 18px;align-items:flex-start}
+.mob .groups{gap:14px 12px}
+.sgrp{border-radius:12px;padding:6px;margin:-6px;transition:background .15s}
+.sgrp.active{background:#F4F4F4}
+.sgrp-h{font-size:12px;font-weight:800;margin:0 2px 6px;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.sgrp-h span{font-weight:700;color:var(--ink3)}
+.sgrp-t{display:flex;gap:10px}
+.mob .sgrp-t{gap:8px}
+.slot{width:112px;position:relative;text-align:center}
+.mob .slot{width:94px}
+.slot .tile{width:100%;aspect-ratio:1/1;border-radius:12px;display:grid;place-items:center;font-size:48px;position:relative;border:2px solid transparent;padding:0;background:#F6F6F6}
+.mob .slot .tile{font-size:38px}
+.slot.empty .tile{border:2px dashed var(--brand);background:var(--brand-soft);color:var(--brand)}
+.slot.empty .tile .plus{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:28px;font-weight:300;line-height:1}
+.slot.empty .tile .plus b{font-size:12px;font-weight:800}
+.slot.locked .tile{background:#F4F4F4;border:2px solid #EBEBEB;color:#B5B5B5;font-size:24px}
+.slot.declined .tile{background:#F7F7F7;border:2px dashed #D6D6D6;color:#A8A8A8;font-size:11.5px;font-weight:700;line-height:1.3}
+.sgrp.active .slot .tile{box-shadow:0 0 0 2px var(--ink)}
+.sgrp.active .slot.empty .tile{box-shadow:none}
+.slot .badge{position:absolute;top:-7px;right:-7px;min-width:22px;height:22px;border-radius:11px;background:var(--ok);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;border:2px solid #fff;padding:0 5px;pointer-events:none}
+.slot .badge.new{background:var(--brand)}
+.slot .badge.auto{background:var(--ink);font-size:9.5px}
+.slot .rmv{position:absolute;top:-7px;left:-7px;width:24px;height:24px;border-radius:50%;background:#fff;border:1.5px solid #CFCFCF;font-size:13px;line-height:1;display:grid;place-items:center;padding:0;color:var(--ink2)}
+.slot .rmv:hover{border-color:var(--ink);color:var(--ink)}
+.slot .nm{font-size:11.5px;color:var(--ink2);margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.slot.empty .nm{color:var(--brand-d);font-weight:700}
+.slot .lk{height:4px;background:#E6E6E6;border-radius:3px;margin:6px 8px 0;overflow:hidden}
+.slot .lk i{display:block;height:100%;background:var(--brand)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,65,0,.35)}70%{box-shadow:0 0 0 10px rgba(255,65,0,0)}100%{box-shadow:0 0 0 0 rgba(255,65,0,0)}}
+.sgrp:not(.active) .slot.empty .tile{animation:pulse 2s infinite}
+.spanel{margin-top:18px;border-top:1px solid var(--line);padding-top:14px}
+.spanel-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:12px}
+.spanel-h b{font-size:15px}
+.spanel-h small{display:block;font-size:12.5px;color:var(--ink2);font-weight:500;margin-top:2px}
+.spanel-f{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px;flex-wrap:wrap}
+.spanel-f .st{font-size:12px;color:var(--ink3)}
+
+/* ===== VARIANT B · BALÍK ===== */
+.n3{margin:0 0 16px;border-radius:12px;background:var(--brand-soft);border:1px solid var(--brand-line);position:relative;overflow:hidden}
+.n3.done{background:var(--ok-soft);border-color:#BFE3CB}
+.n3.done::before{background:var(--ok)}
+.mob .n3{margin:0 16px 16px}
+.n3::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--brand)}
+.n3-closed{padding:16px 18px 16px 22px}
+.n3-row{display:flex;align-items:center;gap:16px}
+.mob .n3-row{flex-wrap:wrap;gap:12px}
+.n3-ico{font-size:32px;flex-shrink:0}
+.n3-txt{flex:1;min-width:160px}
+.n3-txt b{font-size:16px;display:block}
+.n3-txt span{font-size:12.5px;color:var(--ink2)}
+.n3-btn{border:0;background:var(--brand);color:#fff;font-weight:800;padding:12px 18px;border-radius:6px;white-space:nowrap}
+.n3-btn:hover{background:var(--brand-d)}
+.n3-btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
+.mob .n3-btn{width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.gch{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:4px 6px 4px 4px;font-size:12px;max-width:100%}
+.gch .gch-t{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.gch .gch-t b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
+.gch .gch-t small{font-size:10.5px;color:var(--ink3)}
+.gch .x2{border:0;background:#F2F2F2;width:22px;height:22px;border-radius:50%;font-size:12px;display:grid;place-items:center;padding:0;color:var(--ink2);flex-shrink:0}
+.gch .x2:hover{background:var(--ink);color:#fff}
+.gch.em{border:1.5px dashed var(--brand);background:#fff;color:var(--brand-d);font-weight:800;padding:8px 12px}
+.gch.dec{background:#F6F6F6;color:var(--ink3);padding:8px 10px}
+.n3-open{background:#fff;margin:0 0 0 6px;padding:16px 18px}
+.n3-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
+.n3-step{font-size:12px;font-weight:800;color:var(--brand-d)}
+.n3-dots{display:flex;gap:5px}
+.n3-dots i{width:22px;height:5px;border-radius:3px;background:#E5E5E5}
+.n3-dots i.ok{background:var(--ok)}
+.n3-dots i.cur{background:var(--brand)}
+.n3-dots i.dec{background:#BDBDBD}
+.n3-title{font-size:18px;font-weight:800;margin:0}
+.n3-reason{font-size:12.5px;color:var(--ink2);margin:3px 0 14px}
+.n3-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px;flex-wrap:wrap}
+.n3-next{border:0;background:var(--ink);color:#fff;font-weight:700;padding:10px 16px;border-radius:6px}
+.n3-next[disabled]{opacity:.35;cursor:default}
+.n3-head-close{border:0;background:none;font-size:13px;color:var(--ink2);text-decoration:underline;padding:0}
+.autolist{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
+.autolist .t{font-size:11.5px;font-weight:700;color:var(--ink3);margin-bottom:6px}
+.auto-i{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:4px 0}
+.auto-i span{flex:1}
+
+/* checkout strip */
+.cs{border-top:1px solid var(--line);margin-top:12px;padding-top:12px}
+.cs-h{display:flex;justify-content:space-between;font-weight:800;font-size:13px;margin-bottom:8px}
+.cs-h span{font-weight:600;color:var(--ink2);font-size:12px}
+.cs-row{display:flex;gap:6px;flex-wrap:wrap}
+.cs-row .em{border:2px dashed var(--brand);background:var(--brand-soft);color:var(--brand);font-weight:800}
+.cs-p{margin-top:10px;border:1px solid var(--brand-line);background:#FFFCFA;border-radius:8px;padding:10px 12px}
+.cs-p.dec{border-color:var(--line);background:#F8F8F8}
+.cs-p b{font-size:13px}
+.cs-p .r{font-size:12px;color:var(--ink2);margin:2px 0 8px}
+.mob .cs-p{margin:10px 16px}
+.sws{display:flex;gap:8px;flex-wrap:wrap}
+.sw{width:42px;height:42px;border-radius:50%;border:2px solid #E2E2E2;display:grid;place-items:center;font-size:20px;padding:0;position:relative}
+.sw.on{border-color:var(--ink)}
+.sw.on::after{content:'✓';position:absolute;bottom:-3px;right:-3px;width:17px;height:17px;border-radius:50%;background:var(--ink);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;border:2px solid #fff}
+.sw.dim{opacity:.4}
+.done{padding:30px 24px;max-width:620px;margin:0 auto}
+.done .lst{border:1px solid var(--line);border-radius:6px;padding:6px 12px;margin:14px 0}
+.done .li{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #F1F1F1;font-size:13px}
+.done .li:last-child{border-bottom:0}
+.done .li span{flex:1}
+.done .miss{color:var(--brand-d);font-weight:600}
+
+
+/* Variant A mobile: accordion, výber sa otvorí pod políčkom */
+.mgroups{display:flex;flex-direction:column;gap:10px}
+.mg{border:1px solid var(--line);border-radius:12px;background:#fff;scroll-margin-top:12px;transition:border-color .15s}
+.mg.is-p{border-color:var(--brand-line);background:#FFFCFA}
+.mg.active{border:1.5px solid var(--ink);background:#fff}
+.g1-row{display:flex;align-items:center;gap:12px;padding:10px 12px;cursor:pointer}
+.g1-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.g1-t b{font-size:13.5px}
+.g1-t span{font-size:12.5px}
+.gs-need{color:var(--brand-d);font-weight:700}
+.gs-ok{color:var(--ink2)}
+.gs-mute{color:var(--ink3)}
+.chev{color:var(--ink3);font-size:14px;transition:transform .2s}
+.mg.active .chev{transform:rotate(180deg)}
+.mg .g1-tiles{display:flex;gap:8px}
+.mg.multi .g1-tiles{padding:0 12px 12px}
+.mob .mg .slot{width:64px}
+.mob .mg.multi .slot{width:92px}
+.mob .mg .slot .tile{font-size:30px;border-radius:10px}
+.mob .mg.multi .slot .tile{font-size:38px}
+.mob .mg .slot .nm{display:none}
+.mob .mg.multi .slot .nm{display:-webkit-box;min-height:0}
+.mob .mg .slot.empty .tile .plus{font-size:22px}
+.mob .mg .slot.empty .tile .plus b{font-size:10.5px}
+.mob .mg .slot.declined .tile{font-size:10px}
+.mob .mg .slot .rmv{width:22px;height:22px;top:-6px;left:-6px}
+.mob .mg .slot .badge{top:-6px;right:-6px}
+.mob .mg .slot .badge.auto{font-size:8.5px;min-width:0;padding:0 4px}
+.mg.active .slot .tile{box-shadow:none}
+.mg .spanel{margin:0 12px;padding:12px 0 14px;border-top:1px solid var(--line)}
+.mg .spanel-h b{font-size:14px}
+.mg .bgrid{gap:8px}
+.mg .bo{padding:8px}
+.mg .bo .img{font-size:36px}
+.mg .bo .rad{top:13px;right:13px;width:22px;height:22px}
+.lk2{height:4px;background:#E6E6E6;border-radius:3px;margin-top:4px;overflow:hidden;width:120px}
+.lk2 i{display:block;height:100%;background:var(--brand)}
+.mg:not(.active) .slot.empty .tile{animation:pulse 2s infinite}
+
+
+/* =================== APP (React Native look) =================== */
+.aph{width:390px;height:844px;background:#fff;border:10px solid #1c1c1e;border-radius:46px;overflow:hidden;position:relative;display:flex;flex-direction:column;flex-shrink:0;--a:#EB542C;--a-d:#D4441F;--a-soft:#FFF2ED;--a-line:#FFCDBD;--pill:#F2F3F5;--aline:#ECECEC}
+.ast{display:flex;justify-content:space-between;padding:14px 30px 0;font-weight:700;font-size:15px;flex-shrink:0}
+.atitle{text-align:center;font-weight:700;font-size:18px;padding:10px 0 12px;flex-shrink:0;position:relative}
+.atitle .bk{position:absolute;left:18px;top:6px;border:0;background:none;font-size:26px;line-height:1;padding:0 6px}
+.ascroll{flex:1;overflow-y:auto;padding:0 16px 210px;scroll-behavior:smooth}
+.aprog{background:#F2F2F4;border-radius:20px;padding:14px 16px 16px}
+.apr{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500}
+.apr+.abar+.apr{margin-top:14px}
+.abar{height:6px;border-radius:3px;background:#DDDDE1;margin-top:8px;overflow:hidden}
+.abar i{display:block;height:100%;border-radius:3px}
+.agc{border:1px solid var(--aline);border-radius:20px;padding:14px;margin-top:12px;background:#fff;scroll-margin-top:8px}
+.agc.is-p{border-color:var(--a-line);background:#FFFAF8}
+.agc-h{display:flex;align-items:center;gap:10px}
+.agc-h .ic{font-size:22px}
+.agc-h b{flex:1;font-size:16px;font-weight:600}
+.apill{font-size:12.5px;font-weight:700;border-radius:20px;padding:4px 10px;background:var(--a-soft);color:var(--a-d)}
+.apill.ok{background:var(--ok-soft);color:var(--ok)}
+.agc-sub{font-size:13px;color:var(--ink2);margin:4px 0 12px 32px}
+.agc-new{display:flex;gap:8px;align-items:center;background:var(--a-soft);color:var(--a-d);font-weight:700;font-size:12.5px;border-radius:12px;padding:8px 10px;margin:-2px 0 12px}
+.atg{display:flex;flex-wrap:wrap;gap:12px 14px}
+.atg-g{display:flex;flex-direction:column;gap:6px}
+.atg-l{font-size:11.5px;font-weight:700;color:var(--ink2);white-space:nowrap}
+.atg-r{display:flex;gap:8px}
+.at{width:62px;height:62px;border-radius:16px;border:0;padding:0;position:relative;display:grid;place-items:center;font-size:30px;background:#F4F4F6}
+.at.empty{border:2px dashed var(--a);background:var(--a-soft);color:var(--a);font-size:26px;font-weight:300}
+.at.dec{border:2px dashed #D8D8D8;background:#F8F8F8;color:#AAA;font-size:10px;font-weight:700;line-height:1.2}
+.at.lock{background:#F4F4F6;color:#B5B5B5;font-size:20px}
+.at .bd{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;border-radius:10px;background:var(--ok);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;border:2px solid #fff;padding:0 4px;pointer-events:none}
+.at .bd.auto{background:var(--ink);font-size:8px}
+.at .bd.new{background:var(--a)}
+.atx{position:absolute;top:-7px;left:-7px;width:22px;height:22px;border-radius:50%;background:#fff;border:1.5px solid #CFCFCF;font-size:12px;display:grid;place-items:center;padding:0;color:var(--ink2);z-index:1}
+.atw{position:relative}
+@keyframes apulse{0%{box-shadow:0 0 0 0 rgba(235,84,44,.35)}70%{box-shadow:0 0 0 9px rgba(235,84,44,0)}100%{box-shadow:0 0 0 0 rgba(235,84,44,0)}}
+.at.empty{animation:apulse 2s infinite}
+.agc-btn{width:100%;margin-top:14px;height:46px;border-radius:23px;border:1.5px solid var(--a);background:#fff;color:var(--a);font-weight:700;font-size:14.5px}
+.apc{border:1px solid var(--aline);border-radius:20px;padding:14px;display:flex;gap:14px;margin-top:12px;position:relative}
+.apc .im{width:84px;height:84px;border-radius:12px;display:grid;place-items:center;font-size:44px;flex-shrink:0}
+.apc .b{flex:1;min-width:0}
+.apc .n{font-weight:600;font-size:14.5px;padding-right:26px}
+.apc .m{font-size:13.5px;color:var(--ink2);margin-top:6px;line-height:1.5}
+.apc .f{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.apc .pr{font-weight:700;font-size:16px}
+.aq{display:flex;align-items:center;background:var(--pill);border-radius:14px;height:40px;font-size:16px}
+.aq i{width:36px;text-align:center;font-style:normal}
+.aq b{width:30px;text-align:center;font-weight:500}
+.apc .dots{position:absolute;top:10px;right:16px;font-size:18px;color:var(--ink2);letter-spacing:1px}
+.arow{border:1px solid var(--aline);border-radius:20px;padding:16px;display:flex;align-items:center;gap:12px;margin-top:12px;font-size:15px;width:100%;background:#fff;text-align:left}
+.arow span{flex:1}
+.arow .ch{color:var(--ink3);font-size:18px}
+.acode{border:1px solid var(--aline);border-radius:20px;padding:12px 14px;margin-top:12px}
+.acode .code-r input{border-radius:12px 0 0 12px;height:42px}
+.acode .code-r button{border-radius:0 12px 12px 0;background:var(--a)}
+.atot{margin-top:16px}
+.atot .r{display:flex;justify-content:space-between;color:var(--ink2);font-size:14px;padding:5px 0}
+.atot .t{display:flex;justify-content:space-between;font-weight:700;font-size:18px;padding:8px 0}
+.adock{position:absolute;left:0;right:0;bottom:0;padding:24px 16px 14px;background:linear-gradient(rgba(255,255,255,0),#fff 22px);z-index:5}
+.arem{display:flex;align-items:center;gap:10px;background:var(--a-soft);border:1px solid var(--a-line);color:#B4380F;border-radius:16px;padding:9px 10px 9px 14px;margin-bottom:8px;font-weight:700;font-size:13px;width:100%;text-align:left}
+.arem span{flex:1}
+.arem em{font-style:normal;background:var(--a);color:#fff;border-radius:14px;padding:6px 12px;font-size:12.5px}
+.arem.ok{background:var(--ok-soft);border-color:#BFE3CB;color:var(--ok)}
+.acta{width:100%;border:0;background:var(--a);color:#fff;border-radius:28px;height:52px;font-weight:600;font-size:15px;letter-spacing:.3px}
+.acta:active{background:var(--a-d)}
+.atab{margin-top:10px;height:62px;border-radius:31px;background:#fff;box-shadow:0 2px 16px rgba(0,0,0,.09);display:flex;justify-content:space-around;align-items:center;font-size:22px}
+.atab .on{background:#F1F1F3;border-radius:24px;padding:6px 22px;position:relative}
+.atab .on i{position:absolute;top:-6px;right:8px;background:var(--a);color:#fff;font-style:normal;font-size:11px;font-weight:700;border-radius:10px;padding:1px 6px}
+/* bottom sheet */
+.ash-ov{position:absolute;inset:0;background:rgba(0,0,0,.38);z-index:30}
+.ash{position:absolute;left:0;right:0;bottom:0;height:88%;background:#fff;border-radius:28px 28px 0 0;display:flex;flex-direction:column;z-index:31;box-shadow:0 -6px 24px rgba(0,0,0,.12)}
+@keyframes sheetIn{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+.ash.in{animation:sheetIn .25s ease-out}
+.ash-hd{width:44px;height:5px;border-radius:3px;background:#D5D5D8;margin:10px auto 4px;flex-shrink:0}
+.ash-top{display:flex;align-items:center;justify-content:space-between;padding:6px 20px 0;flex-shrink:0}
+.ash-top b{font-size:20px;font-weight:700}
+.ash-x{width:34px;height:34px;border-radius:50%;border:0;background:var(--pill);font-size:15px}
+.ash-guard{margin:10px 20px 0;background:var(--a-soft);color:#B4380F;border-radius:12px;padding:9px 12px;font-size:13px;font-weight:600;flex-shrink:0}
+.ash-tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 20px 4px;flex-shrink:0;scrollbar-width:none}
+.ash-tabs::-webkit-scrollbar{display:none}
+.atb{flex:none;border:1.5px solid #E5E5E5;border-radius:20px;padding:7px 12px;font-size:13px;font-weight:600;display:flex;gap:6px;align-items:center;background:#fff}
+.atb.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.atb .dt{width:16px;height:16px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
+.atb .dt.ok{background:var(--ok)}
+.atb .dt.p{background:var(--a)}
+.atb .dt.d{background:#BDBDBD}
+.ash-rh{padding:12px 20px 10px;flex-shrink:0;border-bottom:1px solid #F0F0F0}
+.ash-rh b{font-size:16px}
+.ash-rh small{display:block;font-size:13px;color:var(--ink2);margin-top:3px}
+.ash-body{flex:1;overflow-y:auto;padding:12px 20px 16px;overscroll-behavior:contain}
+.agrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ao{border:1.5px solid var(--aline);border-radius:18px;padding:10px;position:relative;background:#fff;cursor:pointer;display:flex;flex-direction:column;gap:8px}
+.ao .img{aspect-ratio:1/1;border-radius:12px;display:grid;place-items:center;font-size:46px}
+.ao .nm{font-size:13px;font-weight:600;line-height:1.3}
+.ao .rd{position:absolute;top:16px;right:16px;width:24px;height:24px;border-radius:50%;border:2px solid #C9C9C9;background:#fff;display:grid;place-items:center;font-size:12px;color:#fff;font-weight:800}
+.ao .rd.chk{border-radius:7px}
+.ao.on{border-color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+.ao.on .rd{background:var(--ok);border-color:var(--ok)}
+.ao.dim{opacity:.45}
+.ao.off{opacity:.6}
+.ash-ft{border-top:1px solid #EEE;padding:12px 20px 26px;display:flex;align-items:center;gap:14px;flex-shrink:0;background:#fff}
+.ash-next{flex:1;height:50px;border-radius:25px;border:0;background:var(--ink);color:#fff;font-weight:600;font-size:15px}
+.ash-next[disabled]{opacity:.3;cursor:default}
+.ash-next.go{background:var(--a)}
+.acard{border:1px solid var(--aline);border-radius:20px;padding:14px 16px;margin-top:12px}
+.acard h4{margin:0 0 10px;font-size:15px}
+.acard .opt{display:flex;justify-content:space-between;font-size:14px;padding:6px 0}
+.adone{padding:10px 4px}
+.adone .li{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #F1F1F1;font-size:13.5px}
+.adone .li span{flex:1}
+
+
+/* varianty: veľkosť + farba, viac kusov */
+.vrow{margin-top:2px}
+.vrow+.vrow{border-top:1px dashed #E3E3E3;padding-top:8px;margin-top:8px}
+.vlab{font-size:11px;font-weight:800;color:var(--ink2);margin-bottom:5px}
+.cdots{display:flex;gap:8px;align-items:center;margin-top:7px;flex-wrap:wrap}
+.cdot{width:24px;height:24px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px #CFCFCF;padding:0}
+.cdot.on{box-shadow:0 0 0 2px var(--ink)}
+.cdots.need .cdot{box-shadow:0 0 0 1.5px var(--brand)}
+.cname{font-size:11.5px;color:var(--ink2);font-weight:600}
+.stp2{display:flex;align-items:center;justify-content:space-between;background:#F2F3F5;border-radius:10px;height:34px}
+.stp2 button{border:0;background:none;width:38px;height:34px;font-size:18px}
+.stp2 b{font-size:13.5px}
+.cntb{position:absolute;top:16px;right:16px;min-width:26px;height:24px;border-radius:12px;background:var(--ok);color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center;padding:0 6px}
+.qty i,.aq i{cursor:pointer;user-select:none}
+
+@keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes flash{0%{background:#FFE7DB}100%{background:transparent}}
+.pop .tile,.pop.th,.pop.gch{animation:pop .45s ease-out}
+.flash{animation:flash 1.6s ease-out}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.mob .scroll{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="tb" id="tb"></div>
+<div class="note" id="note"></div>
+<main id="stage"></main>
+<script>
+(() => {
+const eur = n => n.toFixed(2).replace('.', ',') + ' €';
+const plural = (n, a, b, c) => n === 1 ? a : (n > 1 && n < 5) ? b : c;
+const OPT = {
+  rukavice:{name:'Cyklistické rukavice Full-Finger - GymBeam', short:'Rukavice Full-Finger', e:'🧤', bg:'#ECECEC', sizes:['S','M','L','XL']},
+  sejkerP:{name:'Šejker BeastPink biely 700 ml - BeastPink', short:'Šejker BeastPink', e:'🥛', bg:'#F7E3DA'},
+  flasa:{name:'Športová fľaša Ergo 600 ml - GymBeam', short:'Fľaša Ergo 600 ml', e:'🍶', bg:'#E8EEF3'},
+  nakrcnik:{name:'Nákrčník Alpine Neck Gaiter Black - GymBeam', short:'Nákrčník Alpine', e:'🧣', bg:'#E7E7E7'},
+  sejkerB:{name:'Šejker Sway Blue 400 ml - GymBeam', short:'Šejker Sway Blue', e:'🧪', bg:'#E1EFF7'},
+  stipec:{name:'Štipec do vlasov Pearl - GymBeam', short:'Štipec Pearl', e:'📎', bg:'#EEF0F2'},
+  bar:{name:'20g Protein bar - GymBeam 55 g - cookies & cream', short:'Protein bar', e:'🍫', bg:'#E5E9F1'},
+  shake:{name:'25g Protein Milkshake - GymBeam 250 ml', short:'Protein Milkshake', e:'🥤', bg:'#F1ECE2'},
+  mydlo:{name:'Prírodné mydlo Lemongrass & Tea Tree', short:'Prírodné mydlo', e:'🧼', bg:'#E6F0DF'},
+  kefa:{name:'Kefa na vlasy Hair Mate - BeastPink', short:'Kefa Hair Mate', e:'🪮', bg:'#F9DCE3'},
+  taska:{name:'Toaletná taška Transparent - BeastPink', short:'Toaletná taška', e:'👝', bg:'#FBE8E2'},
+  gumicka:{name:'Gumička do vlasov Oversize Pink - BeastPink', short:'Gumička Oversize', e:'🎀', bg:'#F6E0EA'},
+  tricko:{name:'Tričko Basic - GymBeam', short:'Tričko Basic', e:'👕', bg:'#E8EDF5', sizes:['S','M','L','XL'], colors:[{id:'black', n:'Čierna', hex:'#1E1E1E'},{id:'white', n:'Biela', hex:'#F4F4F4'},{id:'navy', n:'Tmavomodrá', hex:'#283C70'},{id:'olive', n:'Olivová', hex:'#6B7348'}]},
+  ruksak:{name:'Športový ruksak Daypack - GymBeam', short:'Ruksak Daypack', e:'🎒', bg:'#E9E9E9'},
+  uterak:{name:'Rýchloschnúci uterák - GymBeam', short:'Uterák', e:'🧺', bg:'#E6EEF2'},
+  creatine:{name:'100 % Kreatín monohydrát 250 g - GymBeam', short:'Kreatín 250 g', e:'💊', bg:'#EEF1E6'}
+};
+/* qty = koľko darčekov z pravidla user dostane */
+const RULE = {
+  bag:{id:'bag', label:'K batohu', title:'Darček k batohu Hydropack', reason:'Rukavice sú súčasťou balenia. Vyber si veľkosť.', mode:'pick', qty:1, opts:['rukavice'], ord:0},
+  camp:{id:'camp', label:'K proteínu', title:'BeastPink akcia', reason:'Šejker ku každému BeastPink proteínu. Pridali sme ho automaticky.', mode:'auto', qty:1, opts:['sejkerP'], qtyFrom:'whey', ord:1},
+  sample:{id:'sample', label:'Nad 80 €', title:'Vzorka za nákup nad 80 €', reason:'Vzorku sme ti pridali. Môžeš ju vymeniť.', mode:'preselect', qty:1, def:['bar'], opts:['bar','shake','mydlo'], ord:2},
+  tier:{id:'tier', label:'Nad 100 €', title:'Darček za nákup nad 100 €', reason:'Vyber si 1 zo 4 darčekov.', mode:'pick', qty:1, opts:['flasa','nakrcnik','sejkerB','stipec'], ord:3},
+  trio:{id:'trio', label:'Nad 150 €', title:'3 darčeky za nákup nad 150 €', reason:'Vyber si 3 z 5 darčekov.', mode:'pick', qty:3, opts:['flasa','nakrcnik','sejkerB','stipec','uterak'], ord:3},
+  jw:{id:'jw', label:'K Just Whey', title:'Darček ku každému Just Whey', mode:'pick', qtyPer:'jw', same:true, opts:['tricko','sejkerB','bar'], ord:1,
+    get reason(){ const n = rq(this); return `Za každý kus 1 darček. Máš ${n} ks, takže si môžeš vybrať ${n} ${plural(n, 'darček', 'darčeky', 'darčekov')} (aj rovnaké). Chceš menej? Klikni „Ďalšie nechcem“.`; }},
+  code:{id:'code', label:'Kód PINK', title:'Darček ku kódu PINK', reason:'Vyber si 1 z 3 BeastPink darčekov.', mode:'pick', qty:1, opts:['kefa','taska','gumicka'], ord:4}
+};
+const LOCKED = {
+  single:{thr:150, label:'Nad 150 €', title:'Darček za nákup nad 150 €', opts:['ruksak','uterak','creatine']},
+  code:{thr:100, label:'Nad 100 €', title:'Darček za nákup nad 100 €', opts:['flasa','nakrcnik','sejkerB','stipec']},
+  multi:{thr:200, label:'Nad 200 €', title:'Darček za nákup nad 200 €', opts:['ruksak','uterak','creatine']},
+  perprod:{thr:150, label:'Nad 150 €', title:'Darček za nákup nad 150 €', opts:['ruksak','uterak','creatine']},
+  pick3:{thr:200, label:'Nad 200 €', title:'Darček za nákup nad 200 €', opts:['ruksak','creatine','mydlo']}
+};
+const PROD = {
+  whey:{name:'Protein Yum Yum Whey - BeastPink', meta:['Gramáž: 1000 g','Príchuť: vanilková zmrzlina'], unit:38.95, e:'🥛', bg:'#F6D9E0', pink:true},
+  batoh:{name:'Cyklistický Batoh Hydropack - GymBeam + darčeky', meta:[], unit:36.95, e:'🎒', bg:'#FFE0D3'},
+  jw:{name:'Just Whey Grass-Fed Protein - GymBeam', meta:['Gramáž: 1000 g','Príchuť: čokoládový milkshake'], unit:38.95, e:'🥤', bg:'#EDE3D8'}
+};
+const SCEN = {
+  single:{prods:[['whey',3]], rules:['tier']},
+  code:{prods:[['whey',2]], rules:[]},
+  multi:{prods:[['whey',3],['batoh',1]], rules:['bag','camp','sample','tier']},
+  pick3:{prods:[['whey',3],['batoh',1]], rules:['camp','trio']},
+  perprod:{prods:[['jw',2],['whey',1]], rules:['jw','tier']}
+};
+const SHIP = {box:{n:'GymBeam Box',d:'Výdajný box, doručenie 1–2 dni',c:0}, packeta:{n:'Packeta výdajné miesto',d:'Doručenie 2–3 dni',c:0}, dpd:{n:'Kuriér DPD',d:'Doručenie domov 1–2 dni',c:3.9}};
+const PAY = {card:{n:'Platba kartou online',d:'Visa, Mastercard',c:0}, apple:{n:'Apple Pay / Google Pay',d:'Rýchla platba v telefóne',c:0}, cod:{n:'Dobierka',d:'Platba pri prevzatí',c:1.5}};
+
+const CON = {
+  1:{name:'Variant A · Darčekové sloty',
+     idea:'Sekcia darčekov je <b>hore nad produktmi</b>. Každý darček, na ktorý má user nárok, je jedno <b>políčko</b>. Pravidlo s 3 darčekmi má 3 políčka. Prázdne políčko je oranžové a prerušované, vyplnené má obrázok, ✓ a × na odobratie. Klik na skupinu otvorí výber priamo pod slotmi.',
+     why:['Počet darčekov je vidieť bez čítania: 3 políčka = 3 darčeky','Pri výbere 2 z 3 ostane 1 prázdne políčko, nedá sa prehliadnuť','Auto darček má štítok AUTO a dá sa odobrať × ako hocijaký iný','„Nechcem“ panel nezatvorí, user hneď vidí výsledok a môže to vrátiť'],
+     dev:['Sekcia je nad zoznamom produktov (web aj mobil)','Slot = 1 kus z applied rule (Amasty qty)','× = odobrať a označiť ako nechcený, klik v paneli = vymeniť','Pri 1 darčeku sa panel po výbere presunie na ďalší prázdny slot, pri viacerých až po doplnení všetkých']},
+  3:{name:'Variant B · Darčekový balík',
+     idea:'Darčeky sú jeden zvýraznený <b>balík hore v košíku</b>: „Máš nárok na 6 darčekov, 2 ešte čakajú“. Pod tým sú chipy všetkých darčekov (s × na odobratie) a prázdne chipy pre chýbajúce. „Vybrať darčeky“ spustí sprievodcu priamo v stránke: vždy jedno pravidlo s počítadlom „2 z 3 vybraté“.',
+     why:['Hodnota je prvé, čo user vidí, a nič sa nestratí medzi produktmi','Sprievodca rieši vždy 1 pravidlo, pri výbere viacerých má jasné počítadlo','„Nechcem“ krok nezatvorí, dá sa vrátiť alebo pokračovať','Prehľad v chipoch: všetko, čo príde v balíku, na jednom mieste aj s odobratím'],
+     dev:['Chip = 1 kus z applied rule, × = odobrať','Kroky = pravidlá s výberom, auto pravidlá sú v zozname pod krokom','Najviac UI práce, ale najmenej rozhodnutí naraz']}
+};
+
+let S = {platform:'web', con:'1', view:'desktop', scen:'multi', step:'cart', remind:'new'};
+function initSel(id){ const r = RULE[id]; if (r.mode === 'auto') S.sel[id] = r.opts.map(sku => ({sku})); else if (r.mode === 'preselect') S.sel[id] = r.def.map(sku => ({sku})); else S.sel[id] = []; }
+function resetFlow(){
+  Object.assign(S, {pq:{}, appStep:'cart', sheet:false, sheetIn:false, sheetTab:null, sheetGuard:false, guardShown:false, codeOpen:false, step:'cart', ship:'box', pay:'card', codeInput:'', code:false, codeMsg:'', sel:{}, dec:{}, decAt:{}, active:null, boxOpen:false, boxIdx:0, guard:false, pop:null, newSlot:null, scrollTo:null, full:null});
+  Object.keys(RULE).forEach(initSel);
+}
+resetFlow();
+
+/* ---------- model ---------- */
+const prods = () => SCEN[S.scen].prods.map(([id,q]) => ({id, ...PROD[id], qty:(S.pq && S.pq[id]) || q}));
+const rq = r => r.qtyPer ? ((prods().find(p => p.id === r.qtyPer) || {qty:1}).qty) : r.qty;
+const vtxt = p => { const o = OPT[p.sku]; const c = o.colors && p.color ? o.colors.find(x => x.id === p.color).n : ''; return [p.size, c].filter(Boolean).map(x => ', ' + x).join(''); };
+const rules = () => SCEN[S.scen].rules.concat(S.code ? ['code'] : []).map(id => RULE[id]).sort((a,b) => a.ord - b.ord);
+const picks = r => S.sel[r.id] || [];
+const complete = p => { const o = OPT[p.sku]; return !(o.sizes && !p.size) && !(o.colors && !p.color); };
+const hasVars = k => !!(OPT[k].sizes || OPT[k].colors);
+const okPicks = r => picks(r).filter(complete);
+const pending = r => !S.dec[r.id] && (picks(r).length < rq(r) || picks(r).some(p => !complete(p)));
+const missing = r => S.dec[r.id] ? 0 : rq(r) - okPicks(r).length;
+const pendList = () => rules().filter(pending);
+const giftTotal = () => rules().reduce((a, r) => a + okPicks(r).length, 0);
+const entitled = () => rules().reduce((a, r) => a + rq(r), 0);
+const giftQty = r => r.qtyFrom ? (prods().find(p => p.id === r.qtyFrom) || {qty:1}).qty : 1;
+const isMob = () => S.view === 'mobile';
+function totals(){
+  const ps = prods();
+  const sub = ps.reduce((a,p) => a + p.qty*p.unit, 0);
+  const disc = S.code ? ps.filter(p => p.pink).reduce((a,p) => a + p.qty*p.unit*.2, 0) : 0;
+  const ship = S.step === 'cart' ? 0 : SHIP[S.ship].c;
+  const pay = (S.step === 'pay' || S.step === 'done') ? PAY[S.pay].c : 0;
+  return {sub, disc, ship, pay, total:sub - disc + ship + pay, goods:sub - disc};
+}
+const lockedInfo = () => { const L = LOCKED[S.scen]; const t = totals().goods; return t >= L.thr ? null : {...L, missing:L.thr - t, pct:Math.min(100, t / L.thr * 100)}; };
+
+/* ---------- actions ---------- */
+function doPick(rid, k, size, color){
+  const r = RULE[rid], q = rq(r); let arr = picks(r).map(p => ({...p}));
+  const i = arr.findIndex(p => p.sku === k), preset = size || color;
+  S.full = null;
+  const add = () => { if (arr.length < q) { arr.push({sku:k, size:size || null, color:color || null}); return true; }
+    if (q === 1) { arr = [{sku:k, size:size || null, color:color || null}]; return true; } S.full = rid; return false; };
+  if (r.same) { if (!add()) return; }                       // rovnaký darček môže byť viackrát
+  else if (preset) { if (i >= 0) { if (size) arr[i].size = size; if (color) arr[i].color = color; } else if (!add()) return; }
+  else if (i >= 0) { if (!complete(arr[i])) return; arr.splice(i, 1); }   // klik na vybraný = odznačiť
+  else if (!add()) return;
+  S.sel[rid] = arr; delete S.dec[rid]; S.pop = rid + k;
+  if (!pending(r)) { afterResolve(rid); if (S.con === '1' && isMob() && S.active && S.active !== rid) S.scrollTo = S.active; }
+}
+function doUnpick(rid, k){ const arr = picks(RULE[rid]).slice(); const i = arr.map(p => p.sku).lastIndexOf(k); if (i >= 0) arr.splice(i, 1); S.sel[rid] = arr; S.full = null; }
+function doVar(rid, i, f, v){ const arr = picks(RULE[rid]).map(p => ({...p})); if (!arr[i]) return; arr[i][f] = v; S.sel[rid] = arr; S.pop = rid + arr[i].sku; if (!pending(RULE[rid])) afterResolve(rid); }
+function doQty(id, d){
+  const cur = prods().find(p => p.id === id).qty, nq = Math.max(1, Math.min(5, cur + d)); S.pq[id] = nq;
+  rules().filter(r => r.qtyPer === id).forEach(r => { if (picks(r).length > nq) S.sel[r.id] = picks(r).slice(0, nq); if (d > 0) delete S.dec[r.id]; S.pop = r.id; });
+}
+function doRemove(rid, k){          // × = nechcem tento kus
+  const r = RULE[rid]; const arr = picks(r).slice(); const ix = arr.map(p => p.sku).lastIndexOf(k); if (ix >= 0) arr.splice(ix, 1); S.sel[rid] = arr; S.dec[rid] = true; S.decAt[rid] = S.step; S.full = null;
+  if (['1'].includes(S.con)) S.active = rid;
+}
+function doDecline(rid){ S.dec[rid] = true; S.decAt[rid] = S.step; S.full = null; if (S.con === '1') S.active = rid; if (!pendList().length) S.guard = false; }   // panel ostáva otvorený
+function doUndo(rid){
+  const r = RULE[rid]; delete S.dec[rid];
+  if (!picks(r).length && r.mode !== 'pick') initSel(rid);
+  S.pop = rid; if (S.con === '1') S.active = rid;
+}
+function activeSlot(){ if (S.active !== null) return S.active; const p = pendList()[0]; return p ? p.id : ''; }
+function focusPending(id){
+  const p = id ? RULE[id] : pendList()[0]; if (!p) return;
+  if (S.con === '1') S.active = p.id;
+  if (S.con === '3') { S.boxOpen = true; const i = stepRules().findIndex(r => r.id === p.id); S.boxIdx = Math.max(0, i); }
+  S.scrollTo = p.id;
+}
+function afterResolve(rid){
+  if (S.newSlot === rid) S.newSlot = null;
+  if (S.platform === 'app' && S.sheet) { const nx = pendList()[0]; if (nx) S.sheetTab = nx.id; }
+  if (S.con === '1') { const nx = pendList()[0]; S.active = nx ? nx.id : rid; }
+  if (S.con === '3') {
+    const st = stepRules(), i = st.findIndex(r => r.id === rid);
+    const nx = st.findIndex((r, j) => j > i && pending(r));
+    if (nx >= 0) S.boxIdx = nx;
+    else if (!pendList().length) { S.boxOpen = false; S.pop = 'box'; }
+  }
+  if (!pendList().length) S.guard = false;
+}
+
+/* ---------- atoms ---------- */
+const thumb = (o, s, cls='') => `<div class="th ${cls}" style="background:${o.bg};width:${s}px;height:${s}px;font-size:${Math.round(s*.52)}px" aria-hidden="true">${o.e}</div>`;
+function sizePills(r, k){
+  const o = OPT[k]; if (!hasVars(k)) return '';
+  const ps = picks(r), idxs = ps.map((p, i) => p.sku === k ? i : -1).filter(i => i >= 0);
+  const row = (i, p, n) => {
+    const at = (f, v, pre) => p ? `data-act="pvar" data-r="${r.id}" data-i="${i}" data-f="${f}" data-v="${v}"` : `data-act="pick" data-r="${r.id}" data-k="${k}" data-${pre}="${v}"`;
+    const sz = o.sizes ? `<div class="pills ${p && !p.size ? 'need' : ''}">${o.sizes.map(z => `<button class="pill ${p && p.size === z ? 'on' : ''}" ${at('size', z, 's')}>${z}</button>`).join('')}</div>` : '';
+    const cl = o.colors ? `<div class="cdots ${p && !p.color ? 'need' : ''}">${o.colors.map(c => `<button class="cdot ${p && p.color === c.id ? 'on' : ''}" style="background:${c.hex}" title="${c.n}" aria-label="${c.n}" ${at('color', c.id, 'c')}></button>`).join('')}${p && p.color ? `<span class="cname">${o.colors.find(c => c.id === p.color).n}</span>` : ''}</div>` : '';
+    const miss = p ? [o.sizes && !p.size ? 'veľkosť' : '', o.colors && !p.color ? 'farbu' : ''].filter(Boolean) : [];
+    return `<div class="vrow">${n ? `<div class="vlab">${n}. kus</div>` : ''}${sz}${cl}${miss.length ? `<div class="needtxt">Vyber ${miss.join(' a ')}</div>` : ''}</div>`;
+  };
+  return idxs.length ? idxs.map((i, n) => row(i, ps[i], idxs.length > 1 ? n + 1 : 0)).join('') : row(-1, null, 0);
+}
+function sameCount(r, k){ return picks(r).filter(p => p.sku === k).length; }
+function stepperHTML(r, k){ const n = sameCount(r, k); return n ? `<div class="stp2"><button data-act="unpick" data-r="${r.id}" data-k="${k}" aria-label="Menej">−</button><b>${n}×</b><button data-act="pick" data-r="${r.id}" data-k="${k}" aria-label="Viac">+</button></div>` : ''; }
+function countBadge(r){
+  if (rq(r) < 2) return '';
+  const n = okPicks(r).length; return `<span class="cnt ${n >= rq(r) ? 'ok' : ''}">${n} z ${rq(r)} vybraté</span>`;
+}
+function bigOptions(r, locked){
+  const ps = picks(r), multi = rq(r) > 1, full = ps.length >= rq(r);
+  const cls = r.opts.length === 4 ? 'bgrid c4' : 'bgrid';
+  return `<div class="${cls}">${r.opts.map(k => {
+    const o = OPT[k], on = !locked && ps.some(p => p.sku === k);
+    const dim = !locked && multi && full && !on;
+    const off = !locked && S.dec[r.id] && !on;
+    return `<div class="bo ${on ? 'on' : ''} ${dim ? 'dim' : ''} ${off ? 'off' : ''} ${locked ? 'lock' : ''}" ${locked ? '' : `role="${multi ? 'checkbox' : 'radio'}" tabindex="0" aria-checked="${on}" data-act="pick" data-r="${r.id}" data-k="${k}"`}>
+      <div class="img" style="background:${o.bg}">${o.e}</div>${r.same && on ? `<span class="cntb">${sameCount(r, k)}×</span>` : `<span class="rad ${multi ? 'chk' : ''}">${on ? '✓' : ''}</span>`}<div class="nm">${o.name}</div>${r.same ? stepperHTML(r, k) : ''}${!locked && hasVars(k) ? sizePills(r, k) : ''}</div>`;
+  }).join('')}</div>`;
+}
+function decNote(r){
+  if (!S.dec[r.id]) return '';
+  const has = okPicks(r).length;
+  const txt = has ? `Ďalšie darčeky z tohto pravidla nechceš (${has} z ${rq(r)} si nechávaš).` : 'Tento darček nechceš. Ak si to rozmyslíš, klikni na niektorý nižšie.';
+  return `<div class="decnote"><span>${txt}</span><button class="link dark" data-act="undo" data-r="${r.id}">Vrátiť</button></div>`;
+}
+const fullNote = r => S.full === r.id ? `<div class="fullnote">Máš vybraté ${rq(r)} z ${rq(r)}. Ak chceš iný darček, najprv jeden z vybraných odznač.</div>` : '';
+function declineLink(r){
+  if (S.dec[r.id]) return '<span></span>';
+  const has = picks(r).length;
+  if (rq(r) > 1 && has && has < rq(r)) return `<button class="link mute" data-act="decline" data-r="${r.id}">Ďalšie nechcem</button>`;
+  return `<button class="link mute" data-act="decline" data-r="${r.id}">${rq(r) > 1 ? 'Nechcem žiadny' : 'Nechcem tento darček'}</button>`;
+}
+function statusText(r){
+  if (S.dec[r.id]) return '';
+  const m = missing(r);
+  if (m <= 0) return `<span class="free" style="font-size:13px">✓ V košíku zadarmo</span>`;
+  if (picks(r).some(p => !complete(p))) return `<span class="st">Vyber variant</span>`;
+  return `<span class="st">${rq(r) > 1 ? `Vyber ešte ${m}` : 'Klikni na darček, ktorý chceš'}</span>`;
+}
+
+/* ===== VARIANT A · SLOTY ===== */
+function slotsFor(r){
+  const ps = picks(r), out = [];
+  for (let i = 0; i < rq(r); i++) {
+    const p = ps[i];
+    if (p) {
+      const o = OPT[p.sku], ok = complete(p);
+      const badge = r.mode === 'auto' ? '<span class="badge auto">AUTO</span>' : ok ? '<span class="badge">✓</span>' : '';
+      out.push(`<div class="slot ${ok ? 'full' : 'empty'} ${S.pop === r.id + p.sku ? 'pop' : ''}"><button class="tile" style="background:${o.bg}" data-act="slot" data-r="${r.id}" aria-label="${o.name}">${o.e}${badge}</button>
+        <button class="rmv" data-act="remove" data-r="${r.id}" data-k="${p.sku}" aria-label="Odobrať ${o.name}">×</button><div class="nm">${ok ? o.short + vtxt(p) : 'Vyber variant'}</div></div>`);
+    } else if (S.dec[r.id]) {
+      out.push(`<div class="slot declined"><button class="tile" data-act="slot" data-r="${r.id}">Bez<br>darčeka</button><div class="nm">Nechceš</div></div>`);
+    } else {
+      const nw = S.newSlot === r.id && i === ps.length ? '<span class="badge new">Nové</span>' : '';
+      out.push(`<div class="slot empty"><button class="tile" data-act="slot" data-r="${r.id}"><span class="plus">+<b>Vybrať</b></span>${nw}</button><div class="nm">Čaká na výber</div></div>`);
+    }
+  }
+  return out.join('');
+}
+function panelA(act){
+  const L = lockedInfo();
+  if (act === 'locked' && L) return `<div class="spanel"><div class="spanel-h"><div><b>${L.title}</b><small>Pridaj do košíka ešte za ${eur(L.missing)} a vyberieš si jeden z týchto darčekov.</small></div><button class="link mute" data-act="slot" data-r="locked">Zavrieť</button></div>${bigOptions({id:'locked', opts:L.opts, qty:1}, true)}</div>`;
+  const r = RULE[act]; if (!r || !rules().includes(r)) return '';
+  return `<div class="spanel" id="panel"><div class="spanel-h"><div><b>${r.title}${countBadge(r)}</b><small>${r.reason}</small></div><button class="link mute" data-act="slot" data-r="${r.id}">Zavrieť</button></div>
+    ${decNote(r)}${fullNote(r)}${bigOptions(r)}<div class="spanel-f">${declineLink(r)}${statusText(r)}</div></div>`;
+}
+function groupStatus(r){
+  const ok = okPicks(r), ps = picks(r);
+  if (S.dec[r.id] && !ok.length) return '<span class="gs-mute">Bez darčeka</span>';
+  if (ps.some(p => !complete(p))) return '<span class="gs-need">Vyber variant</span>';
+  if (rq(r) > 1) return `<span class="${pending(r) ? 'gs-need' : 'gs-ok'}">${ok.length} z ${rq(r)} vybraté${pending(r) ? `, vyber ešte ${missing(r)}` : ''}</span>`;
+  if (pending(r)) return '<span class="gs-need">Čaká na výber</span>';
+  const p = ok[0]; return `<span class="gs-ok">${OPT[p.sku].short}${vtxt(p)}${r.mode === 'auto' ? ', automaticky' : ''}</span>`;
+}
+function variantAMob(){
+  const rs = rules(), L = lockedInfo(), act = activeSlot();
+  const rows = rs.map(r => {
+    const one = rq(r) === 1, open = act === r.id;
+    const head = `<div class="g1-row" data-act="slot" data-r="${r.id}" aria-expanded="${open}">${one ? `<div class="g1-tiles">${slotsFor(r)}</div>` : ''}
+      <div class="g1-t"><b>${r.label}</b>${groupStatus(r)}</div><span class="chev" aria-hidden="true">▾</span></div>`;
+    return `<div class="mg ${one ? 'one' : 'multi'} ${open ? 'active' : ''} ${pending(r) ? 'is-p' : ''}" id="g-${r.id}">${head}${one ? '' : `<div class="g1-tiles">${slotsFor(r)}</div>`}${open ? panelA(r.id) : ''}</div>`;
+  }).join('') + (L ? `<div class="mg one locked ${act === 'locked' ? 'active' : ''}" id="g-locked"><div class="g1-row" data-act="slot" data-r="locked"><div class="g1-tiles"><div class="slot locked"><div class="tile">🔒</div></div></div>
+      <div class="g1-t"><b>${L.label}</b><span class="gs-mute">Ešte ${eur(L.missing)} do ďalšieho darčeka</span><div class="lk2"><i style="width:${L.pct}%"></i></div></div><span class="chev">▾</span></div>${act === 'locked' ? panelA('locked') : ''}</div>` : '');
+  const tot = rs.reduce((a, r) => a + (S.dec[r.id] ? okPicks(r).length : rq(r)), 0), h = giftTotal(), p = pendList().length;
+  return `<section class="n1" id="gifts"><div class="n1-h"><h2>Tvoje darčeky zadarmo</h2>${tot ? `<span style="color:${p ? 'var(--brand-d)' : 'var(--ok)'}">${h} z ${tot}</span>` : ''}</div>
+    <div class="n1-sub">${p ? 'Ťukni na políčko, výber sa otvorí priamo pod ním.' : rs.length ? 'Všetky darčeky máš. Ťukni na políčko, ak ho chceš vymeniť.' : 'Darčeky sa odomykajú podľa hodnoty košíka.'}</div>
+    <div class="mgroups">${rows}</div></section>`;
+}
+function variantA(){
+  if (isMob()) return variantAMob();
+  const rs = rules(), L = lockedInfo();
+  if (!rs.length && !L) return '';
+  const act = activeSlot();
+  const groups = rs.map(r => `<div class="sgrp ${act === r.id ? 'active' : ''}" id="g-${r.id}"><div class="sgrp-h">${r.label}${rq(r) > 1 ? ` <span>${okPicks(r).length} z ${rq(r)}</span>` : ''}</div><div class="sgrp-t">${slotsFor(r)}</div></div>`).join('')
+    + (L ? `<div class="sgrp ${act === 'locked' ? 'active' : ''}"><div class="sgrp-h">${L.label}</div><div class="sgrp-t"><div class="slot locked"><button class="tile" data-act="slot" data-r="locked">🔒</button><div class="nm">Ešte ${eur(L.missing)}</div><div class="lk"><i style="width:${L.pct}%"></i></div></div></div></div>` : '');
+  const tot = rs.filter(r => !S.dec[r.id] || okPicks(r).length).reduce((a, r) => a + (S.dec[r.id] ? okPicks(r).length : rq(r)), 0), h = giftTotal();
+  const p = pendList().length;
+  return `<section class="n1" id="gifts"><div class="n1-h"><h2>Tvoje darčeky zadarmo</h2>${tot ? `<span style="color:${p ? 'var(--brand-d)' : 'var(--ok)'}">${h} z ${tot} v košíku</span>` : ''}</div>
+    <div class="n1-sub">${p ? 'Klikni na prázdne políčko a vyber si darček. Darček odoberieš krížikom.' : rs.length ? 'Všetky darčeky máš. Klikni na darček, ak ho chceš vymeniť, alebo ho odober krížikom.' : 'Darčeky sa odomykajú podľa hodnoty košíka.'}</div>
+    <div class="groups">${groups}</div>${act ? panelA(act) : ''}</section>`;
+}
+
+/* ===== VARIANT B · BALÍK ===== */
+const stepRules = () => rules().filter(r => r.mode !== 'auto');
+function chipsB(){
+  return rules().map(r => {
+    const ps = picks(r), out = [];
+    ps.forEach(p => { const o = OPT[p.sku], ok = complete(p);
+      out.push(ok ? `<div class="gch ${S.pop === r.id + p.sku ? 'pop' : ''}">${thumb(o, 34)}<span class="gch-t"><b>${o.short}${vtxt(p)}</b><small>${r.label}${r.mode === 'auto' ? ', automaticky' : ''}</small></span><button class="x2" data-act="remove" data-r="${r.id}" data-k="${p.sku}" aria-label="Odobrať ${o.name}">×</button></div>`
+        : `<button class="gch em" data-act="boxgo" data-r="${r.id}">+ ${r.label}: vyber variant</button>`); });
+    const m = rq(r) - ps.length;
+    if (m > 0) out.push(S.dec[r.id] ? `<div class="gch dec">${r.label}: ${ps.length ? `ďalšie ${m}` : ''} bez darčeka <button class="link dark" data-act="undo" data-r="${r.id}" style="margin-left:6px">Vrátiť</button></div>`
+      : `<button class="gch em" data-act="boxgo" data-r="${r.id}">+ ${r.label}: ${m > 1 ? `vyber ešte ${m}` : 'vyber darček'}</button>`);
+    return out.join('');
+  }).join('');
+}
+function variantB(){
+  const rs = rules(), L = lockedInfo();
+  if (!rs.length) return L ? `<div class="n3"><div class="n3-closed"><div class="n3-row"><div class="n3-ico">🎁</div><div class="n3-txt"><b>Ešte ${eur(L.missing)} a máš darček zadarmo</b><span>${L.title}</span></div></div></div></div>` : '';
+  const steps = stepRules(), p = pendList().length;
+  if (!S.boxOpen || !steps.length) {
+    const miss = rules().reduce((a, r) => a + Math.max(0, missing(r)), 0);
+    return `<div class="n3 ${p ? '' : 'done'} ${S.pop === 'box' ? 'flash' : ''}" id="gifts"><div class="n3-closed"><div class="n3-row"><div class="n3-ico">🎁</div>
+      <div class="n3-txt"><b>${p ? `Máš nárok na ${entitled()} ${plural(entitled(), 'darček', 'darčeky', 'darčekov')} zadarmo` : `V balíku máš ${giftTotal()} ${plural(giftTotal(), 'darček', 'darčeky', 'darčekov')} zadarmo`}</b>
+      <span>${p ? `${miss} ${plural(miss, 'darček ešte čaká', 'darčeky ešte čakajú', 'darčekov ešte čaká')} na tvoj výber` : L ? `Ešte ${eur(L.missing)} a pribudne ďalší` : 'Všetko je pripravené. Darček odoberieš krížikom.'}</span></div>
+      ${steps.length ? `<button class="n3-btn ${p ? '' : 'sec'}" data-act="boxopen">${p ? 'Vybrať darčeky' : 'Upraviť darčeky'}</button>` : ''}</div><div class="chips">${chipsB()}</div></div></div>`;
+  }
+  const i = Math.min(S.boxIdx, steps.length - 1), r = steps[i];
+  const dots = steps.map((x, j) => `<i class="${j === i ? 'cur' : S.dec[x.id] && !okPicks(x).length ? 'dec' : !pending(x) ? 'ok' : ''}"></i>`).join('');
+  const autos = rs.filter(x => x.mode === 'auto');
+  const autoList = autos.length ? `<div class="autolist"><div class="t">V balíku automaticky</div>${autos.map(x => { const ps = picks(x);
+      return ps.length ? ps.map(pp => `<div class="auto-i">${thumb(OPT[pp.sku], 30)}<span>${OPT[pp.sku].name}, ${giftQty(x)} ks <span class="free">zadarmo</span></span><button class="link mute" data-act="remove" data-r="${x.id}" data-k="${pp.sku}">Odobrať</button></div>`).join('')
+        : `<div class="auto-i"><span style="color:var(--ink3)">${x.title}: odobraté</span><button class="link dark" data-act="undo" data-r="${x.id}">Vrátiť</button></div>`; }).join('')}</div>` : '';
+  const last = i === steps.length - 1;
+  return `<div class="n3" id="gifts"><div class="n3-open"><div class="n3-top"><span class="n3-step">Krok ${i + 1} z ${steps.length}</span><div class="n3-dots">${dots}</div><button class="n3-head-close" data-act="boxclose">Zbaliť</button></div>
+    <h3 class="n3-title" id="g-${r.id}">${r.title}${countBadge(r)}</h3><div class="n3-reason">${r.reason}</div>
+    ${decNote(r)}${fullNote(r)}${bigOptions(r)}
+    <div class="n3-foot"><div style="display:flex;gap:14px">${i > 0 ? `<button class="link mute" data-act="boxprev">Späť</button>` : ''}${declineLink(r)}</div>
+      <div style="display:flex;gap:12px;align-items:center">${statusText(r)}<button class="n3-next" data-act="boxnext" ${pending(r) ? 'disabled' : ''}>${last ? 'Hotovo' : 'Ďalší darček'}</button></div></div>${autoList}</div></div>`;
+}
+
+/* ---------- košík, zhrnutie ---------- */
+function productsHTML(){
+  return `<div class="card">${prods().map(p => { const price = p.qty*p.unit, d = S.code && p.pink;
+    return `<div class="pl">${thumb(p, 64)}<div class="pl-b"><div class="pl-n">${p.name}</div>${p.meta.map(m => `<div class="pl-m">${m}</div>`).join('')}
+      <div class="pl-f"><div class="qty"><i data-act="pq" data-k="${p.id}" data-d="-1">−</i><b>${p.qty}</b><i data-act="pq" data-k="${p.id}" data-d="1">+</i></div><div class="price">${d ? `<s>${eur(price)}</s>${eur(price*.8)}` : eur(price)}</div></div></div><button class="x" aria-label="Odstrániť">✕</button></div>`; }).join('')}</div>`;
+}
+function codeBox(){
+  if (S.code) return `<div class="code"><div class="code-h">Zľavový kód</div><div class="code-ok"><span><b>PINK</b> −20 % na BeastPink</span><button class="link mute" data-act="uncode">Odstrániť</button></div>
+    <div class="code-msg">🎁 Kód ti odomkol aj nový darček. <button class="link" data-act="jump" data-r="code">Vybrať darček</button></div></div>`;
+  return `<div class="code"><div class="code-h">Použiť zľavový kód</div><div class="code-r"><input id="codeIn" placeholder="Vložte zľavový kupón (skús PINK)" value="${S.codeInput}" aria-label="Zľavový kód"><button data-act="code">Použiť</button></div>
+    ${S.codeMsg === 'err' ? `<div class="code-msg err">Kód „${S.codeInput}“ neplatí.</div>` : ''}</div>`;
+}
+function rowsHTML(){
+  const t = totals();
+  return `<div class="row"><span>Medzisúčet</span><b>${eur(t.sub)}</b></div>${t.disc ? `<div class="row disc"><span>Zľava PINK</span><b>−${eur(t.disc)}</b></div>` : ''}
+    ${S.step !== 'cart' ? `<div class="row"><span>Doprava</span><b>${t.ship ? eur(t.ship) : 'Zadarmo'}</b></div>` : ''}${t.pay ? `<div class="row"><span>Dobierka</span><b>${eur(t.pay)}</b></div>` : ''}
+    <div class="tot"><b>Celkom</b><span>${eur(t.total)}</span></div><div class="vat">vrátane DPH</div>`;
+}
+function giftStatus(){
+  if (!rules().length) return '';
+  const m = rules().reduce((a, r) => a + Math.max(0, missing(r)), 0);
+  return m ? `<button class="gstat warn" data-act="jump">🎁 ${m} ${plural(m, 'darček čaká', 'darčeky čakajú', 'darčekov čaká')} na výber</button>` : `<div class="gstat ok">🎁 ${giftTotal()} ${plural(giftTotal(), 'darček', 'darčeky', 'darčekov')} zadarmo v košíku</div>`;
+}
+const guardMsg = () => S.guard && pendList().length ? `<div class="guard">Ešte si nevybral: <b>${pendList()[0].title.toLowerCase()}</b>. Vyber ho, alebo pokračuj bez neho.</div>` : '';
+const ctaLabel = () => S.step === 'pay' ? 'OBJEDNAŤ A ZAPLATIŤ' : (S.step === 'cart' && S.guard && pendList().length ? 'POKRAČOVAŤ BEZ DARČEKA' : 'POKRAČOVAŤ');
+
+/* Doručenie a Platba: rovnaký prúžok pre oba varianty */
+function swatches(r){
+  const ps = picks(r), full = ps.length >= rq(r);
+  return `<div class="sws">${r.opts.map(k => { const o = OPT[k], on = ps.some(p => p.sku === k);
+    return `<button class="sw ${on ? 'on' : ''} ${rq(r) > 1 && full && !on ? 'dim' : ''}" style="background:${o.bg}" data-act="pick" data-r="${r.id}" data-k="${k}" title="${o.name}" aria-label="${o.name}" aria-pressed="${on}">${o.e}</button>`; }).join('')}</div>`;
+}
+function checkoutStrip(withPicker){
+  const rs = rules(); if (!rs.length) return '';
+  if (S.remind === 'old') return pendList().length ? `<div class="yel">Ešte ste nevybrali všetky svoje darčeky zadarmo! <button data-act="tocart">Vybrať darčeky</button></div>` : '';
+  const row = rs.map(r => okPicks(r).map(p => `<span title="${OPT[p.sku].name}">${thumb(OPT[p.sku], 40)}</span>`).join('') + '<div class="th em" style="width:40px;height:40px">+</div>'.repeat(Math.max(0, missing(r)))).join('');
+  return `<div class="cs"><div class="cs-h">Darčeky zadarmo<span>${giftTotal()} v balíku</span></div><div class="cs-row">${row}</div>${withPicker ? checkoutCards() : ''}</div>`;
+}
+const checkoutCards = () => rules().filter(r => pending(r) || (S.dec[r.id] && S.decAt[r.id] === S.step)).map(pickerCard).join('');
+function pickerCard(r){
+  if (S.dec[r.id]) return `<div class="cs-p dec" id="g-${r.id}"><b>${r.title}</b><div class="r" style="margin:4px 0 0">Darček nechceš. <button class="link dark" data-act="undo" data-r="${r.id}">Vrátiť</button></div></div>`;
+  const sized = r.opts.length === 1 && hasVars(r.opts[0]);
+  const incompl = picks(r).filter(p => !complete(p)).map(p => p.sku).filter((k, i, a) => a.indexOf(k) === i);
+  return `<div class="cs-p" id="g-${r.id}"><b>🎁 ${r.title}${countBadge(r)}</b><div class="r">${rq(r) > 1 ? `Vyber ešte ${missing(r)}. Pridajú sa hneď.` : 'Ešte si ho nevybral. Klikni na darček, pridá sa hneď.'}</div>
+    ${sized ? `<div style="display:flex;gap:10px;align-items:center">${thumb(OPT[r.opts[0]], 40)}<div>${sizePills(r, r.opts[0])}${!picks(r).length ? '' : ''}</div></div>` : swatches(r)}${!sized ? incompl.map(k => `<div style="display:flex;gap:10px;align-items:flex-start;margin-top:8px">${thumb(OPT[k], 34)}<div style="flex:1">${sizePills(r, k)}</div></div>`).join('') : ''}
+    ${fullNote(r)}<div style="margin-top:8px">${declineLink(r)}</div></div>`;
+}
+
+/* ---------- shells ---------- */
+function stepper(){
+  const st = [['cart','Košík'],['ship','Doručenie'],['pay','Platba']]; const idx = st.findIndex(s => s[0] === S.step);
+  return `<div class="stp">${st.map((s,i) => `${i ? '<div class="ln"></div>' : ''}<button class="s ${i === idx ? 'on' : i < idx ? 'dn' : ''}" data-act="go" data-s="${s[0]}"><div class="c">${i < idx ? '✓' : i+1}</div><span>${s[1]}</span></button>`).join('')}</div>`;
+}
+const promo = () => S.scen === 'code' ? `<div class="promo">Všetky BeastPink produkty so zľavou 20 %. Použi kód: PINK</div>` : '';
+const itemCount = () => { const n = prods().length + giftTotal(); return n + ' ' + plural(n, 'položka', 'položky', 'položiek'); };
+const shipList = () => `<div class="sec"><h2>Doručenie</h2>${Object.entries(SHIP).map(([k,v]) => `<button class="radio ${S.ship === k ? 'on' : ''}" data-act="ship" data-k="${k}"><span class="rd"></span><span class="rb"><b>${v.n}</b><span>${v.d}</span></span><span class="rp">${v.c ? eur(v.c) : 'Zadarmo'}</span></button>`).join('')}<button class="back" data-act="go" data-s="cart">Späť do košíka</button></div>`;
+const payList = () => `<div class="sec"><h2>Platba</h2>${Object.entries(PAY).map(([k,v]) => `<button class="radio ${S.pay === k ? 'on' : ''}" data-act="pay" data-k="${k}"><span class="rd"></span><span class="rb"><b>${v.n}</b><span>${v.d}</span></span><span class="rp">${v.c ? eur(v.c) : ''}</span></button>`).join('')}<button class="back" data-act="go" data-s="ship">Späť na doručenie</button></div>`;
+const prodMini = () => prods().map(p => `<div class="li-s">${thumb(p, 32)}<span>${p.name}<small>${p.qty} ks</small></span></div>`).join('');
+function doneHTML(){
+  const miss = rules().filter(r => missing(r) > 0 || (S.dec[r.id] && okPicks(r).length < rq(r)));
+  return `<div class="done"><h2 style="margin:0 0 6px">Ďakujeme, objednávka je prijatá</h2><div style="color:var(--ink2)">Takto vyzerá balík, ktorý user dostane.</div>
+    <div class="lst">${prods().map(p => `<div class="li">${thumb(p, 36)}<span>${p.name}</span><b>${p.qty} ks</b></div>`).join('')}
+    ${rules().map(r => okPicks(r).map(p => `<div class="li">${thumb(OPT[p.sku], 36)}<span>${OPT[p.sku].name}${vtxt(p)}<span class="tag">DARČEK</span></span><b>${giftQty(r)} ks</b></div>`).join('')).join('')}
+    ${miss.map(r => `<div class="li"><span class="miss">Bez darčeka: ${r.title}, ${rq(r) - okPicks(r).length} z ${rq(r)} (${S.dec[r.id] ? 'nechcel' : 'nevybral'})</span></div>`).join('')}</div>
+    <button class="cta" data-act="restart" style="max-width:260px">SKÚSIŤ ZNOVA</button></div>`;
+}
+const giftsBelow = () => '';
+const giftsTop = () => S.con === '3' ? variantB() : variantA();
+function desktop(){
+  const t = totals();
+  const head = `${promo()}<div class="sh"><div class="logo">GymBeam</div><div class="search">🔍 Hľadajte v obchode...</div><div class="icons">👤 ♡ 🛒 <b>${eur(t.total)}</b></div></div>`;
+  if (S.step === 'done') return `<div class="desk">${head}${doneHTML()}</div>`;
+  if (S.step === 'cart') return `<div class="desk">${head}<nav class="nav"><span>POTRAVINY</span><span>PROTEÍNY</span><span>ŠPORTOVÁ VÝŽIVA</span><span>OBLEČENIE</span><span>PRÍSLUŠENSTVO</span><span>TOP PONUKY</span></nav>
+      <div class="dgrid"><div><div class="h1row"><h1>Nákupný košík</h1><span>${itemCount()}</span></div>${giftsTop()}${productsHTML()}${giftsBelow()}</div>
+      <aside><div class="loy"><span>GB Vernostný program</span><span>▾</span></div><div class="sum"><h3>Zhrnutie objednávky</h3><div class="shipbar">🚚 Doprava zadarmo<i></i></div>${codeBox()}${rowsHTML()}${giftStatus()}${guardMsg()}<button class="cta" data-act="next">${ctaLabel()}</button></div></aside></div></div>`;
+  return `<div class="desk">${head}${stepper()}<div class="dgrid"><div>${S.step === 'ship' ? shipList() : payList()}</div>
+    <aside><div class="sum"><h3>Zhrnutie objednávky</h3>${prodMini()}<div style="height:8px"></div>${rowsHTML()}${checkoutStrip(true)}<button class="cta" data-act="next" style="margin-top:12px">${ctaLabel()}</button></div></aside></div></div>`;
+}
+function mobile(){
+  const t = totals();
+  const head = `${promo()}<div class="mh"><span style="font-size:22px">☰</span><div class="logo">GymBeam</div><span style="font-size:18px">👤 ♡ 🛒</span></div>`;
+  if (S.step === 'done') return `<div class="mob"><div class="scroll">${head}${doneHTML()}</div></div>`;
+  let body;
+  if (S.step === 'cart') body = `${stepper()}<div class="shipbar">🚚 Doprava zadarmo<i></i></div><div class="h1row"><h1>Nákupný košík</h1><span>${itemCount()}</span></div>
+      ${giftsTop()}<div class="pad">${productsHTML()}</div>${giftsBelow()}<div class="loy"><span>GB Vernostný program</span><span>▾</span></div>${codeBox()}
+      <div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${rowsHTML()}</div><div style="height:16px"></div>`;
+  else {
+    const top = S.remind === 'old' ? checkoutStrip(false) : checkoutCards();
+    body = `${stepper()}${top}${S.step === 'ship' ? shipList() : payList()}<div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${prodMini()}<div style="height:6px"></div>${rowsHTML()}${S.remind === 'new' ? checkoutStrip(false) : ''}</div><div style="height:16px"></div>`;
+  }
+  const m = S.step === 'cart' ? rules().reduce((a, r) => a + Math.max(0, missing(r)), 0) : 0;
+  return `<div class="mob"><div class="scroll" id="mscroll">${head}${body}</div><div class="sbar">${S.step === 'cart' ? guardMsg() : ''}<div class="sbar-r"><div class="sbar-t"><small>Celkom</small><b>${eur(t.total)}</b>${m ? `<br><button class="link" style="font-size:11px" data-act="jump">🎁 ${m} čaká na výber</button>` : ''}</div><button class="cta" data-act="next">${ctaLabel()}</button></div></div></div>`;
+}
+
+
+/* =================== APP =================== */
+const appMissing = () => rules().reduce((a, r) => a + Math.max(0, missing(r)), 0);
+function appTiles(withLocked){
+  const rs = rules(), L = lockedInfo();
+  const g = rs.map(r => {
+    const ps = picks(r), tiles = [];
+    for (let i = 0; i < rq(r); i++) {
+      const p = ps[i];
+      if (p) { const o = OPT[p.sku], ok = complete(p);
+        tiles.push(`<div class="atw ${S.pop === r.id + p.sku ? 'pop' : ''}"><button class="at ${ok ? '' : 'empty'}" style="${ok ? `background:${o.bg}` : ''}" data-act="asheet" data-r="${r.id}" aria-label="${o.name}">${o.e}${r.mode === 'auto' ? '<span class="bd auto">AUTO</span>' : ok ? '<span class="bd">✓</span>' : ''}</button><button class="atx" data-act="remove" data-r="${r.id}" data-k="${p.sku}" aria-label="Odobrať">×</button></div>`);
+      } else if (S.dec[r.id]) tiles.push(`<button class="at dec" data-act="asheet" data-r="${r.id}">Bez<br>darčeka</button>`);
+      else tiles.push(`<button class="at empty" data-act="asheet" data-r="${r.id}" aria-label="Vybrať darček">+${S.newSlot === r.id && i === ps.length ? '<span class="bd new">Nové</span>' : ''}</button>`);
+    }
+    return `<div class="atg-g"><div class="atg-l">${r.label}${rq(r) > 1 ? ` (${okPicks(r).length}/${rq(r)})` : ''}</div><div class="atg-r">${tiles.join('')}</div></div>`;
+  }).join('');
+  const lk = withLocked && L ? `<div class="atg-g"><div class="atg-l">${L.label}</div><div class="atg-r"><button class="at lock" data-act="noop" aria-label="Zamknuté">🔒</button></div><div class="atg-l" style="font-weight:500;color:var(--ink3)">ešte ${eur(L.missing)}</div></div>` : '';
+  return `<div class="atg">${g}${lk}</div>`;
+}
+function appGiftCard(){
+  const rs = rules(), L = lockedInfo();
+  if (!rs.length) return L ? `<div class="agc"><div class="agc-h"><span class="ic">🎁</span><b>Darčeky zadarmo</b></div><div class="agc-sub">Ešte ${eur(L.missing)} a vyberieš si darček zadarmo.</div>${appTiles(true)}</div>` : '';
+  const m = appMissing(), h = giftTotal(), tot = h + m;
+  return `<div class="agc ${m ? 'is-p' : ''}" id="g-agc"><div class="agc-h"><span class="ic">🎁</span><b>Darčeky zadarmo</b><span class="apill ${m ? '' : 'ok'}">${h} z ${tot}</span></div>
+    <div class="agc-sub">${m ? 'Ťukni na prázdne políčko a vyber si darček.' : 'Všetko máš. Ťukni na darček, ak ho chceš vymeniť.'}</div>
+    ${S.newSlot === 'code' && pending(RULE.code) ? `<div class="agc-new">🎉 Kód PINK ti odomkol nový darček</div>` : ''}
+    ${appTiles(true)}${m ? `<button class="agc-btn" data-act="asheet">Vybrať darčeky (${m})</button>` : ''}</div>`;
+}
+function appProducts(){
+  return prods().map(p => `<div class="apc"><div class="im" style="background:${p.bg}">${p.e}</div><div class="b"><div class="n">${p.name}</div>${p.meta.length ? `<div class="m">${p.meta.map(x => x.split(': ')[1]).join('<br>')}</div>` : ''}
+    <div class="f"><span class="pr">${eur(p.unit * (S.code && p.pink ? .8 : 1))}</span><div class="aq"><i data-act="pq" data-k="${p.id}" data-d="-1">−</i><b>${p.qty}</b><i data-act="pq" data-k="${p.id}" data-d="1">+</i></div></div></div><span class="dots">···</span></div>`).join('');
+}
+function appProgress(){
+  const L = lockedInfo(), t = totals().goods;
+  const pct = L ? Math.min(100, t / L.thr * 100) : 100;
+  return `<div class="aprog"><div class="apr"><span style="color:var(--a)">🎁</span>${L ? `Ešte ${eur(L.missing)} do ďalšieho darčeka` : 'Darček zadarmo'}</div><div class="abar"><i style="width:${pct}%;background:#EB542C"></i></div>
+    <div class="apr"><span>🚚</span>Doprava zadarmo</div><div class="abar"><i style="width:100%;background:#8BC34A"></i></div></div>`;
+}
+function appTotals(){
+  const t = totals();
+  return `<div class="atot"><div class="r"><span>Medzisúčet</span><span>${eur(t.sub)}</span></div>${t.disc ? `<div class="r"><span>Zľava PINK</span><span style="color:var(--ok)">−${eur(t.disc)}</span></div>` : ''}
+    <div class="r"><span>Vernostný program</span><span>${Math.round(t.total*2)} bodov</span></div><div class="t"><span>K úhrade</span><span>${eur(t.total)}</span></div></div>`;
+}
+function appCode(){
+  if (S.code) return `<div class="acode"><div class="code-ok"><span><b>PINK</b> −20 % na BeastPink</span><button class="link mute" data-act="uncode">Odstrániť</button></div></div>`;
+  if (!S.codeOpen) return `<button class="arow" data-act="acode"><span style="flex:0">🏷️</span><span>Zľavový kód alebo darčekový poukaz</span><span class="ch">›</span></button>`;
+  return `<div class="acode"><div class="code-r"><input id="codeIn" placeholder="Zadaj kód (skús PINK)" value="${S.codeInput}" aria-label="Zľavový kód"><button data-act="code">Použiť</button></div>${S.codeMsg === 'err' ? `<div class="code-msg err">Kód „${S.codeInput}“ neplatí.</div>` : ''}</div>`;
+}
+function appDock(label){
+  const m = appMissing();
+  const rem = !rules().length ? '' : m
+    ? `<button class="arem" data-act="asheet"><span>🎁 ${m} ${plural(m, 'darček čaká', 'darčeky čakajú', 'darčekov čaká')} na výber</span><em>Vybrať</em></button>`
+    : `<div class="arem ok"><span>✓ ${giftTotal()} ${plural(giftTotal(), 'darček', 'darčeky', 'darčekov')} zadarmo v balíku</span></div>`;
+  return `<div class="adock">${rem}<button class="acta" data-act="${S.appStep === 'checkout' ? 'aorder' : 'acheckout'}">${label}</button>
+    <div class="atab"><span>𝓖</span><span>▦</span><span class="on">🛒<i>${prods().reduce((a,p) => a + p.qty, 0) + giftTotal()}</i></span><span>♥</span><span>👤</span></div></div>`;
+}
+function appSheet(){
+  const rs = rules(); if (!S.sheet || !rs.length) return '';
+  const tab = rs.find(r => r.id === S.sheetTab) || pendList()[0] || rs[0];
+  const tabs = rs.map(r => { const st = S.dec[r.id] && !okPicks(r).length ? 'd' : pending(r) ? 'p' : 'ok';
+    return `<button class="atb ${r.id === tab.id ? 'on' : ''}" data-act="atab" data-r="${r.id}"><span class="dt ${st}">${st === 'ok' ? '✓' : st === 'd' ? '–' : ''}</span>${r.label}${r.mode === 'auto' ? ' (auto)' : ''}</button>`; }).join('');
+  const ps = picks(tab), multi = rq(tab) > 1, full = ps.length >= rq(tab);
+  const grid = `<div class="agrid">${tab.opts.map(k => { const o = OPT[k], on = ps.some(p => p.sku === k);
+    return `<div class="ao ${on ? 'on' : ''} ${multi && full && !on ? 'dim' : ''} ${S.dec[tab.id] && !on ? 'off' : ''}" role="${multi ? 'checkbox' : 'radio'}" aria-checked="${on}" tabindex="0" data-act="pick" data-r="${tab.id}" data-k="${k}">
+      <div class="img" style="background:${o.bg}">${o.e}</div>${tab.same && on ? `<span class="rd" style="background:var(--ok);border-color:var(--ok);width:auto;padding:0 6px;border-radius:12px">${sameCount(tab, k)}×</span>` : `<span class="rd ${multi ? 'chk' : ''}">${on ? '✓' : ''}</span>`}<div class="nm">${o.name}</div>${tab.same ? stepperHTML(tab, k) : ''}${hasVars(k) ? sizePills(tab, k) : ''}</div>`; }).join('')}</div>`;
+  const nextP = rs.find(r => r !== tab && pending(r));
+  let btn;
+  if (pending(tab)) btn = `<button class="ash-next" disabled>${multi ? `Vyber ešte ${missing(tab)}` : picks(tab).some(p => !complete(p)) ? 'Vyber variant' : 'Vyber darček'}</button>`;
+  else if (nextP) btn = `<button class="ash-next" data-act="anext">Ďalší darček</button>`;
+  else btn = S.sheetGuard ? `<button class="ash-next go" data-act="askip">${S.appStep === 'checkout' ? 'Dokončiť objednávku' : 'Pokračovať do pokladne'}</button>` : `<button class="ash-next" data-act="aclose">Hotovo</button>`;
+  const left = S.sheetGuard && appMissing() ? `<button class="link mute" data-act="askip">Pokračovať bez darčeka</button>` : '';
+  const m = appMissing();
+  return `<div class="ash-ov" data-act="aclose"></div><div class="ash ${S.sheetIn ? 'in' : ''}" role="dialog" aria-label="Darčeky zadarmo"><div class="ash-hd"></div>
+    <div class="ash-top"><b>Darčeky zadarmo</b><button class="ash-x" data-act="aclose" aria-label="Zavrieť">✕</button></div>
+    ${S.sheetGuard && m ? `<div class="ash-guard">Pred pokladňou: ešte ${m === 1 ? 'ti chýba 1 darček' : `ti chýbajú ${m} darčeky`} zadarmo.</div>` : ''}
+    <div class="ash-tabs" id="atabs">${tabs}</div>
+    <div class="ash-rh"><b>${tab.title}${countBadge(tab)}</b><small>${tab.reason}</small></div>
+    <div class="ash-body" id="abody">${decNote(tab)}${fullNote(tab)}${grid}<div style="margin-top:14px;text-align:center">${declineLink(tab)}</div></div>
+    <div class="ash-ft">${left}${btn}</div></div>`;
+}
+function appScreen(){
+  let title = 'Nákupný košík', body, label = `DO POKLADNE  ${eur(totals().total)}`, back = '';
+  if (S.appStep === 'cart') body = `${appProgress()}${appGiftCard()}${appProducts()}${appCode()}<button class="arow"><span style="flex:0;color:var(--a)">Ⓖ</span><span>Vernosť sa oplatí</span><b style="font-weight:700">0 bodov</b><span class="ch">›</span></button>${appTotals()}`;
+  else if (S.appStep === 'checkout') {
+    title = 'Pokladňa'; back = `<button class="bk" data-act="aback" aria-label="Späť">‹</button>`; label = `OBJEDNAŤ  ${eur(totals().total)}`;
+    body = `<div class="acard"><h4>Doručenie</h4><div class="opt"><span>◉ GymBeam Box</span><b>Zadarmo</b></div><div class="opt" style="color:var(--ink3)"><span>○ Kuriér DPD</span><span>3,90 €</span></div></div>
+      <div class="acard"><h4>Platba</h4><div class="opt"><span>◉ Apple Pay</span></div><div class="opt" style="color:var(--ink3)"><span>○ Platba kartou</span></div></div>
+      ${rules().length ? `<div class="agc ${appMissing() ? 'is-p' : ''}"><div class="agc-h"><span class="ic">🎁</span><b>Darčeky v objednávke</b><span class="apill ${appMissing() ? '' : 'ok'}">${giftTotal()} z ${giftTotal() + appMissing()}</span></div><div class="agc-sub">${appMissing() ? 'Ťukni na prázdne políčko, vyberieš ho tu bez návratu do košíka.' : 'Všetky darčeky máš v balíku.'}</div>${appTiles(false)}</div>` : ''}${appTotals()}`;
+  } else {
+    title = 'Objednávka prijatá';
+    const miss = rules().filter(r => missing(r) > 0 || (S.dec[r.id] && okPicks(r).length < rq(r)));
+    body = `<div class="adone">${prods().map(p => `<div class="li">${thumb(p, 40)}<span>${p.name}</span><b>${p.qty} ks</b></div>`).join('')}
+      ${rules().map(r => okPicks(r).map(p => `<div class="li">${thumb(OPT[p.sku], 40)}<span>${OPT[p.sku].name}${vtxt(p)} <span class="tag">DARČEK</span></span><b>${giftQty(r)} ks</b></div>`).join('')).join('')}
+      ${miss.map(r => `<div class="li"><span class="miss" style="color:var(--a-d);font-weight:600">Bez darčeka: ${r.title}, ${rq(r) - okPicks(r).length} z ${rq(r)}</span></div>`).join('')}
+      <button class="acta" data-act="restart" style="margin-top:16px">SKÚSIŤ ZNOVA</button></div>`;
+    return `<div class="aph"><div class="ast"><span>14:13</span><span>▮▮▮ ◠ 100</span></div><div class="atitle">${title}</div><div class="ascroll" id="ascroll" style="padding-bottom:30px">${body}</div></div>`;
+  }
+  return `<div class="aph"><div class="ast"><span>14:13</span><span>▮▮▮ ◠ 100</span></div><div class="atitle">${back}${title}</div><div class="ascroll" id="ascroll">${body}</div>${appDock(label)}${appSheet()}</div>`;
+}
+function openSheet(rid, guard){
+  S.sheet = true; S.sheetIn = true; S.sheetGuard = !!guard; S.full = null;
+  const p = pendList()[0]; S.sheetTab = rid || (p ? p.id : (rules()[0] || {}).id);
+}
+
+/* ---------- toolbar, note ---------- */
+const GROUPS = [['Variant','con',[['1','A: Sloty'],['3','B: Balík']]],['Zobrazenie','view',[['desktop','Web'],['mobile','Mobil']]],['Scenár','scen',[['single','1 darček'],['code','Darček cez kód'],['multi','2+ pravidlá'],['pick3','Výber 3 z 5'],['perprod','2× produkt + tričko']]],['Krok','step',[['cart','Košík'],['ship','Doručenie'],['pay','Platba']]],['Pripomienka v pokladni','remind',[['old','Dnes: žltá hláška'],['new','Návrh']]]];
+const toolbar = () => `<span class="ttl">Darčeky v košíku</span><div class="grp"><span class="lbl">Platforma</span><div class="seg">${[['web','Web'],['app','App']].map(([v,t]) => `<button class="${S.platform === v ? 'on' : ''}" data-tb="platform" data-v="${v}">${t}</button>`).join('')}</div></div>${GROUPS.filter(g => S.platform === 'web' || g[1] === 'scen').map(([l,k,o]) => `<div class="grp"><span class="lbl">${l}</span><div class="seg">${o.map(([v,t]) => `<button class="${S[k] === v ? 'on' : ''}" data-tb="${k}" data-v="${v}">${t}</button>`).join('')}</div></div>`).join('')}<button class="reset" data-act="restart">Reset</button>`;
+const APPNOTE = {
+  name:'App · Darčeky v karte + opravený bottom sheet',
+  idea:'Darčeky v apke dostanú vlastnú kartu hneď pod pásmi „Darček / Doprava zadarmo“ s rovnakým modelom políčok ako na webe: 1 políčko = 1 darček, prázdne je oranžové a prerušované, vyplnené má ✓ alebo AUTO a × na odobratie. Darčeky už nie sú riadky medzi produktmi. Ťuknutie otvorí <b>bottom sheet</b>, natívny vzor pre apku, ale opravený: namiesto skrytých stránok do strany s bodkami má <b>taby s názvom pravidla a stavom</b>, vertikálny scroll len v obsahu a pevnú hlavičku aj pätičku.',
+  why:['Taby „K batohu, Nad 80 €, Nad 100 €“ s ✓ alebo ● hneď ukážu, koľko výberov existuje a ktorý chýba (dnes ich skrývajú 3 bodky)','Žiadny konflikt gest: sheet sa neťahá do strany, scrolluje sa len zoznam darčekov','Mriežka 2×2 namiesto veľkých kariet, takže 4 darčeky sú vidieť bez scrollu','Tlačidlo dole vedie ďalej („Ďalší darček“, „Hotovo“), user vie, kedy je hotový','Pripomienka nad „DO POKLADNE“ je stále na očiach, tam kde je palec'],
+  dev:['Karta = applied rules z quote, 1 políčko = 1 kus (qty pravidla)','Sheet: header a taby fixné, ScrollView len pre mriežku (bez horizontálneho pagera)','DO POKLADNE pri chýbajúcom darčeku najprv otvorí sheet na chýbajúcom pravidle (len raz), potom už pustí ďalej','Pripomienka nad CTA aj karta v Pokladni používajú rovnaký komponent']
+};
+function note(){
+  if (S.platform === 'app') {
+    const sc = {single:'Jedno pravidlo nad 100 € (výber 1 zo 4).', code:'Košík bez darčeka. Ťukni „Zľavový kód“, zadaj <b>PINK</b> a pozri, ako sa nový darček objaví.', multi:'Ako na tvojich screenoch: darček k batohu (veľkosť), automatický šejker, vzorka a darček nad 100 €.', pick3:'Výber <b>3 z 5</b> darčekov a automatický šejker.', perprod:'<b>2× Just Whey</b>, takže 2 darčeky (aj rovnaké). Tričko vyžaduje veľkosť aj farbu pre každý kus. Zmeň počet Just Whey a sleduj políčka.'}[S.scen];
+    return `<div class="box"><div><h3>${APPNOTE.name}</h3>${APPNOTE.idea}</div><div><div class="k">Prečo je to pre usera dobré</div><ul>${APPNOTE.why.map(x => `<li>${x}</li>`).join('')}</ul></div><div><div class="k">Pre dev</div><ul>${APPNOTE.dev.map(x => `<li>${x}</li>`).join('')}</ul></div>
+      <div class="ex"><b>Čo je dnes v apke zlé:</b> sheet má stránky do strany, ktoré naznačujú len 3 bodky. Každá stránka má rovnaký nadpis bez dôvodu, text „1. z 3 darčekov“ je nejasný, veľké karty nútia scrollovať a scroll sa bije so swipe gestom. Pridané darčeky sa miešajú medzi produkty ako bežné riadky s počtom, a riadok „Vaše darčeky“ nepovie, koľko ešte chýba.<br><b>Scenár:</b> ${sc}</div></div>`;
+  }
+  const c = CON[S.con];
+  const sc = {single:'Jedno pravidlo nad 100 € (výber 1 zo 4).', code:'Košík bez darčeka. Zadaj kód <b>PINK</b> a pozri, ako sa nový darček objaví.', multi:'Situácia zo screenov: darček v balení batohu (veľkosť), automatický šejker, vzorka s defaultom a darček nad 100 € na výber.', pick3:'Jedno pravidlo s výberom <b>3 z 5</b> darčekov a automatický šejker. Vyber 2, klikni „Ďalšie nechcem“ alebo odober auto darček krížikom.', perprod:'<b>2× Just Whey</b>, takže 2 darčeky ku produktu (aj rovnaké, cez + / −). User sa môže rozhodnúť len pre 1 („Ďalšie nechcem“). Tričko vyžaduje <b>veľkosť aj farbu</b> pre každý kus zvlášť. Skús zmeniť počet Just Whey v košíku: políčka sa pridajú alebo uberú.'}[S.scen];
+  return `<div class="box"><div><h3>${c.name}</h3>${c.idea}</div><div><div class="k">Prečo je to pre usera dobré</div><ul>${c.why.map(x => `<li>${x}</li>`).join('')}</ul></div><div><div class="k">Pre dev / biznis</div><ul>${c.dev.map(x => `<li>${x}</li>`).join('')}</ul></div>
+    <div class="ex"><b>Scenár:</b> ${sc} Každý darček (aj automatický) sa dá odobrať. „Nechcem“ panel nezatvára a dá sa vrátiť. Layout košíka a pokladne ostáva ako dnes.</div></div>`;
+}
+
+/* ---------- render ---------- */
+function render(){
+  document.getElementById('tb').innerHTML = toolbar();
+  document.getElementById('note').innerHTML = note();
+  const ms = document.getElementById('mscroll') || document.getElementById('ascroll'); const keep = ms ? ms.scrollTop : 0;
+  const ab = document.getElementById('abody'); const keepB = ab && S.sheetSameTab ? ab.scrollTop : 0;
+  const at = document.getElementById('atabs'); const keepT = at ? at.scrollLeft : 0;
+  document.getElementById('stage').innerHTML = S.platform === 'app' ? appScreen() : (isMob() ? mobile() : desktop());
+  const a2 = document.getElementById('ascroll'); if (a2 && !S.scrollTo) { a2.style.scrollBehavior = 'auto'; a2.scrollTop = keep; a2.style.scrollBehavior = ''; }
+  const ab2 = document.getElementById('abody'); if (ab2) ab2.scrollTop = keepB;
+  const at2 = document.getElementById('atabs'); if (at2) { at2.scrollLeft = keepT; const on = at2.querySelector('.atb.on'); if (on && (on.offsetLeft < at2.scrollLeft || on.offsetLeft + on.offsetWidth > at2.scrollLeft + at2.clientWidth)) at2.scrollLeft = on.offsetLeft - 20; }
+  S.sheetIn = false; S.sheetSameTab = true;
+  const m2 = document.getElementById('mscroll');
+  if (m2 && !S.scrollTo) { m2.style.scrollBehavior = 'auto'; m2.scrollTop = keep; m2.style.scrollBehavior = ''; }
+  if (S.scrollTo) { const el = document.getElementById('g-' + S.scrollTo) || document.getElementById('gifts'); if (el) el.scrollIntoView({block:(isMob() && S.con === '1') ? 'start' : 'center', behavior:'smooth'}); S.scrollTo = null; }
+  S.pop = null;
+}
+document.addEventListener('click', e => {
+  const tb = e.target.closest('[data-tb]');
+  if (tb) { const k = tb.dataset.tb, v = tb.dataset.v; if (k === 'con' || k === 'scen' || k === 'platform') { S[k] = v; resetFlow(); } else if (k === 'step') { S.step = v; S.guard = false; } else S[k] = v; render(); return; }
+  const a = e.target.closest('[data-act]'); if (!a) return;
+  const act = a.dataset.act, rid = a.dataset.r, k = a.dataset.k;
+  switch (act) {
+    case 'pick': doPick(rid, k, a.dataset.s || null, a.dataset.c || null); if (S.platform === 'app' && S.sheetTab !== rid) S.sheetSameTab = false; break;
+    case 'asheet': openSheet(rid); S.sheetSameTab = false; break;
+    case 'atab': S.sheetTab = rid; S.full = null; S.sheetSameTab = false; break;
+    case 'anext': { const nx = pendList()[0]; if (nx) S.sheetTab = nx.id; S.sheetSameTab = false; break; }
+    case 'aclose': S.sheet = false; S.sheetGuard = false; S.full = null; break;
+    case 'acheckout': if (appMissing() && !S.guardShown) { S.guardShown = true; openSheet(null, true); S.sheetSameTab = false; } else { S.appStep = 'checkout'; S.sheet = false; } break;
+    case 'askip': S.sheet = false; S.sheetGuard = false; S.appStep = S.appStep === 'checkout' ? 'done' : 'checkout'; break;
+    case 'aback': S.appStep = 'cart'; S.sheet = false; break;
+    case 'aorder': if (appMissing() && !S.guardShown) { S.guardShown = true; openSheet(null, true); S.sheetSameTab = false; } else { S.appStep = 'done'; S.sheet = false; } break;
+    case 'acode': S.codeOpen = true; break;
+    case 'noop': return;
+    case 'remove': doRemove(rid, k); break;
+    case 'unpick': doUnpick(rid, k); break;
+    case 'pvar': doVar(rid, +a.dataset.i, a.dataset.f, a.dataset.v); break;
+    case 'pq': doQty(k, +a.dataset.d); break;
+    case 'decline': doDecline(rid); break;
+    case 'undo': doUndo(rid); break;
+    case 'slot': S.active = activeSlot() === rid ? '' : rid; S.full = null; if (isMob() && S.active) S.scrollTo = rid; break;
+    case 'boxopen': { S.boxOpen = true; const st = stepRules(); const i = st.findIndex(pending); S.boxIdx = i >= 0 ? i : 0; break; }
+    case 'boxgo': { S.boxOpen = true; S.boxIdx = Math.max(0, stepRules().findIndex(r => r.id === rid)); S.scrollTo = rid; break; }
+    case 'boxclose': S.boxOpen = false; S.full = null; break;
+    case 'boxprev': S.boxIdx = Math.max(0, S.boxIdx - 1); S.full = null; break;
+    case 'boxnext': { const st = stepRules(); S.full = null;
+      const nx = st.findIndex((r, j) => j > S.boxIdx && pending(r));
+      if (S.boxIdx >= st.length - 1 || (nx < 0 && !pendList().length)) { S.boxOpen = false; S.pop = 'box'; } else S.boxIdx = nx >= 0 ? nx : S.boxIdx + 1; break; }
+    case 'code': {
+      S.codeInput = ((document.getElementById('codeIn') || {}).value || '').trim();
+      if (S.codeInput.toUpperCase() === 'PINK') { S.code = true; S.codeMsg = ''; initSel('code'); delete S.dec.code; S.newSlot = 'code'; if (S.platform === 'app') S.scrollTo = 'agc'; else focusPending('code'); }
+      else S.codeMsg = 'err';
+      break;
+    }
+    case 'uncode': S.code = false; S.codeInput = ''; initSel('code'); delete S.dec.code; if (S.active === 'code') S.active = null; S.boxIdx = 0; break;
+    case 'jump': if (rid && !pending(RULE[rid])) { S.scrollTo = rid; if (S.con === '1') S.active = rid; if (S.con === '3') { S.boxOpen = true; S.boxIdx = Math.max(0, stepRules().findIndex(r => r.id === rid)); } } else focusPending(rid || null); break;
+    case 'next':
+      if (S.step === 'cart') { if (pendList().length && !S.guard) { S.guard = true; focusPending(); break; } S.step = 'ship'; S.guard = false; }
+      else if (S.step === 'ship') S.step = 'pay'; else if (S.step === 'pay') S.step = 'done';
+      window.scrollTo({top:0}); break;
+    case 'go': S.step = a.dataset.s; S.guard = false; break;
+    case 'tocart': S.step = 'cart'; focusPending(); break;
+    case 'ship': S.ship = k; break;
+    case 'pay': S.pay = k; break;
+    case 'restart': resetFlow(); break;
+    default: return;
+  }
+  render();
+});
+document.addEventListener('keydown', e => {
+  if (e.target.id === 'codeIn' && e.key === 'Enter') document.querySelector('[data-act="code"]').click();
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.bo[role]')) { e.preventDefault(); e.target.click(); }
+});
+document.addEventListener('input', e => { if (e.target.id === 'codeIn') S.codeInput = e.target.value; });
+render();
+})();
+</script>
+</body>
+</html>
