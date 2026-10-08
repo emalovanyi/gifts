@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GymBeam – darčeky zadarmo: web (Sloty, Balík) a app</title>
+<title>GymBeam – darčeky zadarmo v košíku (finálne riešenie: web + app)</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--brand:#FF4100;--brand-d:#E03900;--brand-soft:#FFF1EA;--brand-line:#FFC9B3;--green:#7AB648;--green-d:#689F3A;--ink:#141414;--ink2:#555;--ink3:#8B8B8B;--line:#E3E3E3;--bg:#ECECEE;--warn-bg:#FFF8E1;--warn-line:#EFC24A;--warn-ink:#8A5A00;--ok:#2F9B57;--ok-soft:#EAF6EE}
@@ -204,51 +204,6 @@ button{font:inherit;cursor:pointer;color:inherit}
 .spanel-f{display:flex;justify-content:space-between;align-items:center;margin-top:12px;gap:10px;flex-wrap:wrap}
 .spanel-f .st{font-size:12px;color:var(--ink3)}
 
-/* ===== VARIANT B · BALÍK ===== */
-.n3{margin:0 0 16px;border-radius:12px;background:var(--brand-soft);border:1px solid var(--brand-line);position:relative;overflow:hidden}
-.n3.done{background:var(--ok-soft);border-color:#BFE3CB}
-.n3.done::before{background:var(--ok)}
-.mob .n3{margin:0 16px 16px}
-.n3::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--brand)}
-.n3-closed{padding:16px 18px 16px 22px}
-.n3-row{display:flex;align-items:center;gap:16px}
-.mob .n3-row{flex-wrap:wrap;gap:12px}
-.n3-ico{font-size:32px;flex-shrink:0}
-.n3-txt{flex:1;min-width:160px}
-.n3-txt b{font-size:16px;display:block}
-.n3-txt span{font-size:12.5px;color:var(--ink2)}
-.n3-btn{border:0;background:var(--brand);color:#fff;font-weight:800;padding:12px 18px;border-radius:6px;white-space:nowrap}
-.n3-btn:hover{background:var(--brand-d)}
-.n3-btn.sec{background:#fff;color:var(--ink);border:1.5px solid var(--ink)}
-.mob .n3-btn{width:100%}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.gch{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:4px 6px 4px 4px;font-size:12px;max-width:100%}
-.gch .gch-t{display:flex;flex-direction:column;line-height:1.25;min-width:0}
-.gch .gch-t b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px}
-.gch .gch-t small{font-size:10.5px;color:var(--ink3)}
-.gch .x2{border:0;background:#F2F2F2;width:22px;height:22px;border-radius:50%;font-size:12px;display:grid;place-items:center;padding:0;color:var(--ink2);flex-shrink:0}
-.gch .x2:hover{background:var(--ink);color:#fff}
-.gch.em{border:1.5px dashed var(--brand);background:#fff;color:var(--brand-d);font-weight:800;padding:8px 12px}
-.gch.dec{background:#F6F6F6;color:var(--ink3);padding:8px 10px}
-.n3-open{background:#fff;margin:0 0 0 6px;padding:16px 18px}
-.n3-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px}
-.n3-step{font-size:12px;font-weight:800;color:var(--brand-d)}
-.n3-dots{display:flex;gap:5px}
-.n3-dots i{width:22px;height:5px;border-radius:3px;background:#E5E5E5}
-.n3-dots i.ok{background:var(--ok)}
-.n3-dots i.cur{background:var(--brand)}
-.n3-dots i.dec{background:#BDBDBD}
-.n3-title{font-size:18px;font-weight:800;margin:0}
-.n3-reason{font-size:12.5px;color:var(--ink2);margin:3px 0 14px}
-.n3-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px;flex-wrap:wrap}
-.n3-next{border:0;background:var(--ink);color:#fff;font-weight:700;padding:10px 16px;border-radius:6px}
-.n3-next[disabled]{opacity:.35;cursor:default}
-.n3-head-close{border:0;background:none;font-size:13px;color:var(--ink2);text-decoration:underline;padding:0}
-.autolist{margin-top:14px;border-top:1px solid var(--line);padding-top:10px}
-.autolist .t{font-size:11.5px;font-weight:700;color:var(--ink3);margin-bottom:6px}
-.auto-i{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:4px 0}
-.auto-i span{flex:1}
-
 /* checkout strip */
 .cs{border-top:1px solid var(--line);margin-top:12px;padding-top:12px}
 .cs-h{display:flex;justify-content:space-between;font-weight:800;font-size:13px;margin-bottom:8px}
@@ -438,11 +393,65 @@ button{font:inherit;cursor:pointer;color:inherit}
 .cntb{position:absolute;top:16px;right:16px;min-width:26px;height:24px;border-radius:12px;background:var(--ok);color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center;padding:0 6px}
 .qty i,.aq i{cursor:pointer;user-select:none}
 
+
+/* hromadný výber variantov (veľa kusov) */
+.bo.wide,.ao.wide{grid-column:span 2}
+.bo.wide .img,.ao.wide .img{aspect-ratio:auto;height:84px}
+.vchips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 8px}
+.vchip{display:inline-flex;align-items:center;border:1.5px solid var(--ok);background:var(--ok-soft);border-radius:16px;overflow:hidden}
+.vchip.edit{border-color:var(--ink);background:#fff}
+.vchip-b{border:0;background:none;padding:5px 4px 5px 10px;font-size:12px;font-weight:700;color:#1E6B3D;display:flex;gap:5px;align-items:center}
+.vchip .dot{display:inline-block;width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 1px #BDBDBD;margin-left:3px}
+.vchip-x{border:0;background:none;padding:5px 9px 5px 3px;font-size:13px;color:#1E6B3D}
+.vcomp{border:1.5px dashed #D5D5D5;border-radius:10px;padding:8px;transition:background .2s}
+.vcomp.hint{background:var(--brand-soft);border-color:var(--brand);animation:shake .4s ease-in-out}
+.vcomp.hint .pill,.vcomp.hint .cdot{box-shadow:0 0 0 2px var(--brand)}
+.vrow2{display:flex;gap:8px;align-items:center;margin-top:8px}
+.vadd{flex:1;height:34px;border:0;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:12.5px}
+.vadd[disabled]{background:#ECECEC;color:#8B8B8B;cursor:default}
+.mob .bo.wide{grid-column:1/-1}
+.bhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:12.5px;margin:2px 0 4px}
+.bhead span{color:var(--ink2);font-size:11.5px;font-weight:600}
+.bline{display:flex;gap:6px;align-items:center;padding:7px 0;border-top:1px dashed #E5E5E5}
+.bsel{flex:1;min-width:0;padding:7px 6px;border:1.5px solid #CFCFCF;border-radius:6px;font-weight:700;font-size:12.5px;background:#fff}
+.stp2.sm{height:32px;flex-shrink:0}
+.stp2.sm button{width:30px}
+.stp2 button[disabled]{opacity:.3;cursor:default}
+.bfill{width:100%;margin:6px 0 4px;border:1.5px solid var(--ok);background:var(--ok-soft);color:var(--ok);font-weight:800;font-size:12.5px;border-radius:8px;padding:8px}
+.bfill:hover{background:var(--ok);color:#fff}
+
 @keyframes pop{0%{transform:scale(.85)}60%{transform:scale(1.06)}100%{transform:scale(1)}}
 @keyframes flash{0%{background:#FFE7DB}100%{background:transparent}}
 .pop .tile,.pop.th,.pop.gch{animation:pop .45s ease-out}
 .flash{animation:flash 1.6s ease-out}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.mob .scroll{scroll-behavior:auto}}
+
+/* ===== FINAL: doplnky ===== */
+.cntp{font-size:12.5px;font-weight:800;border-radius:20px;padding:4px 11px;background:var(--brand);color:#fff;white-space:nowrap}
+.cntp.ok{background:var(--ok-soft);color:var(--ok)}
+/* prázdne políčko: neustále pulzuje + diagonálne pruhy */
+@keyframes stripes{from{background-position:0 0}to{background-position:32px 0}}
+@keyframes pulse2{0%{box-shadow:0 0 0 0 rgba(255,65,0,.45)}70%{box-shadow:0 0 0 12px rgba(255,65,0,0)}100%{box-shadow:0 0 0 0 rgba(255,65,0,0)}}
+.slot.empty .tile,.mg .slot.empty .tile{background:repeating-linear-gradient(-45deg,#FFF1EA 0 8px,#FFE0D0 8px 16px);background-size:45.25px 45.25px;animation:stripes 1.1s linear infinite,pulse2 1.8s ease-out infinite!important}
+.slot.empty .tile .plus b{font-size:12px}
+.slot.restore .tile{border:2px dashed #CFCFCF;background:#FAFAFA;color:var(--ink2);font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.slot.restore .tile span{font-size:22px;line-height:1}
+.slot.declined .nm,.slot.restore .nm{color:var(--ink3)}
+.at.empty{background:repeating-linear-gradient(-45deg,#FFF2ED 0 7px,#FFE1D6 7px 14px)!important;background-size:39.6px 39.6px!important;animation:stripes 1.1s linear infinite,apulse 1.8s ease-out infinite}
+.at.restore{border:2px dashed #CFCFCF;background:#FAFAFA;color:var(--ink2);font-size:10px;font-weight:800;line-height:1.2}
+/* varianty: draft riadok */
+.draft{border-radius:8px;padding:6px;margin:0 -6px;transition:background .2s}
+.draft .dtxt{font-size:11.5px;font-weight:700;color:var(--ink2);margin-top:6px}
+.draft.hint{background:var(--brand-soft);animation:shake .4s ease-in-out}
+.draft.hint .dtxt{color:var(--brand-d)}
+.draft.hint .pill,.draft.hint .cdot{box-shadow:0 0 0 2px var(--brand)}
+.draft.hint .pill{border-color:var(--brand)}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--ink2);margin-bottom:5px}
+.bo .vars{display:flex;flex-direction:column;gap:6px}
+.restore-btn{border:1.5px solid var(--ink);background:#fff;border-radius:6px;padding:8px 12px;font-weight:700;font-size:12.5px}
+.ao .restore-btn{border-radius:14px}
+@media (prefers-reduced-motion:reduce){.slot.empty .tile,.at.empty,.draft.hint{animation:none!important}}
 </style>
 </head>
 <body>
@@ -453,6 +462,8 @@ button{font:inherit;cursor:pointer;color:inherit}
 (() => {
 const eur = n => n.toFixed(2).replace('.', ',') + ' €';
 const plural = (n, a, b, c) => n === 1 ? a : (n > 1 && n < 5) ? b : c;
+const darcek = n => plural(n, 'darček', 'darčeky', 'darčekov');
+
 const OPT = {
   rukavice:{name:'Cyklistické rukavice Full-Finger - GymBeam', short:'Rukavice Full-Finger', e:'🧤', bg:'#ECECEC', sizes:['S','M','L','XL']},
   sejkerP:{name:'Šejker BeastPink biely 700 ml - BeastPink', short:'Šejker BeastPink', e:'🥛', bg:'#F7E3DA'},
@@ -466,28 +477,18 @@ const OPT = {
   kefa:{name:'Kefa na vlasy Hair Mate - BeastPink', short:'Kefa Hair Mate', e:'🪮', bg:'#F9DCE3'},
   taska:{name:'Toaletná taška Transparent - BeastPink', short:'Toaletná taška', e:'👝', bg:'#FBE8E2'},
   gumicka:{name:'Gumička do vlasov Oversize Pink - BeastPink', short:'Gumička Oversize', e:'🎀', bg:'#F6E0EA'},
-  tricko:{name:'Tričko Basic - GymBeam', short:'Tričko Basic', e:'👕', bg:'#E8EDF5', sizes:['S','M','L','XL'], colors:[{id:'black', n:'Čierna', hex:'#1E1E1E'},{id:'white', n:'Biela', hex:'#F4F4F4'},{id:'navy', n:'Tmavomodrá', hex:'#283C70'},{id:'olive', n:'Olivová', hex:'#6B7348'}]},
-  ruksak:{name:'Športový ruksak Daypack - GymBeam', short:'Ruksak Daypack', e:'🎒', bg:'#E9E9E9'},
   uterak:{name:'Rýchloschnúci uterák - GymBeam', short:'Uterák', e:'🧺', bg:'#E6EEF2'},
-  creatine:{name:'100 % Kreatín monohydrát 250 g - GymBeam', short:'Kreatín 250 g', e:'💊', bg:'#EEF1E6'}
+  tricko:{name:'Tričko Basic - GymBeam', short:'Tričko Basic', e:'👕', bg:'#E8EDF5', sizes:['S','M','L','XL'], colors:[{id:'black', n:'Čierna', hex:'#1E1E1E'},{id:'white', n:'Biela', hex:'#F4F4F4'},{id:'navy', n:'Tmavomodrá', hex:'#283C70'},{id:'olive', n:'Olivová', hex:'#6B7348'}]}
 };
-/* qty = koľko darčekov z pravidla user dostane */
+/* Pravidlá. FE pozná len prah (thr). Pravidlá bez prahu sa volajú genericky „Extra darček“. */
 const RULE = {
-  bag:{id:'bag', label:'K batohu', title:'Darček k batohu Hydropack', reason:'Rukavice sú súčasťou balenia. Vyber si veľkosť.', mode:'pick', qty:1, opts:['rukavice'], ord:0},
-  camp:{id:'camp', label:'K proteínu', title:'BeastPink akcia', reason:'Šejker ku každému BeastPink proteínu. Pridali sme ho automaticky.', mode:'auto', qty:1, opts:['sejkerP'], qtyFrom:'whey', ord:1},
-  sample:{id:'sample', label:'Nad 80 €', title:'Vzorka za nákup nad 80 €', reason:'Vzorku sme ti pridali. Môžeš ju vymeniť.', mode:'preselect', qty:1, def:['bar'], opts:['bar','shake','mydlo'], ord:2},
-  tier:{id:'tier', label:'Nad 100 €', title:'Darček za nákup nad 100 €', reason:'Vyber si 1 zo 4 darčekov.', mode:'pick', qty:1, opts:['flasa','nakrcnik','sejkerB','stipec'], ord:3},
-  trio:{id:'trio', label:'Nad 150 €', title:'3 darčeky za nákup nad 150 €', reason:'Vyber si 3 z 5 darčekov.', mode:'pick', qty:3, opts:['flasa','nakrcnik','sejkerB','stipec','uterak'], ord:3},
-  jw:{id:'jw', label:'K Just Whey', title:'Darček ku každému Just Whey', mode:'pick', qtyPer:'jw', same:true, opts:['tricko','sejkerB','bar'], ord:1,
-    get reason(){ const n = rq(this); return `Za každý kus 1 darček. Máš ${n} ks, takže si môžeš vybrať ${n} ${plural(n, 'darček', 'darčeky', 'darčekov')} (aj rovnaké). Chceš menej? Klikni „Ďalšie nechcem“.`; }},
-  code:{id:'code', label:'Kód PINK', title:'Darček ku kódu PINK', reason:'Vyber si 1 z 3 BeastPink darčekov.', mode:'pick', qty:1, opts:['kefa','taska','gumicka'], ord:4}
-};
-const LOCKED = {
-  single:{thr:150, label:'Nad 150 €', title:'Darček za nákup nad 150 €', opts:['ruksak','uterak','creatine']},
-  code:{thr:100, label:'Nad 100 €', title:'Darček za nákup nad 100 €', opts:['flasa','nakrcnik','sejkerB','stipec']},
-  multi:{thr:200, label:'Nad 200 €', title:'Darček za nákup nad 200 €', opts:['ruksak','uterak','creatine']},
-  perprod:{thr:150, label:'Nad 150 €', title:'Darček za nákup nad 150 €', opts:['ruksak','uterak','creatine']},
-  pick3:{thr:200, label:'Nad 200 €', title:'Darček za nákup nad 200 €', opts:['ruksak','creatine','mydlo']}
+  bag:{id:'bag', mode:'pick', qty:1, opts:['rukavice'], ord:0},
+  camp:{id:'camp', mode:'auto', qty:1, opts:['sejkerP'], qtyFrom:'whey', ord:1},
+  jw:{id:'jw', mode:'pick', qtyPer:'jw', same:true, opts:['tricko','sejkerB','bar'], ord:1},
+  sample:{id:'sample', mode:'preselect', qty:1, def:['bar'], opts:['bar','shake','mydlo'], thr:80, ord:2},
+  tier:{id:'tier', mode:'pick', qty:1, opts:['flasa','nakrcnik','sejkerB','stipec'], thr:100, ord:3},
+  trio:{id:'trio', mode:'pick', qty:3, opts:['flasa','nakrcnik','sejkerB','stipec','uterak'], thr:150, ord:3},
+  code:{id:'code', mode:'pick', qty:1, opts:['kefa','taska','gumicka'], ord:4}
 };
 const PROD = {
   whey:{name:'Protein Yum Yum Whey - BeastPink', meta:['Gramáž: 1000 g','Príchuť: vanilková zmrzlina'], unit:38.95, e:'🥛', bg:'#F6D9E0', pink:true},
@@ -495,264 +496,255 @@ const PROD = {
   jw:{name:'Just Whey Grass-Fed Protein - GymBeam', meta:['Gramáž: 1000 g','Príchuť: čokoládový milkshake'], unit:38.95, e:'🥤', bg:'#EDE3D8'}
 };
 const SCEN = {
-  single:{prods:[['whey',3]], rules:['tier']},
-  code:{prods:[['whey',2]], rules:[]},
-  multi:{prods:[['whey',3],['batoh',1]], rules:['bag','camp','sample','tier']},
-  pick3:{prods:[['whey',3],['batoh',1]], rules:['camp','trio']},
-  perprod:{prods:[['jw',2],['whey',1]], rules:['jw','tier']}
+  none:{label:'Bez nároku', prods:[['whey',1]], rules:[], txt:'Košík pod hranicou darčekov a bez akcie. Sekcia darčekov sa vôbec nezobrazí.'},
+  single:{label:'1 darček', prods:[['whey',3]], rules:['tier'], txt:'Jedno pravidlo nad 100 €, výber 1 zo 4.'},
+  code:{label:'Darček cez kód', prods:[['whey',2]], rules:[], txt:'Bez nároku na darček. Zadajte kód <b>PINK</b>: sekcia sa objaví hore a políčko so štítkom NOVÉ hneď pulzuje.'},
+  auto:{label:'Auto darček', prods:[['whey',3]], rules:['camp','tier'], txt:'Šejker je v košíku automaticky, vyzerá rovnako ako ostatné darčeky. Odoberte ho krížikom a vráťte ho kliknutím na kartičku, presne ako pri iných darčekoch.'},
+  multi:{label:'Viac pravidiel', prods:[['whey',3],['batoh',1]], rules:['bag','camp','sample','tier'], txt:'Situácia zo screenov: 2 extra darčeky (jeden s veľkosťou, jeden auto), vzorka nad 80 € a darček nad 100 €. Po výbere sa otvorí ďalšie pravidlo v poradí.'},
+  pick3:{label:'Výber 3 z 5', prods:[['whey',3],['batoh',1]], rules:['camp','trio'], txt:'Pravidlo s výberom 3 z 5. Po výbere 2 ostane tretie políčko pulzovať a počítadlo ukáže „Získajte ešte 1 darček“.'},
+  bulk:{label:'9× produkt + tričko', prods:[['jw',9]], rules:['jw'], txt:'9× Just Whey = 9 extra darčekov. Karta trička má jeden skladač: veľkosť, farba, počet (predvolene všetky zvyšné) a „Pridať 9× do košíka“. Mix sa robí opakovane (napr. 5× L čierne, potom 4× M biele), výsledok sú malé čipy. Klik na čip ho upraví, krížik ho odoberie. Karta má stále rovnakú výšku bez ohľadu na počet kusov.'},
+  perprod:{label:'2× produkt + tričko', prods:[['jw',2],['whey',1]], rules:['jw','tier'], txt:'2× Just Whey = 2 extra darčeky, môžu byť aj rovnaké. Tričko sa pridá až po výbere veľkosti aj farby. Skúste kliknúť mimo veľkostí. Zmeňte počet Just Whey a sledujte políčka.'}
 };
 const SHIP = {box:{n:'GymBeam Box',d:'Výdajný box, doručenie 1–2 dni',c:0}, packeta:{n:'Packeta výdajné miesto',d:'Doručenie 2–3 dni',c:0}, dpd:{n:'Kuriér DPD',d:'Doručenie domov 1–2 dni',c:3.9}};
 const PAY = {card:{n:'Platba kartou online',d:'Visa, Mastercard',c:0}, apple:{n:'Apple Pay / Google Pay',d:'Rýchla platba v telefóne',c:0}, cod:{n:'Dobierka',d:'Platba pri prevzatí',c:1.5}};
 
-const CON = {
-  1:{name:'Variant A · Darčekové sloty',
-     idea:'Sekcia darčekov je <b>hore nad produktmi</b>. Každý darček, na ktorý má user nárok, je jedno <b>políčko</b>. Pravidlo s 3 darčekmi má 3 políčka. Prázdne políčko je oranžové a prerušované, vyplnené má obrázok, ✓ a × na odobratie. Klik na skupinu otvorí výber priamo pod slotmi.',
-     why:['Počet darčekov je vidieť bez čítania: 3 políčka = 3 darčeky','Pri výbere 2 z 3 ostane 1 prázdne políčko, nedá sa prehliadnuť','Auto darček má štítok AUTO a dá sa odobrať × ako hocijaký iný','„Nechcem“ panel nezatvorí, user hneď vidí výsledok a môže to vrátiť'],
-     dev:['Sekcia je nad zoznamom produktov (web aj mobil)','Slot = 1 kus z applied rule (Amasty qty)','× = odobrať a označiť ako nechcený, klik v paneli = vymeniť','Pri 1 darčeku sa panel po výbere presunie na ďalší prázdny slot, pri viacerých až po doplnení všetkých']},
-  3:{name:'Variant B · Darčekový balík',
-     idea:'Darčeky sú jeden zvýraznený <b>balík hore v košíku</b>: „Máš nárok na 6 darčekov, 2 ešte čakajú“. Pod tým sú chipy všetkých darčekov (s × na odobratie) a prázdne chipy pre chýbajúce. „Vybrať darčeky“ spustí sprievodcu priamo v stránke: vždy jedno pravidlo s počítadlom „2 z 3 vybraté“.',
-     why:['Hodnota je prvé, čo user vidí, a nič sa nestratí medzi produktmi','Sprievodca rieši vždy 1 pravidlo, pri výbere viacerých má jasné počítadlo','„Nechcem“ krok nezatvorí, dá sa vrátiť alebo pokračovať','Prehľad v chipoch: všetko, čo príde v balíku, na jednom mieste aj s odobratím'],
-     dev:['Chip = 1 kus z applied rule, × = odobrať','Kroky = pravidlá s výberom, auto pravidlá sú v zozname pod krokom','Najviac UI práce, ale najmenej rozhodnutí naraz']}
-};
-
-let S = {platform:'web', con:'1', view:'desktop', scen:'multi', step:'cart', remind:'new'};
-function initSel(id){ const r = RULE[id]; if (r.mode === 'auto') S.sel[id] = r.opts.map(sku => ({sku})); else if (r.mode === 'preselect') S.sel[id] = r.def.map(sku => ({sku})); else S.sel[id] = []; }
+let S = {platform:'web', view:'desktop', scen:'multi', step:'cart'};
+function initSel(id){ const r = RULE[id]; S.sel[id] = r.mode === 'auto' ? r.opts.map(sku => ({sku})) : r.mode === 'preselect' ? r.def.map(sku => ({sku})) : []; }
 function resetFlow(){
-  Object.assign(S, {pq:{}, appStep:'cart', sheet:false, sheetIn:false, sheetTab:null, sheetGuard:false, guardShown:false, codeOpen:false, step:'cart', ship:'box', pay:'card', codeInput:'', code:false, codeMsg:'', sel:{}, dec:{}, decAt:{}, active:null, boxOpen:false, boxIdx:0, guard:false, pop:null, newSlot:null, scrollTo:null, full:null});
+  Object.assign(S, {pq:{}, sel:{}, dec:{}, draft:{}, comp:{}, edit:null, hint:null, active:null, guard:false, pop:null, newSlot:null, scrollTo:null, full:null,
+    codeInput:'', code:false, codeMsg:'', ship:'box', pay:'card', step:'cart',
+    appStep:'cart', sheet:false, sheetIn:false, sheetTab:null, sheetGuard:false, guardShown:false, codeOpen:false});
   Object.keys(RULE).forEach(initSel);
 }
 resetFlow();
 
 /* ---------- model ---------- */
-const prods = () => SCEN[S.scen].prods.map(([id,q]) => ({id, ...PROD[id], qty:(S.pq && S.pq[id]) || q}));
-const rq = r => r.qtyPer ? ((prods().find(p => p.id === r.qtyPer) || {qty:1}).qty) : r.qty;
-const vtxt = p => { const o = OPT[p.sku]; const c = o.colors && p.color ? o.colors.find(x => x.id === p.color).n : ''; return [p.size, c].filter(Boolean).map(x => ', ' + x).join(''); };
+const prods = () => SCEN[S.scen].prods.map(([id,q]) => ({id, ...PROD[id], qty:S.pq[id] || q}));
 const rules = () => SCEN[S.scen].rules.concat(S.code ? ['code'] : []).map(id => RULE[id]).sort((a,b) => a.ord - b.ord);
+const rq = r => r.qtyPer ? ((prods().find(p => p.id === r.qtyPer) || {qty:1}).qty) : r.qty;
 const picks = r => S.sel[r.id] || [];
-const complete = p => { const o = OPT[p.sku]; return !(o.sizes && !p.size) && !(o.colors && !p.color); };
 const hasVars = k => !!(OPT[k].sizes || OPT[k].colors);
-const okPicks = r => picks(r).filter(complete);
-const pending = r => !S.dec[r.id] && (picks(r).length < rq(r) || picks(r).some(p => !complete(p)));
-const missing = r => S.dec[r.id] ? 0 : rq(r) - okPicks(r).length;
+const complete = p => { const o = OPT[p.sku]; return !(o.sizes && !p.size) && !(o.colors && !p.color); };
+const pending = r => !S.dec[r.id] && picks(r).length < rq(r);
+const missing = r => S.dec[r.id] ? 0 : Math.max(0, rq(r) - picks(r).length);
 const pendList = () => rules().filter(pending);
-const giftTotal = () => rules().reduce((a, r) => a + okPicks(r).length, 0);
-const entitled = () => rules().reduce((a, r) => a + rq(r), 0);
+const toGet = () => rules().reduce((a, r) => a + missing(r), 0);
+const giftTotal = () => rules().reduce((a, r) => a + picks(r).length, 0);
 const giftQty = r => r.qtyFrom ? (prods().find(p => p.id === r.qtyFrom) || {qty:1}).qty : 1;
 const isMob = () => S.view === 'mobile';
-function totals(){
-  const ps = prods();
-  const sub = ps.reduce((a,p) => a + p.qty*p.unit, 0);
-  const disc = S.code ? ps.filter(p => p.pink).reduce((a,p) => a + p.qty*p.unit*.2, 0) : 0;
-  const ship = S.step === 'cart' ? 0 : SHIP[S.ship].c;
-  const pay = (S.step === 'pay' || S.step === 'done') ? PAY[S.pay].c : 0;
-  return {sub, disc, ship, pay, total:sub - disc + ship + pay, goods:sub - disc};
-}
-const lockedInfo = () => { const L = LOCKED[S.scen]; const t = totals().goods; return t >= L.thr ? null : {...L, missing:L.thr - t, pct:Math.min(100, t / L.thr * 100)}; };
+const vtxt = p => { const o = OPT[p.sku]; const c = o.colors && p.color ? o.colors.find(x => x.id === p.color).n : ''; return [p.size, c].filter(Boolean).map(x => ', ' + x).join(''); };
 
-/* ---------- actions ---------- */
-function doPick(rid, k, size, color){
-  const r = RULE[rid], q = rq(r); let arr = picks(r).map(p => ({...p}));
-  const i = arr.findIndex(p => p.sku === k), preset = size || color;
-  S.full = null;
-  const add = () => { if (arr.length < q) { arr.push({sku:k, size:size || null, color:color || null}); return true; }
-    if (q === 1) { arr = [{sku:k, size:size || null, color:color || null}]; return true; } S.full = rid; return false; };
-  if (r.same) { if (!add()) return; }                       // rovnaký darček môže byť viackrát
-  else if (preset) { if (i >= 0) { if (size) arr[i].size = size; if (color) arr[i].color = color; } else if (!add()) return; }
-  else if (i >= 0) { if (!complete(arr[i])) return; arr.splice(i, 1); }   // klik na vybraný = odznačiť
-  else if (!add()) return;
-  S.sel[rid] = arr; delete S.dec[rid]; S.pop = rid + k;
-  if (!pending(r)) { afterResolve(rid); if (S.con === '1' && isMob() && S.active && S.active !== rid) S.scrollTo = S.active; }
+/* generické názvy: FE pozná len prah */
+function label(r){
+  return r.thr ? `Nad ${r.thr} €` : 'Extra darček';
 }
-function doUnpick(rid, k){ const arr = picks(RULE[rid]).slice(); const i = arr.map(p => p.sku).lastIndexOf(k); if (i >= 0) arr.splice(i, 1); S.sel[rid] = arr; S.full = null; }
-function doVar(rid, i, f, v){ const arr = picks(RULE[rid]).map(p => ({...p})); if (!arr[i]) return; arr[i][f] = v; S.sel[rid] = arr; S.pop = rid + arr[i].sku; if (!pending(RULE[rid])) afterResolve(rid); }
-function doQty(id, d){
-  const cur = prods().find(p => p.id === id).qty, nq = Math.max(1, Math.min(5, cur + d)); S.pq[id] = nq;
-  rules().filter(r => r.qtyPer === id).forEach(r => { if (picks(r).length > nq) S.sel[r.id] = picks(r).slice(0, nq); if (d > 0) delete S.dec[r.id]; S.pop = r.id; });
+function title(r){
+  return r.thr ? `Darček za nákup nad ${r.thr} €` : 'Extra darček zadarmo';
 }
-function doRemove(rid, k){          // × = nechcem tento kus
-  const r = RULE[rid]; const arr = picks(r).slice(); const ix = arr.map(p => p.sku).lastIndexOf(k); if (ix >= 0) arr.splice(ix, 1); S.sel[rid] = arr; S.dec[rid] = true; S.decAt[rid] = S.step; S.full = null;
-  if (['1'].includes(S.con)) S.active = rid;
+function reason(r){
+  const q = rq(r), n = r.opts.length;
+  if (r.mode === 'auto') return picks(r).length ? 'Darček je už váš. Nechcete ho? Odoberte ho krížikom.' : 'Kliknite na darček a je váš.';
+  if (r.mode === 'preselect') return 'Jeden sme vám už pribalili. Chuť na iný? Kliknite naň a vymeníme ho.';
+  if (r.same) return `Získate až ${q} ${darcek(q)}. Pokojne aj ${q > 1 ? 'rovnaké' : 'rovnaký'}, alebo každý iný.`;
+  if (q > 1) return `Vyberte si ${q} z ${n}. Kombinujte podľa chuti.`;
+  if (n === 1 && hasVars(r.opts[0])) return 'Stačí vybrať veľkosť a darček je váš.';
+  return `Vyberte si 1 z ${n} darčekov. Ten, ktorý vám sadne najviac.`;
 }
-function doDecline(rid){ S.dec[rid] = true; S.decAt[rid] = S.step; S.full = null; if (S.con === '1') S.active = rid; if (!pendList().length) S.guard = false; }   // panel ostáva otvorený
-function doUndo(rid){
-  const r = RULE[rid]; delete S.dec[rid];
-  if (!picks(r).length && r.mode !== 'pick') initSel(rid);
-  S.pop = rid; if (S.con === '1') S.active = rid;
+
+function totals(){
+  const ps = prods(); const sub = ps.reduce((a,p) => a + p.qty*p.unit, 0);
+  const disc = S.code ? ps.filter(p => p.pink).reduce((a,p) => a + p.qty*p.unit*.2, 0) : 0;
+  const ship = S.step === 'cart' ? 0 : SHIP[S.ship].c, pay = (S.step === 'pay' || S.step === 'done') ? PAY[S.pay].c : 0;
+  return {sub, disc, ship, pay, total:sub - disc + ship + pay};
 }
-function activeSlot(){ if (S.active !== null) return S.active; const p = pendList()[0]; return p ? p.id : ''; }
-function focusPending(id){
-  const p = id ? RULE[id] : pendList()[0]; if (!p) return;
-  if (S.con === '1') S.active = p.id;
-  if (S.con === '3') { S.boxOpen = true; const i = stepRules().findIndex(r => r.id === p.id); S.boxIdx = Math.max(0, i); }
-  S.scrollTo = p.id;
-}
-function afterResolve(rid){
+
+/* ---------- akcie ---------- */
+function advance(rid){                       // po doplnení pravidla: zavri a otvor ďalšie v poradí
   if (S.newSlot === rid) S.newSlot = null;
-  if (S.platform === 'app' && S.sheet) { const nx = pendList()[0]; if (nx) S.sheetTab = nx.id; }
-  if (S.con === '1') { const nx = pendList()[0]; S.active = nx ? nx.id : rid; }
-  if (S.con === '3') {
-    const st = stepRules(), i = st.findIndex(r => r.id === rid);
-    const nx = st.findIndex((r, j) => j > i && pending(r));
-    if (nx >= 0) S.boxIdx = nx;
-    else if (!pendList().length) { S.boxOpen = false; S.pop = 'box'; }
-  }
+  const rs = rules(), i = rs.findIndex(x => x.id === rid);
+  const nx = rs.slice(i + 1).find(pending) || rs.slice(0, Math.max(0, i)).find(pending);
+  S.active = nx ? nx.id : '';
+  if (S.platform === 'app' && S.sheet) S.sheetTab = nx ? nx.id : rid;
+  if (nx && S.platform === 'web' && isMob()) S.scrollTo = nx.id;
   if (!pendList().length) S.guard = false;
 }
+function doPick(rid, k, size, color){
+  const r = RULE[rid], q = rq(r); let arr = picks(r).slice();
+  const i = arr.findIndex(p => p.sku === k); S.full = null; S.hint = null;
+  if (!r.same && i >= 0 && !hasVars(k)) { arr.splice(i, 1); }   // klik na vybraný = vymeniť
+  else if (arr.length < q) arr.push({sku:k, size:size || null, color:color || null});
+  else if (q === 1) arr = [{sku:k, size:size || null, color:color || null}];
+  else { S.full = rid; return; }
+  S.sel[rid] = arr; delete S.dec[rid]; S.pop = rid + k;
+  if (!pending(r)) advance(rid);
+}
+function cardClick(rid, k){
+  const r = RULE[rid];
+  if (hasVars(k)) { S.hint = rid + '|' + k; S.full = null; return; }   // bez veľkosti nepridávame, len zvýrazníme
+  doPick(rid, k);
+}
+function doDraft(rid, k, f, v){
+  const key = rid + '|' + k, o = OPT[k], d = {...(S.draft[key] || {}), [f]:v};
+  if ((!o.sizes || d.size) && (!o.colors || d.color)) { delete S.draft[key]; S.lastG = rid + '|' + k + '#' + (d.size || '') + '|' + (d.color || ''); doPick(rid, k, d.size, d.color); }
+  else { S.draft[key] = d; S.hint = null; }
+}
+function doVar(rid, i, f, v){ const arr = picks(RULE[rid]).map(p => ({...p})); if (arr[i]) { arr[i][f] = v; S.sel[rid] = arr; S.pop = rid + arr[i].sku; } }
+function doRemoveIdx(rid, i){ const arr = picks(RULE[rid]).slice(); arr.splice(i, 1); S.sel[rid] = arr; S.full = null; }
+function doUnpick(rid, k){ const arr = picks(RULE[rid]).slice(); const i = arr.map(p => p.sku).lastIndexOf(k); if (i >= 0) arr.splice(i, 1); S.sel[rid] = arr; S.full = null; }
+function doRemove(rid, k){                   // × na políčku = tento kus nechcem
+  doUnpick(rid, k); delete S.dec[rid]; S.pop = null;
+}
+function doDecline(rid){ S.dec[rid] = true; S.full = null; S.hint = null; if (!pendList().length) S.guard = false; }
+function doUndo(rid){ const r = RULE[rid]; delete S.dec[rid]; if (!picks(r).length && r.mode !== 'pick') { initSel(rid); S.pop = rid + r.opts[0]; if (!pending(r) && S.active === rid) S.active = ''; } else if (S.platform === 'web') S.active = rid; }
+function doQty(id, d){
+  const cur = prods().find(p => p.id === id).qty, nq = Math.max(1, Math.min(12, cur + d)); S.pq[id] = nq;
+  rules().filter(r => r.qtyPer === id).forEach(r => { if (picks(r).length > nq) S.sel[r.id] = picks(r).slice(0, nq); if (d > 0) delete S.dec[r.id]; S.pop = r.id; });
+}
+function activeSlot(){ if (S.active !== null) return S.active; const p = pendList()[0]; return p ? p.id : ''; }
+function focusPending(id){ const p = id ? RULE[id] : pendList()[0]; if (!p) return; S.active = p.id; S.scrollTo = p.id; }
 
-/* ---------- atoms ---------- */
+/* ---------- atómy ---------- */
 const thumb = (o, s, cls='') => `<div class="th ${cls}" style="background:${o.bg};width:${s}px;height:${s}px;font-size:${Math.round(s*.52)}px" aria-hidden="true">${o.e}</div>`;
-function sizePills(r, k){
+function varPickers(o, cur, at){            // pills veľkosti + farebné bodky
+  const sz = o.sizes ? `<div class="pills">${o.sizes.map(z => `<button class="pill ${cur.size === z ? 'on' : ''}" ${at('size', z)}>${z}</button>`).join('')}</div>` : '';
+  const cl = o.colors ? `<div class="cdots">${o.colors.map(c => `<button class="cdot ${cur.color === c.id ? 'on' : ''}" style="background:${c.hex}" title="${c.n}" aria-label="${c.n}" ${at('color', c.id)}></button>`).join('')}${cur.color ? `<span class="cname">${o.colors.find(c => c.id === cur.color).n}</span>` : ''}</div>` : '';
+  return sz + cl;
+}
+function varBlock(r, k){
   const o = OPT[k]; if (!hasVars(k)) return '';
-  const ps = picks(r), idxs = ps.map((p, i) => p.sku === k ? i : -1).filter(i => i >= 0);
-  const row = (i, p, n) => {
-    const at = (f, v, pre) => p ? `data-act="pvar" data-r="${r.id}" data-i="${i}" data-f="${f}" data-v="${v}"` : `data-act="pick" data-r="${r.id}" data-k="${k}" data-${pre}="${v}"`;
-    const sz = o.sizes ? `<div class="pills ${p && !p.size ? 'need' : ''}">${o.sizes.map(z => `<button class="pill ${p && p.size === z ? 'on' : ''}" ${at('size', z, 's')}>${z}</button>`).join('')}</div>` : '';
-    const cl = o.colors ? `<div class="cdots ${p && !p.color ? 'need' : ''}">${o.colors.map(c => `<button class="cdot ${p && p.color === c.id ? 'on' : ''}" style="background:${c.hex}" title="${c.n}" aria-label="${c.n}" ${at('color', c.id, 'c')}></button>`).join('')}${p && p.color ? `<span class="cname">${o.colors.find(c => c.id === p.color).n}</span>` : ''}</div>` : '';
-    const miss = p ? [o.sizes && !p.size ? 'veľkosť' : '', o.colors && !p.color ? 'farbu' : ''].filter(Boolean) : [];
-    return `<div class="vrow">${n ? `<div class="vlab">${n}. kus</div>` : ''}${sz}${cl}${miss.length ? `<div class="needtxt">Vyber ${miss.join(' a ')}</div>` : ''}</div>`;
-  };
-  return idxs.length ? idxs.map((i, n) => row(i, ps[i], idxs.length > 1 ? n + 1 : 0)).join('') : row(-1, null, 0);
+  const ps = picks(r), idx = ps.map((p, i) => p.sku === k ? i : -1).filter(i => i >= 0), q = rq(r);
+  const rows = idx.map((i, n) => `<div class="vrow"><div class="prow"><span>${idx.length > 1 || r.same ? `${n + 1}. kus` : 'Vaša voľba'}</span><button class="link mute" data-act="rmidx" data-r="${r.id}" data-i="${i}">Odobrať</button></div>
+    ${varPickers(o, ps[i], (f, v) => `data-act="pvar" data-r="${r.id}" data-i="${i}" data-f="${f}" data-v="${v}"`)}</div>`).join('');
+  const canAdd = r.same ? ps.length < q : !idx.length && (ps.length < q || q === 1);
+  if (!canAdd || S.dec[r.id] && !r.same) return rows;
+  const key = r.id + '|' + k, d = S.draft[key] || {};
+  const need = [o.sizes && !d.size ? 'veľkosť' : '', o.colors && !d.color ? 'farbu' : ''].filter(Boolean);
+  return rows + `<div class="vrow draft ${S.hint === key ? 'hint' : ''}">${idx.length ? '<div class="prow"><span>Ďalší kus</span></div>' : ''}
+    ${varPickers(o, d, (f, v) => `data-act="dvar" data-r="${r.id}" data-k="${k}" data-f="${f}" data-v="${v}"`)}
+    <div class="dtxt">${S.hint === key ? `Najprv vyberte ${need.join(' a ')}. Potom je darček váš.` : `Vyberte ${need.join(' a ')} a darček je váš.`}</div></div>`;
 }
-function sameCount(r, k){ return picks(r).filter(p => p.sku === k).length; }
-function stepperHTML(r, k){ const n = sameCount(r, k); return n ? `<div class="stp2"><button data-act="unpick" data-r="${r.id}" data-k="${k}" aria-label="Menej">−</button><b>${n}×</b><button data-act="pick" data-r="${r.id}" data-k="${k}" aria-label="Viac">+</button></div>` : ''; }
-function countBadge(r){
-  if (rq(r) < 2) return '';
-  const n = okPicks(r).length; return `<span class="cnt ${n >= rq(r) ? 'ok' : ''}">${n} z ${rq(r)} vybraté</span>`;
+function bulkBlock(r, k){              // kompaktný výber pre veľa kusov: 1 skladač + čipy
+  const o = OPT[k], ps = picks(r), q = rq(r), key = r.id + '|' + k, groups = {}, order = [];
+  ps.forEach(p => { if (p.sku !== k) return; const g = (p.size || '') + '|' + (p.color || ''); if (!groups[g]) { groups[g] = {p, n:0}; order.push(g); } groups[g].n++; });
+  const total = order.reduce((a, g) => a + groups[g].n, 0), ed = S.edit && S.edit.key === key && groups[S.edit.g] ? S.edit.g : null;
+  const room = q - ps.length + (ed ? groups[ed].n : 0);
+  const cname = id => o.colors && id ? o.colors.find(c => c.id === id) : null;
+  const chips = order.map(g => { const {p, n} = groups[g], c = cname(p.color);
+    return `<span class="vchip ${ed === g ? 'edit' : ''}"><button class="vchip-b" data-act="gedit" data-r="${r.id}" data-k="${k}" data-g="${g}" title="Upraviť">${n}× ${p.size || ''}${c ? `<i class="dot" style="background:${c.hex}"></i>${c.n}` : ''}</button><button class="vchip-x" data-act="gdel" data-r="${r.id}" data-k="${k}" data-g="${g}" aria-label="Odobrať">×</button></span>`; }).join('');
+  let comp = '';
+  if (room > 0) {
+    const c = S.comp[key] || {}, n = Math.max(1, Math.min(c.n || room, room));
+    const need = [o.sizes && !c.size ? 'veľkosť' : '', o.colors && !c.color ? 'farbu' : ''].filter(Boolean), ready = !need.length;
+    const at = (act, extra = '') => `data-act="${act}" data-r="${r.id}" data-k="${k}" ${extra}`;
+    comp = `<div class="vcomp ${S.hint === key ? 'hint' : ''}">${ed ? '<div class="prow"><span>Upravujete výber</span><button class="link mute" data-act="gcancel">Zrušiť</button></div>' : total ? '<div class="prow"><span>Pridať ďalšie</span></div>' : ''}
+      ${varPickers(o, c, (f, v) => at('cvar', `data-f="${f}" data-v="${v}"`))}
+      <div class="vrow2"><div class="stp2 sm"><button ${at('cqty', 'data-d="-1"')} ${n <= 1 ? 'disabled' : ''} aria-label="Menej">−</button><b>${n}×</b><button ${at('cqty', 'data-d="1"')} ${n >= room ? 'disabled' : ''} aria-label="Viac">+</button></div>
+      <button class="vadd" ${at('cadd')} ${ready ? '' : 'disabled'}>${ready ? (ed ? `Uložiť ${n}×` : `Pridať ${n}× do košíka`) : `Vyberte ${need.join(' a ')}`}</button></div>
+      ${S.hint === key ? `<div class="dtxt" style="color:var(--brand-d)">Najprv vyberte ${need.join(' a ')}. Potom je darček váš.</div>` : ''}</div>`;
+  }
+  return `<div class="bhead"><b>${total} z ${q} ks</b><span>${q - ps.length ? `zostáva ${q - ps.length}` : '✓ všetky kusy vybraté'}</span></div>${chips ? `<div class="vchips">${chips}</div>` : ''}${comp}`;
 }
-function bigOptions(r, locked){
-  const ps = picks(r), multi = rq(r) > 1, full = ps.length >= rq(r);
-  const cls = r.opts.length === 4 ? 'bgrid c4' : 'bgrid';
-  return `<div class="${cls}">${r.opts.map(k => {
-    const o = OPT[k], on = !locked && ps.some(p => p.sku === k);
-    const dim = !locked && multi && full && !on;
-    const off = !locked && S.dec[r.id] && !on;
-    return `<div class="bo ${on ? 'on' : ''} ${dim ? 'dim' : ''} ${off ? 'off' : ''} ${locked ? 'lock' : ''}" ${locked ? '' : `role="${multi ? 'checkbox' : 'radio'}" tabindex="0" aria-checked="${on}" data-act="pick" data-r="${r.id}" data-k="${k}"`}>
-      <div class="img" style="background:${o.bg}">${o.e}</div>${r.same && on ? `<span class="cntb">${sameCount(r, k)}×</span>` : `<span class="rad ${multi ? 'chk' : ''}">${on ? '✓' : ''}</span>`}<div class="nm">${o.name}</div>${r.same ? stepperHTML(r, k) : ''}${!locked && hasVars(k) ? sizePills(r, k) : ''}</div>`;
-  }).join('')}</div>`;
+function compOp(rid, k, op, a){
+  const r = RULE[rid], key = rid + '|' + k, c = {...(S.comp[key] || {})};
+  if (op === 'var') { c[a.dataset.f] = a.dataset.v; S.hint = null; }
+  if (op === 'qty') { const ps = picks(r), q = rq(r); const room = q - ps.length + (S.edit && S.edit.key === key ? ps.filter(p => p.sku === k && (p.size||'') + '|' + (p.color||'') === S.edit.g).length : 0); c.n = Math.max(1, Math.min(room, (c.n || room) + +a.dataset.d)); }
+  if (op === 'add') {
+    let arr = picks(r).slice();
+    if (S.edit && S.edit.key === key) arr = arr.filter(p => !(p.sku === k && (p.size||'') + '|' + (p.color||'') === S.edit.g));
+    const room = rq(r) - arr.length, n = Math.max(1, Math.min(c.n || room, room));
+    for (let i = 0; i < n; i++) arr.push({sku:k, size:c.size || null, color:c.color || null});
+    S.sel[rid] = arr; delete S.dec[rid]; delete S.comp[key]; S.edit = null; S.pop = rid + k;
+    if (!pending(r)) advance(rid); return;
+  }
+  S.comp[key] = c;
 }
-function decNote(r){
-  if (!S.dec[r.id]) return '';
-  const has = okPicks(r).length;
-  const txt = has ? `Ďalšie darčeky z tohto pravidla nechceš (${has} z ${rq(r)} si nechávaš).` : 'Tento darček nechceš. Ak si to rozmyslíš, klikni na niektorý nižšie.';
-  return `<div class="decnote"><span>${txt}</span><button class="link dark" data-act="undo" data-r="${r.id}">Vrátiť</button></div>`;
+function groupOp(rid, k, g, op, f, v){
+  const r = RULE[rid], q = rq(r); let arr = picks(r).slice(); const [size, color] = g.split('|');
+  const match = p => p.sku === k && (p.size || '') === size && (p.color || '') === color;
+  if (op === 'plus' && arr.length < q) arr.push({sku:k, size:size || null, color:color || null});
+  if (op === 'fill') while (arr.length < q) arr.push({sku:k, size:size || null, color:color || null});
+  if (op === 'minus') { const i = arr.map(match).lastIndexOf(true); if (i >= 0) arr.splice(i, 1); }
+  if (op === 'var') { arr = arr.map(p => match(p) ? {...p, [f]:v} : p); g = f === 'size' ? v + '|' + color : size + '|' + v; }
+  S.sel[rid] = arr; delete S.dec[rid]; S.lastG = rid + '|' + k + '#' + g; S.pop = rid + k;
+  if ((op === 'plus' || op === 'fill') && !pending(r)) advance(rid);
 }
-const fullNote = r => S.full === r.id ? `<div class="fullnote">Máš vybraté ${rq(r)} z ${rq(r)}. Ak chceš iný darček, najprv jeden z vybraných odznač.</div>` : '';
-function declineLink(r){
+const sameCount = (r, k) => picks(r).filter(p => p.sku === k).length;
+const stepperHTML = (r, k) => { const n = sameCount(r, k); return n && !hasVars(k) ? `<div class="stp2"><button data-act="unpick" data-r="${r.id}" data-k="${k}" aria-label="Menej">−</button><b>${n}×</b><button data-act="card" data-r="${r.id}" data-k="${k}" aria-label="Viac">+</button></div>` : ''; };
+function countBadge(r){ const q = rq(r); if (q < 2) return ''; const n = picks(r).length; return `<span class="cnt ${n >= q ? 'ok' : ''}">${n} z ${q}</span>`; }
+const fullNote = r => S.full === r.id ? `<div class="fullnote">Máte vybraté ${rq(r)} z ${rq(r)}. Chcete iný? Najprv jeden odznačte.</div>` : '';
+function footLeft(r){
   if (S.dec[r.id]) return '<span></span>';
   const has = picks(r).length;
-  if (rq(r) > 1 && has && has < rq(r)) return `<button class="link mute" data-act="decline" data-r="${r.id}">Ďalšie nechcem</button>`;
-  return `<button class="link mute" data-act="decline" data-r="${r.id}">${rq(r) > 1 ? 'Nechcem žiadny' : 'Nechcem tento darček'}</button>`;
+  return '<span></span>';
 }
-function statusText(r){
-  if (S.dec[r.id]) return '';
+function footRight(r){
+  if (S.dec[r.id]) return `<span class="st">Kliknite na darček a je váš</span>`;
   const m = missing(r);
-  if (m <= 0) return `<span class="free" style="font-size:13px">✓ V košíku zadarmo</span>`;
-  if (picks(r).some(p => !complete(p))) return `<span class="st">Vyber variant</span>`;
-  return `<span class="st">${rq(r) > 1 ? `Vyber ešte ${m}` : 'Klikni na darček, ktorý chceš'}</span>`;
+  if (!m) return `<span class="free" style="font-size:13px">✓ Darček je váš</span>`;
+  return `<span class="st">${rq(r) > 1 ? `Vyberte ešte ${m}` : r.opts.every(hasVars) ? 'Vyberte variant a darček je váš' : 'Kliknite na darček, ktorý chcete'}</span>`;
+}
+function optionCards(r, grid, cardCls){
+  const ps = picks(r), q = rq(r), multi = q > 1, full = ps.length >= q;
+  return `<div class="${grid}">${r.opts.map(k => {
+    const o = OPT[k], n = sameCount(r, k), on = n > 0;
+    const dim = multi && full && !on, act = `role="button" tabindex="0" data-act="card" data-r="${r.id}" data-k="${k}"`;
+    const mark = r.same && on ? `<span class="cntb">${n}×</span>` : `<span class="${cardCls === 'ao' ? 'rd' : 'rad'} ${multi ? 'chk' : ''}">${on ? '✓' : ''}</span>`;
+    const bulk = r.same && hasVars(k);
+    return `<div class="${cardCls} ${on ? 'on' : ''} ${dim && !bulk ? 'dim' : ''} ${bulk ? 'wide' : ''}" ${act}><div class="img" style="background:${o.bg}">${o.e}</div>${mark}<div class="nm">${o.name}</div>${r.same ? stepperHTML(r, k) : ''}${hasVars(k) ? `<div class="vars">${bulk ? bulkBlock(r, k) : varBlock(r, k)}</div>` : ''}</div>`;
+  }).join('')}</div>`;
 }
 
-/* ===== VARIANT A · SLOTY ===== */
+/* ===== WEB · SLOTY ===== */
 function slotsFor(r){
   const ps = picks(r), out = [];
+  if (rq(r) > 4) {                                   // veľa kusov: 1 políčko s počtom + 1 prázdne
+    const n = ps.length, m = missing(r);
+    if (n) { const o = OPT[ps[0].sku]; out.push(`<div class="slot full ${S.pop && S.pop.startsWith(r.id) ? 'pop' : ''}"><button class="tile" style="background:${o.bg}" data-act="slot" data-r="${r.id}" aria-label="${n} darčekov">${o.e}<span class="badge">${n}×</span></button><div class="nm">${n} ${darcek(n)} vo vašom košíku</div></div>`); }
+    if (m) out.push(`<div class="slot empty"><button class="tile" data-act="slot" data-r="${r.id}" aria-label="Získať ${m} darčekov"><span class="plus">+<b>Získať ${m}</b></span></button><div class="nm">Čaká na vás</div></div>`);
+    else if (S.dec[r.id] && n < rq(r)) out.push(`<div class="slot declined"><button class="tile" data-act="slot" data-r="${r.id}">Bez<br>darčeka</button><div class="nm">${rq(r) - n} ks</div></div>`);
+    return out.join('');
+  }
   for (let i = 0; i < rq(r); i++) {
     const p = ps[i];
-    if (p) {
-      const o = OPT[p.sku], ok = complete(p);
-      const badge = r.mode === 'auto' ? '<span class="badge auto">AUTO</span>' : ok ? '<span class="badge">✓</span>' : '';
-      out.push(`<div class="slot ${ok ? 'full' : 'empty'} ${S.pop === r.id + p.sku ? 'pop' : ''}"><button class="tile" style="background:${o.bg}" data-act="slot" data-r="${r.id}" aria-label="${o.name}">${o.e}${badge}</button>
-        <button class="rmv" data-act="remove" data-r="${r.id}" data-k="${p.sku}" aria-label="Odobrať ${o.name}">×</button><div class="nm">${ok ? o.short + vtxt(p) : 'Vyber variant'}</div></div>`);
-    } else if (S.dec[r.id]) {
-      out.push(`<div class="slot declined"><button class="tile" data-act="slot" data-r="${r.id}">Bez<br>darčeka</button><div class="nm">Nechceš</div></div>`);
-    } else {
-      const nw = S.newSlot === r.id && i === ps.length ? '<span class="badge new">Nové</span>' : '';
-      out.push(`<div class="slot empty"><button class="tile" data-act="slot" data-r="${r.id}"><span class="plus">+<b>Vybrať</b></span>${nw}</button><div class="nm">Čaká na výber</div></div>`);
-    }
+    if (p) { const o = OPT[p.sku];
+      const badge = '<span class="badge">✓</span>';
+      out.push(`<div class="slot full ${S.pop === r.id + p.sku ? 'pop' : ''}"><button class="tile" style="background:${o.bg}" data-act="slot" data-r="${r.id}" aria-label="${o.name}">${o.e}${badge}</button>
+        <button class="rmv" data-act="remove" data-r="${r.id}" data-k="${p.sku}" aria-label="Odobrať ${o.name}">×</button><div class="nm">${o.short}${vtxt(p)}</div></div>`);
+    } else if (S.dec[r.id]) out.push(`<div class="slot declined"><button class="tile" data-act="slot" data-r="${r.id}">Bez<br>darčeka</button><div class="nm">Zmeniť názor?</div></div>`);
+    else out.push(`<div class="slot empty"><button class="tile" data-act="slot" data-r="${r.id}" aria-label="Získať darček"><span class="plus">+<b>Získať</b></span>${S.newSlot === r.id && i === ps.length ? '<span class="badge new">NOVÉ</span>' : ''}</button><div class="nm">Čaká na vás</div></div>`);
   }
   return out.join('');
 }
-function panelA(act){
-  const L = lockedInfo();
-  if (act === 'locked' && L) return `<div class="spanel"><div class="spanel-h"><div><b>${L.title}</b><small>Pridaj do košíka ešte za ${eur(L.missing)} a vyberieš si jeden z týchto darčekov.</small></div><button class="link mute" data-act="slot" data-r="locked">Zavrieť</button></div>${bigOptions({id:'locked', opts:L.opts, qty:1}, true)}</div>`;
-  const r = RULE[act]; if (!r || !rules().includes(r)) return '';
-  return `<div class="spanel" id="panel"><div class="spanel-h"><div><b>${r.title}${countBadge(r)}</b><small>${r.reason}</small></div><button class="link mute" data-act="slot" data-r="${r.id}">Zavrieť</button></div>
-    ${decNote(r)}${fullNote(r)}${bigOptions(r)}<div class="spanel-f">${declineLink(r)}${statusText(r)}</div></div>`;
+function panelA(rid){
+  const r = RULE[rid]; if (!r || !rules().includes(r)) return '';
+  return `<div class="spanel" id="panel"><div class="spanel-h"><div><b>${title(r)}${countBadge(r)}</b><small>${reason(r)}</small></div><button class="link mute" data-act="slot" data-r="${r.id}">Zavrieť</button></div>
+    ${fullNote(r)}${optionCards(r, r.opts.length === 4 ? 'bgrid c4' : 'bgrid', 'bo')}<div class="spanel-f">${footLeft(r)}${footRight(r)}</div></div>`;
 }
+function headCounter(){ const m = toGet(); return m ? `<span class="cntp">Získajte ešte ${m} ${darcek(m)}</span>` : `<span class="cntp ok">✓ Všetky máte v košíku</span>`; }
+const subline = () => toGet() ? 'Tento nákup sa oplatí. Kliknite na prázdne políčko a vyberte si, čo vám patrí.' : 'Všetko je pripravené. Darček kedykoľvek vymeníte kliknutím alebo odoberiete krížikom.';
 function groupStatus(r){
-  const ok = okPicks(r), ps = picks(r);
-  if (S.dec[r.id] && !ok.length) return '<span class="gs-mute">Bez darčeka</span>';
-  if (ps.some(p => !complete(p))) return '<span class="gs-need">Vyber variant</span>';
-  if (rq(r) > 1) return `<span class="${pending(r) ? 'gs-need' : 'gs-ok'}">${ok.length} z ${rq(r)} vybraté${pending(r) ? `, vyber ešte ${missing(r)}` : ''}</span>`;
-  if (pending(r)) return '<span class="gs-need">Čaká na výber</span>';
-  const p = ok[0]; return `<span class="gs-ok">${OPT[p.sku].short}${vtxt(p)}${r.mode === 'auto' ? ', automaticky' : ''}</span>`;
+  const ps = picks(r);
+  if (S.dec[r.id] && !ps.length) return '<span class="gs-mute">Bez darčeka</span>';
+  if (rq(r) > 1) return pending(r) ? `<span class="gs-need">Vybraté ${ps.length} z ${rq(r)}, získajte ešte ${missing(r)}</span>` : `<span class="gs-ok">Vybraté ${ps.length} z ${rq(r)}</span>`;
+  if (pending(r)) return '<span class="gs-need">Čaká na vás, vyberte si</span>';
+  return `<span class="gs-ok">${OPT[ps[0].sku].short}${vtxt(ps[0])}</span>`;
 }
-function variantAMob(){
-  const rs = rules(), L = lockedInfo(), act = activeSlot();
-  const rows = rs.map(r => {
-    const one = rq(r) === 1, open = act === r.id;
-    const head = `<div class="g1-row" data-act="slot" data-r="${r.id}" aria-expanded="${open}">${one ? `<div class="g1-tiles">${slotsFor(r)}</div>` : ''}
-      <div class="g1-t"><b>${r.label}</b>${groupStatus(r)}</div><span class="chev" aria-hidden="true">▾</span></div>`;
-    return `<div class="mg ${one ? 'one' : 'multi'} ${open ? 'active' : ''} ${pending(r) ? 'is-p' : ''}" id="g-${r.id}">${head}${one ? '' : `<div class="g1-tiles">${slotsFor(r)}</div>`}${open ? panelA(r.id) : ''}</div>`;
-  }).join('') + (L ? `<div class="mg one locked ${act === 'locked' ? 'active' : ''}" id="g-locked"><div class="g1-row" data-act="slot" data-r="locked"><div class="g1-tiles"><div class="slot locked"><div class="tile">🔒</div></div></div>
-      <div class="g1-t"><b>${L.label}</b><span class="gs-mute">Ešte ${eur(L.missing)} do ďalšieho darčeka</span><div class="lk2"><i style="width:${L.pct}%"></i></div></div><span class="chev">▾</span></div>${act === 'locked' ? panelA('locked') : ''}</div>` : '');
-  const tot = rs.reduce((a, r) => a + (S.dec[r.id] ? okPicks(r).length : rq(r)), 0), h = giftTotal(), p = pendList().length;
-  return `<section class="n1" id="gifts"><div class="n1-h"><h2>Tvoje darčeky zadarmo</h2>${tot ? `<span style="color:${p ? 'var(--brand-d)' : 'var(--ok)'}">${h} z ${tot}</span>` : ''}</div>
-    <div class="n1-sub">${p ? 'Ťukni na políčko, výber sa otvorí priamo pod ním.' : rs.length ? 'Všetky darčeky máš. Ťukni na políčko, ak ho chceš vymeniť.' : 'Darčeky sa odomykajú podľa hodnoty košíka.'}</div>
-    <div class="mgroups">${rows}</div></section>`;
-}
-function variantA(){
-  if (isMob()) return variantAMob();
-  const rs = rules(), L = lockedInfo();
-  if (!rs.length && !L) return '';
+function giftsWeb(){
+  const rs = rules(); if (!rs.length) return '';                       // bez nároku: sekcia sa nezobrazí
   const act = activeSlot();
-  const groups = rs.map(r => `<div class="sgrp ${act === r.id ? 'active' : ''}" id="g-${r.id}"><div class="sgrp-h">${r.label}${rq(r) > 1 ? ` <span>${okPicks(r).length} z ${rq(r)}</span>` : ''}</div><div class="sgrp-t">${slotsFor(r)}</div></div>`).join('')
-    + (L ? `<div class="sgrp ${act === 'locked' ? 'active' : ''}"><div class="sgrp-h">${L.label}</div><div class="sgrp-t"><div class="slot locked"><button class="tile" data-act="slot" data-r="locked">🔒</button><div class="nm">Ešte ${eur(L.missing)}</div><div class="lk"><i style="width:${L.pct}%"></i></div></div></div></div>` : '');
-  const tot = rs.filter(r => !S.dec[r.id] || okPicks(r).length).reduce((a, r) => a + (S.dec[r.id] ? okPicks(r).length : rq(r)), 0), h = giftTotal();
-  const p = pendList().length;
-  return `<section class="n1" id="gifts"><div class="n1-h"><h2>Tvoje darčeky zadarmo</h2>${tot ? `<span style="color:${p ? 'var(--brand-d)' : 'var(--ok)'}">${h} z ${tot} v košíku</span>` : ''}</div>
-    <div class="n1-sub">${p ? 'Klikni na prázdne políčko a vyber si darček. Darček odoberieš krížikom.' : rs.length ? 'Všetky darčeky máš. Klikni na darček, ak ho chceš vymeniť, alebo ho odober krížikom.' : 'Darčeky sa odomykajú podľa hodnoty košíka.'}</div>
+  if (isMob()) {
+    const rows = rs.map(r => { const one = rq(r) === 1, open = act === r.id;
+      return `<div class="mg ${one ? 'one' : 'multi'} ${open ? 'active' : ''} ${pending(r) ? 'is-p' : ''}" id="g-${r.id}">
+        <div class="g1-row" data-act="slot" data-r="${r.id}" aria-expanded="${open}">${one ? `<div class="g1-tiles">${slotsFor(r)}</div>` : ''}<div class="g1-t"><b>${label(r)}</b>${groupStatus(r)}</div><span class="chev" aria-hidden="true">▾</span></div>
+        ${one ? '' : `<div class="g1-tiles">${slotsFor(r)}</div>`}${open ? panelA(r.id) : ''}</div>`; }).join('');
+    return `<section class="n1" id="gifts"><div class="n1-h"><h2>🎁 Vaše darčeky zadarmo</h2></div><div style="margin:2px 0 8px">${headCounter()}</div><div class="n1-sub">${subline()}</div><div class="mgroups">${rows}</div></section>`;
+  }
+  const groups = rs.map(r => `<div class="sgrp ${act === r.id ? 'active' : ''}" id="g-${r.id}"><div class="sgrp-h">${label(r)}${rq(r) > 1 ? ` <span>${picks(r).length} z ${rq(r)}</span>` : ''}</div><div class="sgrp-t">${slotsFor(r)}</div></div>`).join('');
+  return `<section class="n1" id="gifts"><div class="n1-h"><h2>🎁 Vaše darčeky zadarmo</h2>${headCounter()}</div><div class="n1-sub">${subline()}</div>
     <div class="groups">${groups}</div>${act ? panelA(act) : ''}</section>`;
 }
 
-/* ===== VARIANT B · BALÍK ===== */
-const stepRules = () => rules().filter(r => r.mode !== 'auto');
-function chipsB(){
-  return rules().map(r => {
-    const ps = picks(r), out = [];
-    ps.forEach(p => { const o = OPT[p.sku], ok = complete(p);
-      out.push(ok ? `<div class="gch ${S.pop === r.id + p.sku ? 'pop' : ''}">${thumb(o, 34)}<span class="gch-t"><b>${o.short}${vtxt(p)}</b><small>${r.label}${r.mode === 'auto' ? ', automaticky' : ''}</small></span><button class="x2" data-act="remove" data-r="${r.id}" data-k="${p.sku}" aria-label="Odobrať ${o.name}">×</button></div>`
-        : `<button class="gch em" data-act="boxgo" data-r="${r.id}">+ ${r.label}: vyber variant</button>`); });
-    const m = rq(r) - ps.length;
-    if (m > 0) out.push(S.dec[r.id] ? `<div class="gch dec">${r.label}: ${ps.length ? `ďalšie ${m}` : ''} bez darčeka <button class="link dark" data-act="undo" data-r="${r.id}" style="margin-left:6px">Vrátiť</button></div>`
-      : `<button class="gch em" data-act="boxgo" data-r="${r.id}">+ ${r.label}: ${m > 1 ? `vyber ešte ${m}` : 'vyber darček'}</button>`);
-    return out.join('');
-  }).join('');
-}
-function variantB(){
-  const rs = rules(), L = lockedInfo();
-  if (!rs.length) return L ? `<div class="n3"><div class="n3-closed"><div class="n3-row"><div class="n3-ico">🎁</div><div class="n3-txt"><b>Ešte ${eur(L.missing)} a máš darček zadarmo</b><span>${L.title}</span></div></div></div></div>` : '';
-  const steps = stepRules(), p = pendList().length;
-  if (!S.boxOpen || !steps.length) {
-    const miss = rules().reduce((a, r) => a + Math.max(0, missing(r)), 0);
-    return `<div class="n3 ${p ? '' : 'done'} ${S.pop === 'box' ? 'flash' : ''}" id="gifts"><div class="n3-closed"><div class="n3-row"><div class="n3-ico">🎁</div>
-      <div class="n3-txt"><b>${p ? `Máš nárok na ${entitled()} ${plural(entitled(), 'darček', 'darčeky', 'darčekov')} zadarmo` : `V balíku máš ${giftTotal()} ${plural(giftTotal(), 'darček', 'darčeky', 'darčekov')} zadarmo`}</b>
-      <span>${p ? `${miss} ${plural(miss, 'darček ešte čaká', 'darčeky ešte čakajú', 'darčekov ešte čaká')} na tvoj výber` : L ? `Ešte ${eur(L.missing)} a pribudne ďalší` : 'Všetko je pripravené. Darček odoberieš krížikom.'}</span></div>
-      ${steps.length ? `<button class="n3-btn ${p ? '' : 'sec'}" data-act="boxopen">${p ? 'Vybrať darčeky' : 'Upraviť darčeky'}</button>` : ''}</div><div class="chips">${chipsB()}</div></div></div>`;
-  }
-  const i = Math.min(S.boxIdx, steps.length - 1), r = steps[i];
-  const dots = steps.map((x, j) => `<i class="${j === i ? 'cur' : S.dec[x.id] && !okPicks(x).length ? 'dec' : !pending(x) ? 'ok' : ''}"></i>`).join('');
-  const autos = rs.filter(x => x.mode === 'auto');
-  const autoList = autos.length ? `<div class="autolist"><div class="t">V balíku automaticky</div>${autos.map(x => { const ps = picks(x);
-      return ps.length ? ps.map(pp => `<div class="auto-i">${thumb(OPT[pp.sku], 30)}<span>${OPT[pp.sku].name}, ${giftQty(x)} ks <span class="free">zadarmo</span></span><button class="link mute" data-act="remove" data-r="${x.id}" data-k="${pp.sku}">Odobrať</button></div>`).join('')
-        : `<div class="auto-i"><span style="color:var(--ink3)">${x.title}: odobraté</span><button class="link dark" data-act="undo" data-r="${x.id}">Vrátiť</button></div>`; }).join('')}</div>` : '';
-  const last = i === steps.length - 1;
-  return `<div class="n3" id="gifts"><div class="n3-open"><div class="n3-top"><span class="n3-step">Krok ${i + 1} z ${steps.length}</span><div class="n3-dots">${dots}</div><button class="n3-head-close" data-act="boxclose">Zbaliť</button></div>
-    <h3 class="n3-title" id="g-${r.id}">${r.title}${countBadge(r)}</h3><div class="n3-reason">${r.reason}</div>
-    ${decNote(r)}${fullNote(r)}${bigOptions(r)}
-    <div class="n3-foot"><div style="display:flex;gap:14px">${i > 0 ? `<button class="link mute" data-act="boxprev">Späť</button>` : ''}${declineLink(r)}</div>
-      <div style="display:flex;gap:12px;align-items:center">${statusText(r)}<button class="n3-next" data-act="boxnext" ${pending(r) ? 'disabled' : ''}>${last ? 'Hotovo' : 'Ďalší darček'}</button></div></div>${autoList}</div></div>`;
-}
-
-/* ---------- košík, zhrnutie ---------- */
+/* ===== WEB · košík + pokladňa (pokladňa ako dnes, so žltou hláškou) ===== */
 function productsHTML(){
   return `<div class="card">${prods().map(p => { const price = p.qty*p.unit, d = S.code && p.pink;
     return `<div class="pl">${thumb(p, 64)}<div class="pl-b"><div class="pl-n">${p.name}</div>${p.meta.map(m => `<div class="pl-m">${m}</div>`).join('')}
@@ -760,9 +752,9 @@ function productsHTML(){
 }
 function codeBox(){
   if (S.code) return `<div class="code"><div class="code-h">Zľavový kód</div><div class="code-ok"><span><b>PINK</b> −20 % na BeastPink</span><button class="link mute" data-act="uncode">Odstrániť</button></div>
-    <div class="code-msg">🎁 Kód ti odomkol aj nový darček. <button class="link" data-act="jump" data-r="code">Vybrať darček</button></div></div>`;
-  return `<div class="code"><div class="code-h">Použiť zľavový kód</div><div class="code-r"><input id="codeIn" placeholder="Vložte zľavový kupón (skús PINK)" value="${S.codeInput}" aria-label="Zľavový kód"><button data-act="code">Použiť</button></div>
-    ${S.codeMsg === 'err' ? `<div class="code-msg err">Kód „${S.codeInput}“ neplatí.</div>` : ''}</div>`;
+    <div class="code-msg">🎁 Kód vám odomkol aj darček navyše. <button class="link" data-act="jump" data-r="code">Získať darček</button></div></div>`;
+  return `<div class="code"><div class="code-h">Použiť zľavový kód</div><div class="code-r"><input id="codeIn" placeholder="Vložte zľavový kupón (skúste PINK)" value="${S.codeInput}" aria-label="Zľavový kód"><button data-act="code">Použiť</button></div>
+    ${S.codeMsg === 'err' ? `<div class="code-msg err">Kód „${S.codeInput}“ nie je platný.</div>` : ''}</div>`;
 }
 function rowsHTML(){
   const t = totals();
@@ -772,261 +764,190 @@ function rowsHTML(){
 }
 function giftStatus(){
   if (!rules().length) return '';
-  const m = rules().reduce((a, r) => a + Math.max(0, missing(r)), 0);
-  return m ? `<button class="gstat warn" data-act="jump">🎁 ${m} ${plural(m, 'darček čaká', 'darčeky čakajú', 'darčekov čaká')} na výber</button>` : `<div class="gstat ok">🎁 ${giftTotal()} ${plural(giftTotal(), 'darček', 'darčeky', 'darčekov')} zadarmo v košíku</div>`;
+  const m = toGet();
+  return m ? `<button class="gstat warn" data-act="jump">🎁 Získajte ešte ${m} ${darcek(m)} zadarmo</button>` : `<div class="gstat ok">🎁 Všetky darčeky máte v košíku</div>`;
 }
-const guardMsg = () => S.guard && pendList().length ? `<div class="guard">Ešte si nevybral: <b>${pendList()[0].title.toLowerCase()}</b>. Vyber ho, alebo pokračuj bez neho.</div>` : '';
+const guardMsg = () => S.guard && pendList().length ? `<div class="guard">Počkajte, ešte vám patrí <b>${title(pendList()[0]).toLowerCase()}</b>. Je zadarmo, tak si ho nenechajte ujsť.</div>` : '';
 const ctaLabel = () => S.step === 'pay' ? 'OBJEDNAŤ A ZAPLATIŤ' : (S.step === 'cart' && S.guard && pendList().length ? 'POKRAČOVAŤ BEZ DARČEKA' : 'POKRAČOVAŤ');
-
-/* Doručenie a Platba: rovnaký prúžok pre oba varianty */
-function swatches(r){
-  const ps = picks(r), full = ps.length >= rq(r);
-  return `<div class="sws">${r.opts.map(k => { const o = OPT[k], on = ps.some(p => p.sku === k);
-    return `<button class="sw ${on ? 'on' : ''} ${rq(r) > 1 && full && !on ? 'dim' : ''}" style="background:${o.bg}" data-act="pick" data-r="${r.id}" data-k="${k}" title="${o.name}" aria-label="${o.name}" aria-pressed="${on}">${o.e}</button>`; }).join('')}</div>`;
-}
-function checkoutStrip(withPicker){
-  const rs = rules(); if (!rs.length) return '';
-  if (S.remind === 'old') return pendList().length ? `<div class="yel">Ešte ste nevybrali všetky svoje darčeky zadarmo! <button data-act="tocart">Vybrať darčeky</button></div>` : '';
-  const row = rs.map(r => okPicks(r).map(p => `<span title="${OPT[p.sku].name}">${thumb(OPT[p.sku], 40)}</span>`).join('') + '<div class="th em" style="width:40px;height:40px">+</div>'.repeat(Math.max(0, missing(r)))).join('');
-  return `<div class="cs"><div class="cs-h">Darčeky zadarmo<span>${giftTotal()} v balíku</span></div><div class="cs-row">${row}</div>${withPicker ? checkoutCards() : ''}</div>`;
-}
-const checkoutCards = () => rules().filter(r => pending(r) || (S.dec[r.id] && S.decAt[r.id] === S.step)).map(pickerCard).join('');
-function pickerCard(r){
-  if (S.dec[r.id]) return `<div class="cs-p dec" id="g-${r.id}"><b>${r.title}</b><div class="r" style="margin:4px 0 0">Darček nechceš. <button class="link dark" data-act="undo" data-r="${r.id}">Vrátiť</button></div></div>`;
-  const sized = r.opts.length === 1 && hasVars(r.opts[0]);
-  const incompl = picks(r).filter(p => !complete(p)).map(p => p.sku).filter((k, i, a) => a.indexOf(k) === i);
-  return `<div class="cs-p" id="g-${r.id}"><b>🎁 ${r.title}${countBadge(r)}</b><div class="r">${rq(r) > 1 ? `Vyber ešte ${missing(r)}. Pridajú sa hneď.` : 'Ešte si ho nevybral. Klikni na darček, pridá sa hneď.'}</div>
-    ${sized ? `<div style="display:flex;gap:10px;align-items:center">${thumb(OPT[r.opts[0]], 40)}<div>${sizePills(r, r.opts[0])}${!picks(r).length ? '' : ''}</div></div>` : swatches(r)}${!sized ? incompl.map(k => `<div style="display:flex;gap:10px;align-items:flex-start;margin-top:8px">${thumb(OPT[k], 34)}<div style="flex:1">${sizePills(r, k)}</div></div>`).join('') : ''}
-    ${fullNote(r)}<div style="margin-top:8px">${declineLink(r)}</div></div>`;
-}
-
-/* ---------- shells ---------- */
+const yellow = () => rules().length && toGet() ? `<div class="yel">Ešte ste nevybrali všetky svoje darčeky zadarmo! <button data-act="tocart">Vybrať darčeky</button></div>` : '';
 function stepper(){
-  const st = [['cart','Košík'],['ship','Doručenie'],['pay','Platba']]; const idx = st.findIndex(s => s[0] === S.step);
+  const st = [['cart','Košík'],['ship','Doručenie'],['pay','Platba']], idx = st.findIndex(s => s[0] === S.step);
   return `<div class="stp">${st.map((s,i) => `${i ? '<div class="ln"></div>' : ''}<button class="s ${i === idx ? 'on' : i < idx ? 'dn' : ''}" data-act="go" data-s="${s[0]}"><div class="c">${i < idx ? '✓' : i+1}</div><span>${s[1]}</span></button>`).join('')}</div>`;
 }
-const promo = () => S.scen === 'code' ? `<div class="promo">Všetky BeastPink produkty so zľavou 20 %. Použi kód: PINK</div>` : '';
+const promo = () => S.scen === 'code' ? `<div class="promo">Všetky BeastPink produkty so zľavou 20 %. Použite kód: PINK</div>` : '';
 const itemCount = () => { const n = prods().length + giftTotal(); return n + ' ' + plural(n, 'položka', 'položky', 'položiek'); };
 const shipList = () => `<div class="sec"><h2>Doručenie</h2>${Object.entries(SHIP).map(([k,v]) => `<button class="radio ${S.ship === k ? 'on' : ''}" data-act="ship" data-k="${k}"><span class="rd"></span><span class="rb"><b>${v.n}</b><span>${v.d}</span></span><span class="rp">${v.c ? eur(v.c) : 'Zadarmo'}</span></button>`).join('')}<button class="back" data-act="go" data-s="cart">Späť do košíka</button></div>`;
 const payList = () => `<div class="sec"><h2>Platba</h2>${Object.entries(PAY).map(([k,v]) => `<button class="radio ${S.pay === k ? 'on' : ''}" data-act="pay" data-k="${k}"><span class="rd"></span><span class="rb"><b>${v.n}</b><span>${v.d}</span></span><span class="rp">${v.c ? eur(v.c) : ''}</span></button>`).join('')}<button class="back" data-act="go" data-s="ship">Späť na doručenie</button></div>`;
 const prodMini = () => prods().map(p => `<div class="li-s">${thumb(p, 32)}<span>${p.name}<small>${p.qty} ks</small></span></div>`).join('');
-function doneHTML(){
-  const miss = rules().filter(r => missing(r) > 0 || (S.dec[r.id] && okPicks(r).length < rq(r)));
-  return `<div class="done"><h2 style="margin:0 0 6px">Ďakujeme, objednávka je prijatá</h2><div style="color:var(--ink2)">Takto vyzerá balík, ktorý user dostane.</div>
-    <div class="lst">${prods().map(p => `<div class="li">${thumb(p, 36)}<span>${p.name}</span><b>${p.qty} ks</b></div>`).join('')}
-    ${rules().map(r => okPicks(r).map(p => `<div class="li">${thumb(OPT[p.sku], 36)}<span>${OPT[p.sku].name}${vtxt(p)}<span class="tag">DARČEK</span></span><b>${giftQty(r)} ks</b></div>`).join('')).join('')}
-    ${miss.map(r => `<div class="li"><span class="miss">Bez darčeka: ${r.title}, ${rq(r) - okPicks(r).length} z ${rq(r)} (${S.dec[r.id] ? 'nechcel' : 'nevybral'})</span></div>`).join('')}</div>
-    <button class="cta" data-act="restart" style="max-width:260px">SKÚSIŤ ZNOVA</button></div>`;
+function doneList(){
+  const miss = rules().filter(r => missing(r) > 0 || (S.dec[r.id] && picks(r).length < rq(r)));
+  return `${prods().map(p => `<div class="li">${thumb(p, 36)}<span>${p.name}</span><b>${p.qty} ks</b></div>`).join('')}
+    ${rules().map(r => picks(r).map(p => `<div class="li">${thumb(OPT[p.sku], 36)}<span>${OPT[p.sku].name}${vtxt(p)}<span class="tag">DARČEK</span></span><b>${giftQty(r)} ks</b></div>`).join('')).join('')}
+    ${miss.map(r => `<div class="li"><span class="miss" style="color:var(--brand-d);font-weight:600">Bez darčeka: ${title(r)} (${rq(r) - picks(r).length} z ${rq(r)}, ${S.dec[r.id] ? 'odmietnuté' : 'nevybraté'})</span></div>`).join('')}`;
 }
-const giftsBelow = () => '';
-const giftsTop = () => S.con === '3' ? variantB() : variantA();
 function desktop(){
   const t = totals();
   const head = `${promo()}<div class="sh"><div class="logo">GymBeam</div><div class="search">🔍 Hľadajte v obchode...</div><div class="icons">👤 ♡ 🛒 <b>${eur(t.total)}</b></div></div>`;
-  if (S.step === 'done') return `<div class="desk">${head}${doneHTML()}</div>`;
+  if (S.step === 'done') return `<div class="desk">${head}<div class="done"><h2 style="margin:0 0 6px">Ďakujeme, objednávka je prijatá</h2><div style="color:var(--ink2)">Takto vyzerá balík, ktorý zákazník dostane.</div><div class="lst">${doneList()}</div><button class="cta" data-act="restart" style="max-width:260px">SKÚSIŤ ZNOVA</button></div></div>`;
   if (S.step === 'cart') return `<div class="desk">${head}<nav class="nav"><span>POTRAVINY</span><span>PROTEÍNY</span><span>ŠPORTOVÁ VÝŽIVA</span><span>OBLEČENIE</span><span>PRÍSLUŠENSTVO</span><span>TOP PONUKY</span></nav>
-      <div class="dgrid"><div><div class="h1row"><h1>Nákupný košík</h1><span>${itemCount()}</span></div>${giftsTop()}${productsHTML()}${giftsBelow()}</div>
+      <div class="dgrid"><div><div class="h1row"><h1>Nákupný košík</h1><span>${itemCount()}</span></div>${giftsWeb()}${productsHTML()}</div>
       <aside><div class="loy"><span>GB Vernostný program</span><span>▾</span></div><div class="sum"><h3>Zhrnutie objednávky</h3><div class="shipbar">🚚 Doprava zadarmo<i></i></div>${codeBox()}${rowsHTML()}${giftStatus()}${guardMsg()}<button class="cta" data-act="next">${ctaLabel()}</button></div></aside></div></div>`;
   return `<div class="desk">${head}${stepper()}<div class="dgrid"><div>${S.step === 'ship' ? shipList() : payList()}</div>
-    <aside><div class="sum"><h3>Zhrnutie objednávky</h3>${prodMini()}<div style="height:8px"></div>${rowsHTML()}${checkoutStrip(true)}<button class="cta" data-act="next" style="margin-top:12px">${ctaLabel()}</button></div></aside></div></div>`;
+    <aside><div class="sum"><h3>Zhrnutie objednávky</h3>${prodMini()}<div style="height:8px"></div>${rowsHTML()}${yellow()}<button class="cta" data-act="next" style="margin-top:12px">${ctaLabel()}</button></div></aside></div></div>`;
 }
 function mobile(){
   const t = totals();
   const head = `${promo()}<div class="mh"><span style="font-size:22px">☰</span><div class="logo">GymBeam</div><span style="font-size:18px">👤 ♡ 🛒</span></div>`;
-  if (S.step === 'done') return `<div class="mob"><div class="scroll">${head}${doneHTML()}</div></div>`;
+  if (S.step === 'done') return `<div class="mob"><div class="scroll">${head}<div class="done"><h2 style="margin:0 0 6px">Ďakujeme!</h2><div class="lst">${doneList()}</div><button class="cta" data-act="restart">SKÚSIŤ ZNOVA</button></div></div></div>`;
   let body;
   if (S.step === 'cart') body = `${stepper()}<div class="shipbar">🚚 Doprava zadarmo<i></i></div><div class="h1row"><h1>Nákupný košík</h1><span>${itemCount()}</span></div>
-      ${giftsTop()}<div class="pad">${productsHTML()}</div>${giftsBelow()}<div class="loy"><span>GB Vernostný program</span><span>▾</span></div>${codeBox()}
-      <div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${rowsHTML()}</div><div style="height:16px"></div>`;
-  else {
-    const top = S.remind === 'old' ? checkoutStrip(false) : checkoutCards();
-    body = `${stepper()}${top}${S.step === 'ship' ? shipList() : payList()}<div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${prodMini()}<div style="height:6px"></div>${rowsHTML()}${S.remind === 'new' ? checkoutStrip(false) : ''}</div><div style="height:16px"></div>`;
-  }
-  const m = S.step === 'cart' ? rules().reduce((a, r) => a + Math.max(0, missing(r)), 0) : 0;
-  return `<div class="mob"><div class="scroll" id="mscroll">${head}${body}</div><div class="sbar">${S.step === 'cart' ? guardMsg() : ''}<div class="sbar-r"><div class="sbar-t"><small>Celkom</small><b>${eur(t.total)}</b>${m ? `<br><button class="link" style="font-size:11px" data-act="jump">🎁 ${m} čaká na výber</button>` : ''}</div><button class="cta" data-act="next">${ctaLabel()}</button></div></div></div>`;
+      ${giftsWeb()}<div class="pad">${productsHTML()}</div><div class="loy"><span>GB Vernostný program</span><span>▾</span></div>${codeBox()}
+      <div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${rowsHTML()}${giftStatus()}${guardMsg()}<button class="cta" data-act="next">${ctaLabel()}</button></div><div style="height:16px"></div>`;
+  else body = `${stepper()}${yellow()}${S.step === 'ship' ? shipList() : payList()}<div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${prodMini()}<div style="height:6px"></div>${rowsHTML()}<button class="cta" data-act="next">${ctaLabel()}</button></div><div style="height:16px"></div>`;
+  return `<div class="mob"><div class="scroll" id="mscroll">${head}${body}</div></div>`;
 }
 
-
-/* =================== APP =================== */
-const appMissing = () => rules().reduce((a, r) => a + Math.max(0, missing(r)), 0);
-function appTiles(withLocked){
-  const rs = rules(), L = lockedInfo();
-  const g = rs.map(r => {
+/* ===== APP ===== */
+function appTiles(){
+  return `<div class="atg">${rules().map(r => {
     const ps = picks(r), tiles = [];
-    for (let i = 0; i < rq(r); i++) {
-      const p = ps[i];
-      if (p) { const o = OPT[p.sku], ok = complete(p);
-        tiles.push(`<div class="atw ${S.pop === r.id + p.sku ? 'pop' : ''}"><button class="at ${ok ? '' : 'empty'}" style="${ok ? `background:${o.bg}` : ''}" data-act="asheet" data-r="${r.id}" aria-label="${o.name}">${o.e}${r.mode === 'auto' ? '<span class="bd auto">AUTO</span>' : ok ? '<span class="bd">✓</span>' : ''}</button><button class="atx" data-act="remove" data-r="${r.id}" data-k="${p.sku}" aria-label="Odobrať">×</button></div>`);
+    if (rq(r) > 4) { const n = ps.length, m = missing(r);
+      if (n) tiles.push(`<button class="at" style="background:${OPT[ps[0].sku].bg}" data-act="asheet" data-r="${r.id}">${OPT[ps[0].sku].e}<span class="bd">${n}×</span></button>`);
+      if (m) tiles.push(`<button class="at empty" data-act="asheet" data-r="${r.id}" style="font-size:15px;font-weight:800">+${m}</button>`);
+      else if (S.dec[r.id] && n < rq(r)) tiles.push(`<button class="at dec" data-act="asheet" data-r="${r.id}">Bez<br>darčeka</button>`);
+    } else
+    for (let i = 0; i < rq(r); i++) { const p = ps[i];
+      if (p) { const o = OPT[p.sku];
+        tiles.push(`<div class="atw ${S.pop === r.id + p.sku ? 'pop' : ''}"><button class="at" style="background:${o.bg}" data-act="asheet" data-r="${r.id}" aria-label="${o.name}">${o.e}<span class="bd">✓</span></button><button class="atx" data-act="remove" data-r="${r.id}" data-k="${p.sku}" aria-label="Odobrať">×</button></div>`);
       } else if (S.dec[r.id]) tiles.push(`<button class="at dec" data-act="asheet" data-r="${r.id}">Bez<br>darčeka</button>`);
-      else tiles.push(`<button class="at empty" data-act="asheet" data-r="${r.id}" aria-label="Vybrať darček">+${S.newSlot === r.id && i === ps.length ? '<span class="bd new">Nové</span>' : ''}</button>`);
+      else tiles.push(`<button class="at empty" data-act="asheet" data-r="${r.id}" aria-label="Získať darček">+${S.newSlot === r.id && i === ps.length ? '<span class="bd new">NOVÉ</span>' : ''}</button>`);
     }
-    return `<div class="atg-g"><div class="atg-l">${r.label}${rq(r) > 1 ? ` (${okPicks(r).length}/${rq(r)})` : ''}</div><div class="atg-r">${tiles.join('')}</div></div>`;
-  }).join('');
-  const lk = withLocked && L ? `<div class="atg-g"><div class="atg-l">${L.label}</div><div class="atg-r"><button class="at lock" data-act="noop" aria-label="Zamknuté">🔒</button></div><div class="atg-l" style="font-weight:500;color:var(--ink3)">ešte ${eur(L.missing)}</div></div>` : '';
-  return `<div class="atg">${g}${lk}</div>`;
+    return `<div class="atg-g"><div class="atg-l">${label(r)}${rq(r) > 1 ? ` (${ps.length}/${rq(r)})` : ''}</div><div class="atg-r">${tiles.join('')}</div></div>`;
+  }).join('')}</div>`;
 }
 function appGiftCard(){
-  const rs = rules(), L = lockedInfo();
-  if (!rs.length) return L ? `<div class="agc"><div class="agc-h"><span class="ic">🎁</span><b>Darčeky zadarmo</b></div><div class="agc-sub">Ešte ${eur(L.missing)} a vyberieš si darček zadarmo.</div>${appTiles(true)}</div>` : '';
-  const m = appMissing(), h = giftTotal(), tot = h + m;
-  return `<div class="agc ${m ? 'is-p' : ''}" id="g-agc"><div class="agc-h"><span class="ic">🎁</span><b>Darčeky zadarmo</b><span class="apill ${m ? '' : 'ok'}">${h} z ${tot}</span></div>
-    <div class="agc-sub">${m ? 'Ťukni na prázdne políčko a vyber si darček.' : 'Všetko máš. Ťukni na darček, ak ho chceš vymeniť.'}</div>
-    ${S.newSlot === 'code' && pending(RULE.code) ? `<div class="agc-new">🎉 Kód PINK ti odomkol nový darček</div>` : ''}
-    ${appTiles(true)}${m ? `<button class="agc-btn" data-act="asheet">Vybrať darčeky (${m})</button>` : ''}</div>`;
-}
-function appProducts(){
-  return prods().map(p => `<div class="apc"><div class="im" style="background:${p.bg}">${p.e}</div><div class="b"><div class="n">${p.name}</div>${p.meta.length ? `<div class="m">${p.meta.map(x => x.split(': ')[1]).join('<br>')}</div>` : ''}
-    <div class="f"><span class="pr">${eur(p.unit * (S.code && p.pink ? .8 : 1))}</span><div class="aq"><i data-act="pq" data-k="${p.id}" data-d="-1">−</i><b>${p.qty}</b><i data-act="pq" data-k="${p.id}" data-d="1">+</i></div></div></div><span class="dots">···</span></div>`).join('');
-}
-function appProgress(){
-  const L = lockedInfo(), t = totals().goods;
-  const pct = L ? Math.min(100, t / L.thr * 100) : 100;
-  return `<div class="aprog"><div class="apr"><span style="color:var(--a)">🎁</span>${L ? `Ešte ${eur(L.missing)} do ďalšieho darčeka` : 'Darček zadarmo'}</div><div class="abar"><i style="width:${pct}%;background:#EB542C"></i></div>
-    <div class="apr"><span>🚚</span>Doprava zadarmo</div><div class="abar"><i style="width:100%;background:#8BC34A"></i></div></div>`;
-}
-function appTotals(){
-  const t = totals();
-  return `<div class="atot"><div class="r"><span>Medzisúčet</span><span>${eur(t.sub)}</span></div>${t.disc ? `<div class="r"><span>Zľava PINK</span><span style="color:var(--ok)">−${eur(t.disc)}</span></div>` : ''}
-    <div class="r"><span>Vernostný program</span><span>${Math.round(t.total*2)} bodov</span></div><div class="t"><span>K úhrade</span><span>${eur(t.total)}</span></div></div>`;
-}
-function appCode(){
-  if (S.code) return `<div class="acode"><div class="code-ok"><span><b>PINK</b> −20 % na BeastPink</span><button class="link mute" data-act="uncode">Odstrániť</button></div></div>`;
-  if (!S.codeOpen) return `<button class="arow" data-act="acode"><span style="flex:0">🏷️</span><span>Zľavový kód alebo darčekový poukaz</span><span class="ch">›</span></button>`;
-  return `<div class="acode"><div class="code-r"><input id="codeIn" placeholder="Zadaj kód (skús PINK)" value="${S.codeInput}" aria-label="Zľavový kód"><button data-act="code">Použiť</button></div>${S.codeMsg === 'err' ? `<div class="code-msg err">Kód „${S.codeInput}“ neplatí.</div>` : ''}</div>`;
-}
-function appDock(label){
-  const m = appMissing();
-  const rem = !rules().length ? '' : m
-    ? `<button class="arem" data-act="asheet"><span>🎁 ${m} ${plural(m, 'darček čaká', 'darčeky čakajú', 'darčekov čaká')} na výber</span><em>Vybrať</em></button>`
-    : `<div class="arem ok"><span>✓ ${giftTotal()} ${plural(giftTotal(), 'darček', 'darčeky', 'darčekov')} zadarmo v balíku</span></div>`;
-  return `<div class="adock">${rem}<button class="acta" data-act="${S.appStep === 'checkout' ? 'aorder' : 'acheckout'}">${label}</button>
-    <div class="atab"><span>𝓖</span><span>▦</span><span class="on">🛒<i>${prods().reduce((a,p) => a + p.qty, 0) + giftTotal()}</i></span><span>♥</span><span>👤</span></div></div>`;
+  if (!rules().length) return '';
+  const m = toGet();
+  return `<div class="agc ${m ? 'is-p' : ''}" id="g-agc"><div class="agc-h"><span class="ic">🎁</span><b>Vaše darčeky zadarmo</b><span class="apill ${m ? '' : 'ok'}">${m ? `Získajte ešte ${m}` : '✓ Všetky máte'}</span></div>
+    <div class="agc-sub">${m ? 'Ťuknite na prázdne políčko a vyberte si, čo vám patrí.' : 'Všetko je v košíku. Ťuknutím darček vymeníte.'}</div>
+    ${S.newSlot === 'code' && pending(RULE.code) ? `<div class="agc-new">🎉 Kód PINK vám odomkol darček navyše</div>` : ''}
+    ${appTiles()}${m ? `<button class="agc-btn" data-act="asheet">Získať ${m} ${darcek(m)} zadarmo</button>` : ''}</div>`;
 }
 function appSheet(){
   const rs = rules(); if (!S.sheet || !rs.length) return '';
   const tab = rs.find(r => r.id === S.sheetTab) || pendList()[0] || rs[0];
-  const tabs = rs.map(r => { const st = S.dec[r.id] && !okPicks(r).length ? 'd' : pending(r) ? 'p' : 'ok';
-    return `<button class="atb ${r.id === tab.id ? 'on' : ''}" data-act="atab" data-r="${r.id}"><span class="dt ${st}">${st === 'ok' ? '✓' : st === 'd' ? '–' : ''}</span>${r.label}${r.mode === 'auto' ? ' (auto)' : ''}</button>`; }).join('');
-  const ps = picks(tab), multi = rq(tab) > 1, full = ps.length >= rq(tab);
-  const grid = `<div class="agrid">${tab.opts.map(k => { const o = OPT[k], on = ps.some(p => p.sku === k);
-    return `<div class="ao ${on ? 'on' : ''} ${multi && full && !on ? 'dim' : ''} ${S.dec[tab.id] && !on ? 'off' : ''}" role="${multi ? 'checkbox' : 'radio'}" aria-checked="${on}" tabindex="0" data-act="pick" data-r="${tab.id}" data-k="${k}">
-      <div class="img" style="background:${o.bg}">${o.e}</div>${tab.same && on ? `<span class="rd" style="background:var(--ok);border-color:var(--ok);width:auto;padding:0 6px;border-radius:12px">${sameCount(tab, k)}×</span>` : `<span class="rd ${multi ? 'chk' : ''}">${on ? '✓' : ''}</span>`}<div class="nm">${o.name}</div>${tab.same ? stepperHTML(tab, k) : ''}${hasVars(k) ? sizePills(tab, k) : ''}</div>`; }).join('')}</div>`;
-  const nextP = rs.find(r => r !== tab && pending(r));
+  const tabs = rs.map(r => { const st = (S.dec[r.id] && !picks(r).length) ? 'd' : pending(r) ? 'p' : 'ok';
+    return `<button class="atb ${r.id === tab.id ? 'on' : ''}" data-act="atab" data-r="${r.id}"><span class="dt ${st}">${st === 'ok' ? '✓' : st === 'd' ? '–' : ''}</span>${label(r)}</button>`; }).join('');
+  const nextP = rs.find(r => r !== tab && pending(r)), m = toGet();
   let btn;
-  if (pending(tab)) btn = `<button class="ash-next" disabled>${multi ? `Vyber ešte ${missing(tab)}` : picks(tab).some(p => !complete(p)) ? 'Vyber variant' : 'Vyber darček'}</button>`;
+  if (pending(tab)) btn = `<button class="ash-next" disabled>${rq(tab) > 1 ? `Vyberte ešte ${missing(tab)}` : 'Vyberte darček'}</button>`;
   else if (nextP) btn = `<button class="ash-next" data-act="anext">Ďalší darček</button>`;
-  else btn = S.sheetGuard ? `<button class="ash-next go" data-act="askip">${S.appStep === 'checkout' ? 'Dokončiť objednávku' : 'Pokračovať do pokladne'}</button>` : `<button class="ash-next" data-act="aclose">Hotovo</button>`;
-  const left = S.sheetGuard && appMissing() ? `<button class="link mute" data-act="askip">Pokračovať bez darčeka</button>` : '';
-  const m = appMissing();
+  else btn = S.sheetGuard ? `<button class="ash-next go" data-act="askip">Pokračovať do pokladne</button>` : `<button class="ash-next" data-act="aclose">Hotovo</button>`;
+  const left = S.sheetGuard && m ? `<button class="link mute" data-act="askip">Pokračovať bez darčeka</button>` : '';
   return `<div class="ash-ov" data-act="aclose"></div><div class="ash ${S.sheetIn ? 'in' : ''}" role="dialog" aria-label="Darčeky zadarmo"><div class="ash-hd"></div>
-    <div class="ash-top"><b>Darčeky zadarmo</b><button class="ash-x" data-act="aclose" aria-label="Zavrieť">✕</button></div>
-    ${S.sheetGuard && m ? `<div class="ash-guard">Pred pokladňou: ešte ${m === 1 ? 'ti chýba 1 darček' : `ti chýbajú ${m} darčeky`} zadarmo.</div>` : ''}
+    <div class="ash-top"><b>Vyberte si darčeky</b><button class="ash-x" data-act="aclose" aria-label="Zavrieť">✕</button></div>
+    ${S.sheetGuard && m ? `<div class="ash-guard">Ešte vám ${m === 1 ? 'patrí 1 darček' : `patria ${m} ${darcek(m)}`} zadarmo. Nenechajte si ich ujsť!</div>` : ''}
     <div class="ash-tabs" id="atabs">${tabs}</div>
-    <div class="ash-rh"><b>${tab.title}${countBadge(tab)}</b><small>${tab.reason}</small></div>
-    <div class="ash-body" id="abody">${decNote(tab)}${fullNote(tab)}${grid}<div style="margin-top:14px;text-align:center">${declineLink(tab)}</div></div>
+    <div class="ash-rh"><b>${title(tab)}${countBadge(tab)}</b><small>${reason(tab)}</small></div>
+    <div class="ash-body" id="abody">${fullNote(tab)}${optionCards(tab, 'agrid', 'ao')}<div style="margin-top:14px;display:flex;justify-content:center">${footLeft(tab)}</div></div>
     <div class="ash-ft">${left}${btn}</div></div>`;
 }
 function appScreen(){
-  let title = 'Nákupný košík', body, label = `DO POKLADNE  ${eur(totals().total)}`, back = '';
-  if (S.appStep === 'cart') body = `${appProgress()}${appGiftCard()}${appProducts()}${appCode()}<button class="arow"><span style="flex:0;color:var(--a)">Ⓖ</span><span>Vernosť sa oplatí</span><b style="font-weight:700">0 bodov</b><span class="ch">›</span></button>${appTotals()}`;
-  else if (S.appStep === 'checkout') {
-    title = 'Pokladňa'; back = `<button class="bk" data-act="aback" aria-label="Späť">‹</button>`; label = `OBJEDNAŤ  ${eur(totals().total)}`;
-    body = `<div class="acard"><h4>Doručenie</h4><div class="opt"><span>◉ GymBeam Box</span><b>Zadarmo</b></div><div class="opt" style="color:var(--ink3)"><span>○ Kuriér DPD</span><span>3,90 €</span></div></div>
-      <div class="acard"><h4>Platba</h4><div class="opt"><span>◉ Apple Pay</span></div><div class="opt" style="color:var(--ink3)"><span>○ Platba kartou</span></div></div>
-      ${rules().length ? `<div class="agc ${appMissing() ? 'is-p' : ''}"><div class="agc-h"><span class="ic">🎁</span><b>Darčeky v objednávke</b><span class="apill ${appMissing() ? '' : 'ok'}">${giftTotal()} z ${giftTotal() + appMissing()}</span></div><div class="agc-sub">${appMissing() ? 'Ťukni na prázdne políčko, vyberieš ho tu bez návratu do košíka.' : 'Všetky darčeky máš v balíku.'}</div>${appTiles(false)}</div>` : ''}${appTotals()}`;
+  const t = totals(), sb = `<div class="ast"><span>14:13</span><span>▮▮▮ ◠ 100</span></div>`;
+  const tot = `<div class="atot"><div class="r"><span>Medzisúčet</span><span>${eur(t.sub)}</span></div>${t.disc ? `<div class="r"><span>Zľava PINK</span><span style="color:var(--ok)">−${eur(t.disc)}</span></div>` : ''}<div class="r"><span>Vernostný program</span><span>${Math.round(t.total*2)} bodov</span></div><div class="t"><span>K úhrade</span><span>${eur(t.total)}</span></div></div>`;
+  if (S.appStep === 'done') return `<div class="aph">${sb}<div class="atitle">Objednávka prijatá</div><div class="ascroll" style="padding-bottom:30px"><div class="adone">${doneList()}<button class="acta" data-act="restart" style="margin-top:16px">SKÚSIŤ ZNOVA</button></div></div></div>`;
+  let title_ = 'Nákupný košík', body, cta, back = '';
+  if (S.appStep === 'cart') {
+    const code = S.code ? `<div class="acode"><div class="code-ok"><span><b>PINK</b> −20 % na BeastPink</span><button class="link mute" data-act="uncode">Odstrániť</button></div></div>`
+      : !S.codeOpen ? `<button class="arow" data-act="acode"><span style="flex:0">🏷️</span><span>Zľavový kód alebo darčekový poukaz</span><span class="ch">›</span></button>`
+      : `<div class="acode"><div class="code-r"><input id="codeIn" placeholder="Zadajte kód (skúste PINK)" value="${S.codeInput}" aria-label="Zľavový kód"><button data-act="code">Použiť</button></div>${S.codeMsg === 'err' ? `<div class="code-msg err">Kód „${S.codeInput}“ nie je platný.</div>` : ''}</div>`;
+    body = `<div class="aprog">${rules().length ? `<div class="apr"><span style="color:var(--a)">🎁</span>Darček zadarmo</div><div class="abar"><i style="width:100%;background:#EB542C"></i></div>` : ''}<div class="apr"><span>🚚</span>Doprava zadarmo</div><div class="abar"><i style="width:100%;background:#8BC34A"></i></div></div>
+      ${appGiftCard()}${prods().map(p => `<div class="apc"><div class="im" style="background:${p.bg}">${p.e}</div><div class="b"><div class="n">${p.name}</div>${p.meta.length ? `<div class="m">${p.meta.map(x => x.split(': ')[1]).join('<br>')}</div>` : ''}<div class="f"><span class="pr">${eur(p.unit * (S.code && p.pink ? .8 : 1))}</span><div class="aq"><i data-act="pq" data-k="${p.id}" data-d="-1">−</i><b>${p.qty}</b><i data-act="pq" data-k="${p.id}" data-d="1">+</i></div></div></div><span class="dots">···</span></div>`).join('')}
+      ${code}<button class="arow"><span style="flex:0;color:var(--a)">Ⓖ</span><span>Vernosť sa oplatí</span><b>0 bodov</b><span class="ch">›</span></button>${tot}`;
+    cta = `<button class="acta" data-act="acheckout">DO POKLADNE  ${eur(t.total)}</button>`;
   } else {
-    title = 'Objednávka prijatá';
-    const miss = rules().filter(r => missing(r) > 0 || (S.dec[r.id] && okPicks(r).length < rq(r)));
-    body = `<div class="adone">${prods().map(p => `<div class="li">${thumb(p, 40)}<span>${p.name}</span><b>${p.qty} ks</b></div>`).join('')}
-      ${rules().map(r => okPicks(r).map(p => `<div class="li">${thumb(OPT[p.sku], 40)}<span>${OPT[p.sku].name}${vtxt(p)} <span class="tag">DARČEK</span></span><b>${giftQty(r)} ks</b></div>`).join('')).join('')}
-      ${miss.map(r => `<div class="li"><span class="miss" style="color:var(--a-d);font-weight:600">Bez darčeka: ${r.title}, ${rq(r) - okPicks(r).length} z ${rq(r)}</span></div>`).join('')}
-      <button class="acta" data-act="restart" style="margin-top:16px">SKÚSIŤ ZNOVA</button></div>`;
-    return `<div class="aph"><div class="ast"><span>14:13</span><span>▮▮▮ ◠ 100</span></div><div class="atitle">${title}</div><div class="ascroll" id="ascroll" style="padding-bottom:30px">${body}</div></div>`;
+    title_ = 'Pokladňa'; back = `<button class="bk" data-act="aback" aria-label="Späť">‹</button>`;
+    body = `${rules().length && toGet() ? `<div class="yel" style="border-radius:16px">Ešte ste nevybrali všetky svoje darčeky zadarmo! <button data-act="atocart">Vybrať darčeky</button></div>` : ''}
+      <div class="acard"><h4>Doručenie</h4><div class="opt"><span>◉ GymBeam Box</span><b>Zadarmo</b></div><div class="opt" style="color:var(--ink3)"><span>○ Kuriér DPD</span><span>3,90 €</span></div></div>
+      <div class="acard"><h4>Platba</h4><div class="opt"><span>◉ Apple Pay</span></div><div class="opt" style="color:var(--ink3)"><span>○ Platba kartou</span></div></div>${tot}`;
+    cta = `<button class="acta" data-act="aorder">OBJEDNAŤ  ${eur(t.total)}</button>`;
   }
-  return `<div class="aph"><div class="ast"><span>14:13</span><span>▮▮▮ ◠ 100</span></div><div class="atitle">${back}${title}</div><div class="ascroll" id="ascroll">${body}</div>${appDock(label)}${appSheet()}</div>`;
+  const m = toGet();
+  const rem = '';
+  const dock = `<div class="adock">${rem}${cta}<div class="atab"><span>𝓖</span><span>▦</span><span class="on">🛒<i>${prods().reduce((a,p) => a + p.qty, 0) + giftTotal()}</i></span><span>♥</span><span>👤</span></div></div>`;
+  return `<div class="aph">${sb}<div class="atitle">${back}${title_}</div><div class="ascroll" id="ascroll">${body}</div>${dock}${appSheet()}</div>`;
 }
-function openSheet(rid, guard){
-  S.sheet = true; S.sheetIn = true; S.sheetGuard = !!guard; S.full = null;
-  const p = pendList()[0]; S.sheetTab = rid || (p ? p.id : (rules()[0] || {}).id);
-}
+function openSheet(rid, guard){ S.sheet = true; S.sheetIn = true; S.sheetGuard = !!guard; S.full = null; S.hint = null; const p = pendList()[0]; S.sheetTab = rid || (p ? p.id : (rules()[0] || {}).id); }
 
-/* ---------- toolbar, note ---------- */
-const GROUPS = [['Variant','con',[['1','A: Sloty'],['3','B: Balík']]],['Zobrazenie','view',[['desktop','Web'],['mobile','Mobil']]],['Scenár','scen',[['single','1 darček'],['code','Darček cez kód'],['multi','2+ pravidlá'],['pick3','Výber 3 z 5'],['perprod','2× produkt + tričko']]],['Krok','step',[['cart','Košík'],['ship','Doručenie'],['pay','Platba']]],['Pripomienka v pokladni','remind',[['old','Dnes: žltá hláška'],['new','Návrh']]]];
-const toolbar = () => `<span class="ttl">Darčeky v košíku</span><div class="grp"><span class="lbl">Platforma</span><div class="seg">${[['web','Web'],['app','App']].map(([v,t]) => `<button class="${S.platform === v ? 'on' : ''}" data-tb="platform" data-v="${v}">${t}</button>`).join('')}</div></div>${GROUPS.filter(g => S.platform === 'web' || g[1] === 'scen').map(([l,k,o]) => `<div class="grp"><span class="lbl">${l}</span><div class="seg">${o.map(([v,t]) => `<button class="${S[k] === v ? 'on' : ''}" data-tb="${k}" data-v="${v}">${t}</button>`).join('')}</div></div>`).join('')}<button class="reset" data-act="restart">Reset</button>`;
-const APPNOTE = {
-  name:'App · Darčeky v karte + opravený bottom sheet',
-  idea:'Darčeky v apke dostanú vlastnú kartu hneď pod pásmi „Darček / Doprava zadarmo“ s rovnakým modelom políčok ako na webe: 1 políčko = 1 darček, prázdne je oranžové a prerušované, vyplnené má ✓ alebo AUTO a × na odobratie. Darčeky už nie sú riadky medzi produktmi. Ťuknutie otvorí <b>bottom sheet</b>, natívny vzor pre apku, ale opravený: namiesto skrytých stránok do strany s bodkami má <b>taby s názvom pravidla a stavom</b>, vertikálny scroll len v obsahu a pevnú hlavičku aj pätičku.',
-  why:['Taby „K batohu, Nad 80 €, Nad 100 €“ s ✓ alebo ● hneď ukážu, koľko výberov existuje a ktorý chýba (dnes ich skrývajú 3 bodky)','Žiadny konflikt gest: sheet sa neťahá do strany, scrolluje sa len zoznam darčekov','Mriežka 2×2 namiesto veľkých kariet, takže 4 darčeky sú vidieť bez scrollu','Tlačidlo dole vedie ďalej („Ďalší darček“, „Hotovo“), user vie, kedy je hotový','Pripomienka nad „DO POKLADNE“ je stále na očiach, tam kde je palec'],
-  dev:['Karta = applied rules z quote, 1 políčko = 1 kus (qty pravidla)','Sheet: header a taby fixné, ScrollView len pre mriežku (bez horizontálneho pagera)','DO POKLADNE pri chýbajúcom darčeku najprv otvorí sheet na chýbajúcom pravidle (len raz), potom už pustí ďalej','Pripomienka nad CTA aj karta v Pokladni používajú rovnaký komponent']
+/* ===== toolbar, popis ===== */
+const NOTE = {
+  web:{name:'Web · Darčekové sloty (finálne riešenie)',
+    idea:'Sekcia <b>„Vaše darčeky zadarmo“</b> je nad produktmi a zobrazí sa len vtedy, keď má zákazník na darček nárok. Každý darček je jedno políčko. Prázdne políčko neustále pulzuje a ťahá pozornosť. Klik otvorí výber, po pridaní sa výber zavrie a otvorí sa ďalšie pravidlo v poradí. Pokladňa ostáva ako dnes so žltou hláškou.',
+    why:['Počet políčok = počet darčekov, netreba nič čítať','Pulzujúce prázdne políčko sa nedá prehliadnuť','Postupný výber zľava doprava, bez skákania','Darček s veľkosťou sa pridá až po výbere variantu, nič sa nepridá omylom','Aj automaticky pribalený darček sa odoberá krížikom a vracia kliknutím na kartičku, rovnako ako ostatné'],
+    dev:['Názvy skupín: pravidlo s prahom „Nad X €“, ostatné „Extra darček“','Políčko = 1 kus z applied rule (qty, pri darčeku k produktu = počet kusov)','× = nechcem (už nepripomínať), klik v paneli = vymeniť','Bez nároku sa sekcia nerenderuje']},
+  app:{name:'App · Karta darčekov + opravený bottom sheet',
+    idea:'Karta <b>„Vaše darčeky zadarmo“</b> pod pásmi s rovnakými políčkami ako web. Ťuknutie otvorí bottom sheet s <b>tabmi</b> namiesto skrytých stránok do strany, so scrollom len v obsahu a pevnou pätičkou. Nad DO POKLADNE je pripomienka „Získajte ešte X darčekov“. Pokladňa ostáva so žltou hláškou.',
+    why:['Taby so stavom ukážu všetky výbery naraz (dnes ich skrývajú bodky)','Žiadny konflikt gest: sheet sa scrolluje len zvisle','Po výbere sa sheet sám prepne na ďalší tab v poradí','Pripomienka je pri palci, tam kde sa rozhoduje'],
+    dev:['Sheet: header a taby fixné, ScrollView len pre mriežku','DO POKLADNE pri chýbajúcom darčeku raz otvorí sheet, potom pustí ďalej','Rovnaké generické názvy ako web']}
 };
+const GROUPS = [['Zobrazenie','view',[['desktop','Desktop'],['mobile','Mobil']],'web'],['Scenár','scen',Object.entries(SCEN).map(([k,v]) => [k, v.label])],['Krok','step',[['cart','Košík'],['ship','Doručenie'],['pay','Platba']],'web']];
+const toolbar = () => `<span class="ttl">Darčeky v košíku</span><div class="grp"><span class="lbl">Platforma</span><div class="seg">${[['web','Web'],['app','App']].map(([v,t]) => `<button class="${S.platform === v ? 'on' : ''}" data-tb="platform" data-v="${v}">${t}</button>`).join('')}</div></div>
+  ${GROUPS.filter(g => !g[3] || g[3] === S.platform).map(([l,k,o]) => `<div class="grp"><span class="lbl">${l}</span><div class="seg">${o.map(([v,t]) => `<button class="${S[k] === v ? 'on' : ''}" data-tb="${k}" data-v="${v}">${t}</button>`).join('')}</div></div>`).join('')}<button class="reset" data-act="restart">Reset</button>`;
 function note(){
-  if (S.platform === 'app') {
-    const sc = {single:'Jedno pravidlo nad 100 € (výber 1 zo 4).', code:'Košík bez darčeka. Ťukni „Zľavový kód“, zadaj <b>PINK</b> a pozri, ako sa nový darček objaví.', multi:'Ako na tvojich screenoch: darček k batohu (veľkosť), automatický šejker, vzorka a darček nad 100 €.', pick3:'Výber <b>3 z 5</b> darčekov a automatický šejker.', perprod:'<b>2× Just Whey</b>, takže 2 darčeky (aj rovnaké). Tričko vyžaduje veľkosť aj farbu pre každý kus. Zmeň počet Just Whey a sleduj políčka.'}[S.scen];
-    return `<div class="box"><div><h3>${APPNOTE.name}</h3>${APPNOTE.idea}</div><div><div class="k">Prečo je to pre usera dobré</div><ul>${APPNOTE.why.map(x => `<li>${x}</li>`).join('')}</ul></div><div><div class="k">Pre dev</div><ul>${APPNOTE.dev.map(x => `<li>${x}</li>`).join('')}</ul></div>
-      <div class="ex"><b>Čo je dnes v apke zlé:</b> sheet má stránky do strany, ktoré naznačujú len 3 bodky. Každá stránka má rovnaký nadpis bez dôvodu, text „1. z 3 darčekov“ je nejasný, veľké karty nútia scrollovať a scroll sa bije so swipe gestom. Pridané darčeky sa miešajú medzi produkty ako bežné riadky s počtom, a riadok „Vaše darčeky“ nepovie, koľko ešte chýba.<br><b>Scenár:</b> ${sc}</div></div>`;
-  }
-  const c = CON[S.con];
-  const sc = {single:'Jedno pravidlo nad 100 € (výber 1 zo 4).', code:'Košík bez darčeka. Zadaj kód <b>PINK</b> a pozri, ako sa nový darček objaví.', multi:'Situácia zo screenov: darček v balení batohu (veľkosť), automatický šejker, vzorka s defaultom a darček nad 100 € na výber.', pick3:'Jedno pravidlo s výberom <b>3 z 5</b> darčekov a automatický šejker. Vyber 2, klikni „Ďalšie nechcem“ alebo odober auto darček krížikom.', perprod:'<b>2× Just Whey</b>, takže 2 darčeky ku produktu (aj rovnaké, cez + / −). User sa môže rozhodnúť len pre 1 („Ďalšie nechcem“). Tričko vyžaduje <b>veľkosť aj farbu</b> pre každý kus zvlášť. Skús zmeniť počet Just Whey v košíku: políčka sa pridajú alebo uberú.'}[S.scen];
-  return `<div class="box"><div><h3>${c.name}</h3>${c.idea}</div><div><div class="k">Prečo je to pre usera dobré</div><ul>${c.why.map(x => `<li>${x}</li>`).join('')}</ul></div><div><div class="k">Pre dev / biznis</div><ul>${c.dev.map(x => `<li>${x}</li>`).join('')}</ul></div>
-    <div class="ex"><b>Scenár:</b> ${sc} Každý darček (aj automatický) sa dá odobrať. „Nechcem“ panel nezatvára a dá sa vrátiť. Layout košíka a pokladne ostáva ako dnes.</div></div>`;
+  const c = NOTE[S.platform];
+  return `<div class="box"><div><h3>${c.name}</h3>${c.idea}</div><div><div class="k">Prečo je to pre zákazníka dobré</div><ul>${c.why.map(x => `<li>${x}</li>`).join('')}</ul></div><div><div class="k">Pre dev</div><ul>${c.dev.map(x => `<li>${x}</li>`).join('')}</ul></div>
+    <div class="ex"><b>Scenár „${SCEN[S.scen].label}“:</b> ${SCEN[S.scen].txt}</div></div>`;
 }
 
-/* ---------- render ---------- */
+/* ===== render ===== */
 function render(){
   document.getElementById('tb').innerHTML = toolbar();
   document.getElementById('note').innerHTML = note();
-  const ms = document.getElementById('mscroll') || document.getElementById('ascroll'); const keep = ms ? ms.scrollTop : 0;
-  const ab = document.getElementById('abody'); const keepB = ab && S.sheetSameTab ? ab.scrollTop : 0;
-  const at = document.getElementById('atabs'); const keepT = at ? at.scrollLeft : 0;
+  const sc = document.getElementById('mscroll') || document.getElementById('ascroll'), keep = sc && !S.noKeep ? sc.scrollTop : 0; S.noKeep = false;
+  const ab = document.getElementById('abody'), keepB = ab && S.sameTab ? ab.scrollTop : 0;
+  const at = document.getElementById('atabs'), keepT = at ? at.scrollLeft : 0;
   document.getElementById('stage').innerHTML = S.platform === 'app' ? appScreen() : (isMob() ? mobile() : desktop());
-  const a2 = document.getElementById('ascroll'); if (a2 && !S.scrollTo) { a2.style.scrollBehavior = 'auto'; a2.scrollTop = keep; a2.style.scrollBehavior = ''; }
+  const sc2 = document.getElementById('mscroll') || document.getElementById('ascroll');
+  if (sc2 && !S.scrollTo) { sc2.style.scrollBehavior = 'auto'; sc2.scrollTop = keep; sc2.style.scrollBehavior = ''; }
   const ab2 = document.getElementById('abody'); if (ab2) ab2.scrollTop = keepB;
   const at2 = document.getElementById('atabs'); if (at2) { at2.scrollLeft = keepT; const on = at2.querySelector('.atb.on'); if (on && (on.offsetLeft < at2.scrollLeft || on.offsetLeft + on.offsetWidth > at2.scrollLeft + at2.clientWidth)) at2.scrollLeft = on.offsetLeft - 20; }
-  S.sheetIn = false; S.sheetSameTab = true;
-  const m2 = document.getElementById('mscroll');
-  if (m2 && !S.scrollTo) { m2.style.scrollBehavior = 'auto'; m2.scrollTop = keep; m2.style.scrollBehavior = ''; }
-  if (S.scrollTo) { const el = document.getElementById('g-' + S.scrollTo) || document.getElementById('gifts'); if (el) el.scrollIntoView({block:(isMob() && S.con === '1') ? 'start' : 'center', behavior:'smooth'}); S.scrollTo = null; }
-  S.pop = null;
+  if (S.scrollTo) { const el = document.getElementById('g-' + S.scrollTo) || document.getElementById('gifts'); if (el) el.scrollIntoView({block:isMob() && S.platform === 'web' ? 'start' : 'center', behavior:'smooth'}); S.scrollTo = null; }
+  S.sheetIn = false; S.sameTab = true; S.pop = null;
 }
 document.addEventListener('click', e => {
   const tb = e.target.closest('[data-tb]');
-  if (tb) { const k = tb.dataset.tb, v = tb.dataset.v; if (k === 'con' || k === 'scen' || k === 'platform') { S[k] = v; resetFlow(); } else if (k === 'step') { S.step = v; S.guard = false; } else S[k] = v; render(); return; }
+  if (tb) { const k = tb.dataset.tb, v = tb.dataset.v; if (k !== 'view' && k !== 'step') { S[k] = v; resetFlow(); } else { S[k] = v; S.guard = false; } S.noKeep = true; render(); return; }
   const a = e.target.closest('[data-act]'); if (!a) return;
-  const act = a.dataset.act, rid = a.dataset.r, k = a.dataset.k;
+  const act = a.dataset.act, rid = a.dataset.r, k = a.dataset.k, tabBefore = S.sheetTab;
   switch (act) {
-    case 'pick': doPick(rid, k, a.dataset.s || null, a.dataset.c || null); if (S.platform === 'app' && S.sheetTab !== rid) S.sheetSameTab = false; break;
-    case 'asheet': openSheet(rid); S.sheetSameTab = false; break;
-    case 'atab': S.sheetTab = rid; S.full = null; S.sheetSameTab = false; break;
-    case 'anext': { const nx = pendList()[0]; if (nx) S.sheetTab = nx.id; S.sheetSameTab = false; break; }
-    case 'aclose': S.sheet = false; S.sheetGuard = false; S.full = null; break;
-    case 'acheckout': if (appMissing() && !S.guardShown) { S.guardShown = true; openSheet(null, true); S.sheetSameTab = false; } else { S.appStep = 'checkout'; S.sheet = false; } break;
-    case 'askip': S.sheet = false; S.sheetGuard = false; S.appStep = S.appStep === 'checkout' ? 'done' : 'checkout'; break;
-    case 'aback': S.appStep = 'cart'; S.sheet = false; break;
-    case 'aorder': if (appMissing() && !S.guardShown) { S.guardShown = true; openSheet(null, true); S.sheetSameTab = false; } else { S.appStep = 'done'; S.sheet = false; } break;
-    case 'acode': S.codeOpen = true; break;
-    case 'noop': return;
-    case 'remove': doRemove(rid, k); break;
-    case 'unpick': doUnpick(rid, k); break;
+    case 'card': cardClick(rid, k); break;
+    case 'dvar': doDraft(rid, k, a.dataset.f, a.dataset.v); break;
     case 'pvar': doVar(rid, +a.dataset.i, a.dataset.f, a.dataset.v); break;
-    case 'pq': doQty(k, +a.dataset.d); break;
+    case 'rmidx': doRemoveIdx(rid, +a.dataset.i); break;
+    case 'unpick': doUnpick(rid, k); break;
+    case 'remove': doRemove(rid, k); break;
     case 'decline': doDecline(rid); break;
     case 'undo': doUndo(rid); break;
-    case 'slot': S.active = activeSlot() === rid ? '' : rid; S.full = null; if (isMob() && S.active) S.scrollTo = rid; break;
-    case 'boxopen': { S.boxOpen = true; const st = stepRules(); const i = st.findIndex(pending); S.boxIdx = i >= 0 ? i : 0; break; }
-    case 'boxgo': { S.boxOpen = true; S.boxIdx = Math.max(0, stepRules().findIndex(r => r.id === rid)); S.scrollTo = rid; break; }
-    case 'boxclose': S.boxOpen = false; S.full = null; break;
-    case 'boxprev': S.boxIdx = Math.max(0, S.boxIdx - 1); S.full = null; break;
-    case 'boxnext': { const st = stepRules(); S.full = null;
-      const nx = st.findIndex((r, j) => j > S.boxIdx && pending(r));
-      if (S.boxIdx >= st.length - 1 || (nx < 0 && !pendList().length)) { S.boxOpen = false; S.pop = 'box'; } else S.boxIdx = nx >= 0 ? nx : S.boxIdx + 1; break; }
+    case 'pq': doQty(k, +a.dataset.d); break;
+    case 'gplus': groupOp(rid, k, a.dataset.g, 'plus'); break;
+    case 'gminus': groupOp(rid, k, a.dataset.g, 'minus'); break;
+    case 'gfill': groupOp(rid, k, a.dataset.g, 'fill'); break;
+    case 'gvar': return;
+    case 'cvar': compOp(rid, k, 'var', a); break;
+    case 'cqty': compOp(rid, k, 'qty', a); break;
+    case 'cadd': compOp(rid, k, 'add', a); break;
+    case 'gedit': { const [size, color] = a.dataset.g.split('|'); const n = picks(RULE[rid]).filter(p => p.sku === k && (p.size||'') + '|' + (p.color||'') === a.dataset.g).length;
+      S.edit = {key:rid + '|' + k, g:a.dataset.g}; S.comp[rid + '|' + k] = {size:size || undefined, color:color || undefined, n}; break; }
+    case 'gdel': { const g = a.dataset.g; S.sel[rid] = picks(RULE[rid]).filter(p => !(p.sku === k && (p.size||'') + '|' + (p.color||'') === g)); if (S.edit && S.edit.g === g) S.edit = null; break; }
+    case 'gcancel': if (S.edit) delete S.comp[S.edit.key]; S.edit = null; break;
+    case 'slot': S.active = activeSlot() === rid ? '' : rid; S.full = null; S.hint = null; if (isMob() && S.active) S.scrollTo = rid; break;
+    case 'jump': focusPending(rid && pending(RULE[rid]) ? rid : null); if (rid && !pending(RULE[rid])) { S.active = rid; S.scrollTo = rid; } break;
     case 'code': {
       S.codeInput = ((document.getElementById('codeIn') || {}).value || '').trim();
       if (S.codeInput.toUpperCase() === 'PINK') { S.code = true; S.codeMsg = ''; initSel('code'); delete S.dec.code; S.newSlot = 'code'; if (S.platform === 'app') S.scrollTo = 'agc'; else focusPending('code'); }
-      else S.codeMsg = 'err';
-      break;
+      else S.codeMsg = 'err'; break;
     }
-    case 'uncode': S.code = false; S.codeInput = ''; initSel('code'); delete S.dec.code; if (S.active === 'code') S.active = null; S.boxIdx = 0; break;
-    case 'jump': if (rid && !pending(RULE[rid])) { S.scrollTo = rid; if (S.con === '1') S.active = rid; if (S.con === '3') { S.boxOpen = true; S.boxIdx = Math.max(0, stepRules().findIndex(r => r.id === rid)); } } else focusPending(rid || null); break;
+    case 'uncode': S.code = false; S.codeInput = ''; initSel('code'); delete S.dec.code; if (S.active === 'code') S.active = null; break;
     case 'next':
       if (S.step === 'cart') { if (pendList().length && !S.guard) { S.guard = true; focusPending(); break; } S.step = 'ship'; S.guard = false; }
       else if (S.step === 'ship') S.step = 'pay'; else if (S.step === 'pay') S.step = 'done';
@@ -1035,18 +956,34 @@ document.addEventListener('click', e => {
     case 'tocart': S.step = 'cart'; focusPending(); break;
     case 'ship': S.ship = k; break;
     case 'pay': S.pay = k; break;
+    case 'asheet': openSheet(rid); S.sameTab = false; break;
+    case 'atab': S.sheetTab = rid; S.full = null; S.hint = null; break;
+    case 'anext': { const nx = pendList()[0]; if (nx) S.sheetTab = nx.id; break; }
+    case 'aclose': S.sheet = false; S.sheetGuard = false; S.full = null; S.hint = null; break;
+    case 'acheckout': if (toGet() && !S.guardShown) { S.guardShown = true; openSheet(null, true); } else { S.appStep = 'checkout'; S.sheet = false; } break;
+    case 'askip': S.sheet = false; S.sheetGuard = false; S.appStep = 'checkout'; break;
+    case 'aback': S.appStep = 'cart'; break;
+    case 'atocart': S.appStep = 'cart'; openSheet(null); break;
+    case 'aorder': S.appStep = 'done'; break;
+    case 'acode': S.codeOpen = true; break;
     case 'restart': resetFlow(); break;
     default: return;
   }
+  if (S.sheetTab !== tabBefore) S.sameTab = false;
   render();
 });
 document.addEventListener('keydown', e => {
   if (e.target.id === 'codeIn' && e.key === 'Enter') document.querySelector('[data-act="code"]').click();
-  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.bo[role]')) { e.preventDefault(); e.target.click(); }
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"][data-act="card"]')) { e.preventDefault(); e.target.click(); }
+});
+document.addEventListener('change', e => {
+  const sel = e.target.closest('select[data-act="gvar"]'); if (!sel) return;
+  groupOp(sel.dataset.r, sel.dataset.k, sel.dataset.g, 'var', sel.dataset.f, sel.value); render();
 });
 document.addEventListener('input', e => { if (e.target.id === 'codeIn') S.codeInput = e.target.value; });
 render();
 })();
+
 </script>
 </body>
 </html>
