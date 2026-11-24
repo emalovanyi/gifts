@@ -452,6 +452,164 @@ button{font:inherit;cursor:pointer;color:inherit}
 .restore-btn{border:1.5px solid var(--ink);background:#fff;border-radius:6px;padding:8px 12px;font-weight:700;font-size:12.5px}
 .ao .restore-btn{border-radius:14px}
 @media (prefers-reduced-motion:reduce){.slot.empty .tile,.at.empty,.draft.hint{animation:none!important}}
+/* ===== zamknutý darček (pod prahom) ===== */
+.slot.locked .tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer}
+.slot.locked .tile b{font-size:11px;color:var(--ink2);font-weight:800}
+.slot.locked .nm{color:var(--ink2);font-weight:700}
+.sgrp.active .slot.locked .tile{box-shadow:0 0 0 2px var(--ink)}
+.bo.lock,.ao.lock{cursor:default;opacity:1}
+.bo.lock .img,.ao.lock .img{filter:grayscale(.85);opacity:.55}
+.bo.lock .nm,.ao.lock .nm{color:var(--ink3)}
+.bo.lock:hover{border-color:var(--line)}
+.lockb{position:absolute;top:14px;right:14px;width:26px;height:26px;border-radius:50%;background:#fff;border:1.5px solid #D5D5D5;display:grid;place-items:center;font-size:12px}
+.lockinfo{display:flex;align-items:center;gap:12px;background:#F4F4F4;border-radius:8px;padding:10px 12px;font-size:12.5px;margin-bottom:12px}
+.lockinfo .lk2{flex:0 0 140px;margin:0;height:6px}
+.lockinfo span{flex:1}
+.unl{background:var(--ok-soft);color:var(--ok);border-radius:8px;padding:8px 12px;font-size:12.5px;font-weight:700;margin-bottom:12px}
+.atb .dt.l{background:#BDBDBD;font-size:8px}
+.ash-lock{margin:10px 0 0;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink2)}
+.ash-lock .abar{flex:0 0 110px;margin:0}
+
+/* ===== POKLADŇA · DORUČENIE (variant B: predvyplnené výdajné miesto) ===== */
+.desk,.mob{position:relative}
+.sp-h{display:flex;justify-content:space-between;align-items:baseline;margin:2px 0 14px}
+.sp-h h1{font-size:20px;margin:0}
+.sp-h span{font-size:13px;color:var(--ink2)}
+.mob .sp{padding:0 16px}
+.sp-card{border:1px solid var(--line);border-radius:6px;padding:16px;margin-bottom:14px;background:#fff}
+.sp-card h3{font-size:15px;margin:0 0 16px}
+.sp-card h4{font-size:15px;margin:0 0 12px}
+.adr-list{display:flex;gap:12px;flex-wrap:wrap}
+.adr{width:300px;max-width:100%;text-align:left;border:1px solid var(--line);border-radius:6px;padding:12px 40px 12px 14px;background:#fff;font-size:13.5px;line-height:1.75;position:relative}
+.adr b{display:block}
+.adr.on{border:2px solid var(--brand);padding:11px 39px 11px 13px}
+.adr .ed{position:absolute;top:10px;right:12px;color:var(--ink2);font-size:16px}
+.adr .al{position:absolute;bottom:10px;right:12px;font-size:11px;font-weight:700;color:var(--ink3)}
+.mob .adr{width:100%}
+.adr-add{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:15px;padding:18px 0 0}
+.adr-add i{font-style:normal;font-size:26px;font-weight:300;line-height:1}
+.chk-row{display:flex;gap:14px;align-items:center;font-size:13.5px;padding:2px 0}
+.chk-row i{width:18px;height:18px;border:1.5px solid #8B8B8B;border-radius:3px;flex-shrink:0}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mob .fgrid{grid-template-columns:1fr}
+.fld label{display:block;font-size:12px;color:var(--ink2);margin-bottom:4px;font-weight:600}
+.fld input{width:100%;border:1px solid #CFCFCF;border-radius:4px;padding:10px;font-size:13.5px;font-family:inherit}
+.fld input:focus{border-color:var(--ink);outline:0}
+.fld.w{grid-column:1/-1}
+.fdemo{margin-top:12px}
+.dm{border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.dm-g{background:#F2F2F2;font-weight:700;font-size:13.5px;padding:11px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.dm-g small{font-weight:500;color:var(--ink2);font-size:12px}
+.dm-r{border-bottom:1px solid var(--line);cursor:pointer;transition:background .15s}
+.dm-r:last-child{border-bottom:0}
+.dm-r:hover{background:#FCFCFC}
+.dm-r.on{background:#FFFAF7}
+.dm-m{display:grid;grid-template-columns:24px 50px 1fr 90px 120px 20px;gap:14px;align-items:start;padding:11px 16px}
+.dm-m>*{min-height:30px;display:flex;align-items:center}
+.dm-m>.dm-n{display:block;line-height:1.35;padding-top:6px}
+.mob .pp-tag{display:table;margin:3px 0 2px}
+.dm-rd{width:22px;height:22px;border-radius:50%;border:2px solid var(--ink);background:#fff;flex-shrink:0;box-sizing:border-box}
+.dm-r.on .dm-rd,.pk-i.on .dm-rd{border:7px solid var(--ink)}
+.lg{width:50px;height:30px;border-radius:4px;border:1px solid #EAEAEA;display:grid!important;place-items:center;font-size:9px;font-weight:800;letter-spacing:-.2px;background:#fff}
+.lg.bal{background:#FFF;color:#F59A1B}
+.lg.bal b{background:#F7A21B;color:#fff;border-radius:3px;padding:1px 2px;font-size:8.5px}
+.lg.bal{font-size:8.5px!important}
+.lg.pac{color:#D52B1E}
+.lg.box{background:var(--brand);color:#fff;font-style:italic;border-color:var(--brand)}
+.lg.dpd{color:#DC0032;font-size:11px}
+.lg.gls{color:#061AB1;font-size:11px}
+.dm-n{font-size:13.5px}
+.dm-p{font-size:13.5px;color:var(--brand)}
+.dm-p.free{color:var(--green);font-weight:600}
+.dm-d{font-size:13px;justify-content:flex-end}
+.dm-i{width:19px;height:19px;border:1.5px solid var(--ink);border-radius:50%;font-size:11px;font-weight:700;display:grid!important;place-items:center;font-style:normal;margin-top:5px;min-height:0!important}
+.dm-dm{display:none}
+.dm-m>.dm-pp{grid-column:3/-1;display:block;min-height:0;margin-top:-6px}
+.lg{white-space:nowrap}
+.mob .adr-list{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px;padding:0 16px 4px;scrollbar-width:none}
+.mob .adr{width:230px;flex:none;font-size:13px;line-height:1.6}
+.mob .dm-m{grid-template-columns:22px 44px 1fr auto;gap:10px;padding:11px 12px}
+.mob .dm-d,.mob .dm-i{display:none!important}
+.mob .dm-dm{display:block;font-size:12px;color:var(--ink2);line-height:1.3}
+.mob .lg{width:44px}
+/* predvyplnené miesto */
+.pp{margin:2px 0 4px;line-height:1.45;font-size:12.5px;color:var(--ink2)}
+.pp-box{border:1px solid var(--line);background:#fff;border-radius:6px;padding:9px 11px;display:flex;gap:10px;align-items:flex-start}
+.dm-r.on .pp-box{border-color:var(--brand-line)}
+.pp-pin{font-size:15px;line-height:1.2}
+.pp-t{flex:1;min-width:0}
+.pp-t b{color:var(--ink);font-weight:700;font-size:13px}
+.pp-a{display:block}
+.pp-d{color:var(--ok);font-weight:700;white-space:nowrap}
+.pp-tag{display:inline-block;font-size:10.5px;font-weight:800;border-radius:3px;padding:1px 6px;margin-left:6px;vertical-align:1px;background:var(--ok-soft);color:var(--ok)}
+.pp-tag.man{background:#EFEFEF;color:var(--ink2)}
+.pp-ch{border:0;background:none;padding:0;color:var(--brand);font-weight:700;font-size:12.5px;text-decoration:underline;text-underline-offset:2px;white-space:nowrap;align-self:center}
+.mob .pp-box{flex-wrap:wrap}
+.mob .pp-ch{margin-left:25px}
+.mob .dm-m>.dm-pp{grid-column:1/-1;margin-top:0}
+.pp-ic{width:14px;height:14px;flex-shrink:0;background:var(--brand);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat}
+.pp-peek{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink2);margin-top:-2px;min-width:0}
+.pp-peek .pp-ic{width:12px;height:12px;background:var(--ink3)}
+.pp-peek b{font-weight:600;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp-peek .pp-d{color:var(--ink3);font-weight:500}
+.pp-peek .pp-d::before{content:'·';margin-right:6px}
+.pp-sel{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--brand-line);border-radius:6px;padding:10px 12px;animation:ppIn .35s ease}
+.pp-sel .pp-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.pp-l1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.pp-l1 b{font-size:13.5px;font-weight:700;color:var(--ink)}
+.pp-st{font-size:11px;font-weight:700;color:var(--ok);display:inline-flex;align-items:center;gap:4px}
+.pp-st::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
+.pp-st.man{color:var(--ink3)}
+.pp-sel .pp-a{font-size:12.5px;color:var(--ink2)}
+.pp-sel .pp-d{color:var(--ink);font-weight:600}
+.pp-sel .pp-ch{border:1.5px solid var(--ink);border-radius:4px;padding:6px 12px;color:var(--ink);text-decoration:none;font-size:12.5px;font-weight:700;background:#fff}
+.pp-sel .pp-ch:hover{background:var(--ink);color:#fff}
+.mob .pp-sel{padding:10px}
+.mob .pp-sel .pp-ch{padding:5px 10px}
+@keyframes ppIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
+.pp-none{color:var(--ink2);font-size:12.5px;margin-bottom:6px}
+.pp-btn{border:1.5px solid var(--ink);background:#fff;border-radius:4px;padding:7px 12px;font-weight:700;font-size:12.5px}
+.pp-btn:hover{background:var(--ink);color:#fff}
+.pp-load{display:flex;align-items:center;gap:8px;color:var(--ink3)}
+.pp-load i{width:14px;height:14px;border:2px solid #DDD;border-top-color:var(--brand);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sp-flash{display:flex;gap:8px;align-items:flex-start;background:var(--ok-soft);color:#1E6B3D;border-radius:6px;padding:9px 12px;font-size:12.5px;font-weight:600;margin-bottom:12px;line-height:1.45}
+.sp-err{color:var(--brand-d);font-size:12.5px;font-weight:700;margin:-2px 0 10px}
+.ord{border:1px solid var(--line);border-radius:6px;padding:14px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:14.5px;margin-bottom:14px;background:#fff}
+.ord span{color:var(--brand);font-weight:600;font-size:13.5px}
+.cta.dis{background:#C5E1A5}
+.sum-pp{display:flex;gap:8px;font-size:12px;color:var(--ink2);background:#F6F6F6;border-radius:6px;padding:8px 10px;margin:4px 0 10px;line-height:1.4}
+.sum-pp b{color:var(--ink)}
+/* výber výdajného miesta (modal / bottom sheet) */
+.pk-ov{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:60}
+.pk{position:fixed;z-index:61;left:50%;top:50%;transform:translate(-50%,-50%);width:860px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 40px);background:#fff;border-radius:10px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.mob .pk-ov{position:absolute}
+.mob .pk{position:absolute;left:0;right:0;top:auto;bottom:0;transform:none;width:auto;max-width:none;height:84%;border-radius:20px 20px 0 0;grid-template-columns:1fr}
+.mob .pk-map{display:none}
+.pk-l{display:flex;flex-direction:column;min-height:0}
+.pk-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:16px 18px 10px}
+.pk-h b{font-size:17px;display:block}
+.pk-h small{font-size:12.5px;color:var(--ink2)}
+.pk-x{width:32px;height:32px;border-radius:50%;border:0;background:#F2F2F2;flex-shrink:0}
+.pk-s{margin:0 18px 10px;border:1px solid #CFCFCF;border-radius:4px;padding:9px 10px;font-size:13px;color:var(--ink2)}
+.pk-list{flex:1;overflow-y:auto;border-top:1px solid var(--line)}
+.pk-i{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;border:0;border-bottom:1px solid #F0F0F0;background:#fff;padding:12px 18px}
+.pk-i:hover{background:#FCFCFC}
+.pk-i.on{background:#FFFAF7}
+.pk-b{flex:1;min-width:0;font-size:12.5px;color:var(--ink2);line-height:1.45}
+.pk-b b{display:block;color:var(--ink);font-size:13.5px}
+.pk-n{display:inline-block;width:18px;height:18px;border-radius:50%;background:var(--ink);color:#fff;font-size:10px;font-weight:800;text-align:center;line-height:18px;margin-right:6px;vertical-align:1px}
+.pk-f{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;border-top:1px solid var(--line)}
+.pk-f .cta{width:auto;padding:12px 22px}
+.pk-f .cta[disabled]{background:#C5E1A5;cursor:default}
+.pk-map{position:relative;background:#E9EEE6;overflow:hidden}
+.pk-map::before{content:'';position:absolute;inset:0;background:linear-gradient(28deg,transparent 47%,#fff 47% 49.5%,transparent 49.5%),linear-gradient(-62deg,transparent 30%,#fff 30% 32%,transparent 32%),linear-gradient(90deg,transparent 64%,#F7F3E8 64% 67%,transparent 67%),linear-gradient(0deg,transparent 22%,#fff 22% 23.5%,transparent 23.5%),radial-gradient(circle at 78% 82%,#D5E5CC 0 14%,transparent 14.5%)}
+.mp{position:absolute;transform:translate(-50%,-100%);width:26px;height:26px;border-radius:50% 50% 50% 0;rotate:-45deg;background:var(--brand);border:2px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.25);display:grid;place-items:center;padding:0}
+.mp span{rotate:45deg;color:#fff;font-size:11px;font-weight:800}
+.mp.on{background:var(--ink);width:32px;height:32px;z-index:2}
+.mp.home{background:#2563EB;border-radius:50%;rotate:0deg;width:18px;height:18px;transform:translate(-50%,-50%);box-shadow:0 0 0 8px rgba(37,99,235,.18)}
+.mp-l{position:absolute;transform:translate(-50%,10px);font-size:11px;font-weight:700;background:#fff;border-radius:4px;padding:2px 6px;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.pk-far{position:absolute;left:12px;right:12px;bottom:12px;background:#fff;border-radius:6px;padding:8px 10px;font-size:12px;box-shadow:0 1px 6px rgba(0,0,0,.12)}
 </style>
 </head>
 <body>
@@ -502,19 +660,55 @@ const SCEN = {
   auto:{label:'Auto darček', prods:[['whey',3]], rules:['camp','tier'], txt:'Šejker je v košíku automaticky, vyzerá rovnako ako ostatné darčeky. Odoberte ho krížikom a vráťte ho kliknutím na kartičku, presne ako pri iných darčekoch.'},
   multi:{label:'Viac pravidiel', prods:[['whey',3],['batoh',1]], rules:['bag','camp','sample','tier'], txt:'Situácia zo screenov: 2 extra darčeky (jeden s veľkosťou, jeden auto), vzorka nad 80 € a darček nad 100 €. Po výbere sa otvorí ďalšie pravidlo v poradí.'},
   pick3:{label:'Výber 3 z 5', prods:[['whey',3],['batoh',1]], rules:['camp','trio'], txt:'Pravidlo s výberom 3 z 5. Po výbere 2 ostane tretie políčko pulzovať a počítadlo ukáže „Získajte ešte 1 darček“.'},
+  locked:{label:'Zamknutý darček', prods:[['whey',1],['batoh',1]], rules:['bag','tier'], txt:'Košík je za 75,90 €, darček nad 100 € je zatiaľ <b>zamknutý</b>. Políčko má zámok a ukazuje, za koľko treba dokúpiť. Kliknutím sa otvorí náhľad darčekov, ktoré zákazník po dokúpení dostane, ale vybrať sa ešte nedajú. Zvýšte počet Protein Whey (+) a políčko sa odomkne a začne pulzovať.'},
   bulk:{label:'9× produkt + tričko', prods:[['jw',9]], rules:['jw'], txt:'9× Just Whey = 9 extra darčekov. Karta trička má jeden skladač: veľkosť, farba, počet (predvolene všetky zvyšné) a „Pridať 9× do košíka“. Mix sa robí opakovane (napr. 5× L čierne, potom 4× M biele), výsledok sú malé čipy. Klik na čip ho upraví, krížik ho odoberie. Karta má stále rovnakú výšku bez ohľadu na počet kusov.'},
   perprod:{label:'2× produkt + tričko', prods:[['jw',2],['whey',1]], rules:['jw','tier'], txt:'2× Just Whey = 2 extra darčeky, môžu byť aj rovnaké. Tričko sa pridá až po výbere veľkosti aj farby. Skúste kliknúť mimo veľkostí. Zmeňte počet Just Whey a sledujte políčka.'}
 };
-const SHIP = {box:{n:'GymBeam Box',d:'Výdajný box, doručenie 1–2 dni',c:0}, packeta:{n:'Packeta výdajné miesto',d:'Doručenie 2–3 dni',c:0}, dpd:{n:'Kuriér DPD',d:'Doručenie domov 1–2 dni',c:3.9}};
+/* doručenie: g = pick (výdajné miesto) / addr (na adresu) */
+const SHIP = {
+  balikovo:{g:'pick', n:'Odberné miesta Balíkovo', short:'Balíkovo', c:1.99, d:'streda 18. 11.', lg:'<span class="lg bal">balíkovo</span>'},
+  packeta:{g:'pick', n:'Doručenie na výdajňu Packeta', short:'Packeta', c:1.90, d:'štvrtok 19. 11.', lg:'<span class="lg pac">♥ Packeta</span>'},
+  gbbox:{g:'pick', n:'GymBeam Box', short:'GymBeam Box', c:0, d:'streda 18. 11.', lg:'<span class="lg box">BOX</span>'},
+  dpd:{g:'addr', n:'Kuriér DPD', c:3.90, d:'streda 18. 11.', lg:'<span class="lg dpd">dpd</span>'},
+  gls:{g:'addr', n:'Kuriér GLS', c:3.49, d:'štvrtok 19. 11.', lg:'<span class="lg gls">GLS</span>'}
+};
+/* výdajné miesta so vzdialenosťou (m) od každej adresy; „najbližšie“ = do 15 km */
+const PP = {
+  balikovo:[
+    {id:'b1', n:'Balíkovo – Trafika Hlavná', a:'Hlavná 98, Košice', h:'Po–Pi 7:00–18:00, So 8:00–12:00', d:{home:420, work:160, chata:262000}},
+    {id:'b2', n:'Balíkovo – Potraviny Moldavská', a:'Moldavská cesta 12, Košice', h:'Po–So 7:00–20:00', d:{home:1300, work:2100, chata:265000}},
+    {id:'b3', n:'Balíkovo – Papiernictvo Južná', a:'Južná trieda 4, Košice', h:'Po–Pi 9:00–17:00', d:{home:2400, work:1800, chata:266000}},
+    {id:'b4', n:'Balíkovo – Trafika Štúrova', a:'Štúrova 1, Liptovský Mikuláš', h:'Po–Pi 8:00–17:00', d:{home:251000, work:252000, chata:31000}}
+  ],
+  packeta:[
+    {id:'p1', n:'Z-BOX Na Hore', a:'Na Hore 2, Košice', h:'Nonstop', d:{home:140, work:1900, chata:263000}},
+    {id:'p2', n:'Packeta – Kvetinárstvo Flóra', a:'Mlynská 21, Košice', h:'Po–Pi 8:00–18:00', d:{home:860, work:290, chata:262500}},
+    {id:'p3', n:'Z-BOX OC Optima', a:'Moldavská cesta 32, Košice', h:'Nonstop', d:{home:2900, work:3300, chata:266000}},
+    {id:'p4', n:'Packeta – Obecný úrad Zuberec', a:'Zuberec 245, Zuberec', h:'Po–Pi 7:30–15:30', d:{home:255000, work:256000, chata:1200}},
+    {id:'p5', n:'Z-BOX Tesco Dolný Kubín', a:'Bysterecká 2, Dolný Kubín', h:'Nonstop', d:{home:241000, work:242000, chata:24000}}
+  ],
+  gbbox:[
+    {id:'g1', n:'GymBeam Box – Aupark', a:'Námestie osloboditeľov 1, Košice', h:'Nonstop', d:{home:2100, work:650, chata:262000}},
+    {id:'g2', n:'GymBeam Box – OC Optima', a:'Moldavská cesta 32, Košice', h:'Nonstop', d:{home:2900, work:3300, chata:266000}},
+    {id:'g3', n:'GymBeam Box – Tesco Ružomberok', a:'Bystrická cesta 4, Ružomberok', h:'Nonstop', d:{home:210000, work:211000, chata:38000}}
+  ]
+};
+const ADDR = {
+  home:{n:'Ján Novák', l:['Na Hore 16','040 22 Košice','Slovensko','+421 900 123 456'], tag:'Domov'},
+  work:{n:'Ján Novák', l:['Hlavná 45','040 01 Košice','Slovensko','+421 900 123 456'], tag:'Práca'},
+  chata:{n:'Ján Novák', l:['Zuberec 212','027 32 Zuberec','Slovensko','+421 900 123 456'], tag:'Chata'}
+};
+const NEAR_MAX = 15000;
 const PAY = {card:{n:'Platba kartou online',d:'Visa, Mastercard',c:0}, apple:{n:'Apple Pay / Google Pay',d:'Rýchla platba v telefóne',c:0}, cod:{n:'Dobierka',d:'Platba pri prevzatí',c:1.5}};
 
-let S = {platform:'web', view:'desktop', scen:'multi', step:'cart'};
+let S = {platform:'web', view:'desktop', scen:'multi', step:'cart', shv:'B', adrMode:'saved'};
+function resetShip(){ S.ship = null; S.sh = {addr:'home', manual:{}, pk:null, pkSel:null, err:'', flash:'', form:{}, filled:false, loading:false}; }
 function initSel(id){ const r = RULE[id]; S.sel[id] = r.mode === 'auto' ? r.opts.map(sku => ({sku})) : r.mode === 'preselect' ? r.def.map(sku => ({sku})) : []; }
 function resetFlow(){
   Object.assign(S, {pq:{}, sel:{}, dec:{}, draft:{}, comp:{}, edit:null, hint:null, active:null, guard:false, pop:null, newSlot:null, scrollTo:null, full:null,
-    codeInput:'', code:false, codeMsg:'', ship:'box', pay:'card', step:'cart',
-    appStep:'cart', sheet:false, sheetIn:false, sheetTab:null, sheetGuard:false, guardShown:false, codeOpen:false});
-  Object.keys(RULE).forEach(initSel);
+    codeInput:'', code:false, codeMsg:'', pay:'card', step:'cart',
+    appStep:'cart', sheet:false, sheetIn:false, sheetTab:null, sheetGuard:false, guardShown:false, codeOpen:false, unlocked:null});
+  Object.keys(RULE).forEach(initSel); resetShip();
 }
 resetFlow();
 
@@ -522,11 +716,15 @@ resetFlow();
 const prods = () => SCEN[S.scen].prods.map(([id,q]) => ({id, ...PROD[id], qty:S.pq[id] || q}));
 const rules = () => SCEN[S.scen].rules.concat(S.code ? ['code'] : []).map(id => RULE[id]).sort((a,b) => a.ord - b.ord);
 const rq = r => r.qtyPer ? ((prods().find(p => p.id === r.qtyPer) || {qty:1}).qty) : r.qty;
-const picks = r => S.sel[r.id] || [];
+const cartVal = () => prods().reduce((a,p) => a + p.qty*p.unit*(S.code && p.pink ? .8 : 1), 0);
+const locked = r => !!r.thr && cartVal() < r.thr;
+const gap = r => eur(r.thr - cartVal());
+const lockPct = r => Math.min(100, Math.round(cartVal() / r.thr * 100));
+const picks = r => locked(r) ? [] : (S.sel[r.id] || []);
 const hasVars = k => !!(OPT[k].sizes || OPT[k].colors);
 const complete = p => { const o = OPT[p.sku]; return !(o.sizes && !p.size) && !(o.colors && !p.color); };
-const pending = r => !S.dec[r.id] && picks(r).length < rq(r);
-const missing = r => S.dec[r.id] ? 0 : Math.max(0, rq(r) - picks(r).length);
+const pending = r => !locked(r) && !S.dec[r.id] && picks(r).length < rq(r);
+const missing = r => (S.dec[r.id] || locked(r)) ? 0 : Math.max(0, rq(r) - picks(r).length);
 const pendList = () => rules().filter(pending);
 const toGet = () => rules().reduce((a, r) => a + missing(r), 0);
 const giftTotal = () => rules().reduce((a, r) => a + picks(r).length, 0);
@@ -554,7 +752,7 @@ function reason(r){
 function totals(){
   const ps = prods(); const sub = ps.reduce((a,p) => a + p.qty*p.unit, 0);
   const disc = S.code ? ps.filter(p => p.pink).reduce((a,p) => a + p.qty*p.unit*.2, 0) : 0;
-  const ship = S.step === 'cart' ? 0 : SHIP[S.ship].c, pay = (S.step === 'pay' || S.step === 'done') ? PAY[S.pay].c : 0;
+  const ship = S.step === 'cart' || !S.ship ? 0 : SHIP[S.ship].c, pay = (S.step === 'pay' || S.step === 'done') ? PAY[S.pay].c : 0;
   return {sub, disc, ship, pay, total:sub - disc + ship + pay};
 }
 
@@ -579,7 +777,7 @@ function doPick(rid, k, size, color){
   if (!pending(r)) advance(rid);
 }
 function cardClick(rid, k){
-  const r = RULE[rid];
+  const r = RULE[rid]; if (locked(r)) return;
   if (hasVars(k)) { S.hint = rid + '|' + k; S.full = null; return; }   // bez veľkosti nepridávame, len zvýrazníme
   doPick(rid, k);
 }
@@ -597,8 +795,10 @@ function doRemove(rid, k){                   // × na políčku = tento kus nech
 function doDecline(rid){ S.dec[rid] = true; S.full = null; S.hint = null; if (!pendList().length) S.guard = false; }
 function doUndo(rid){ const r = RULE[rid]; delete S.dec[rid]; if (!picks(r).length && r.mode !== 'pick') { initSel(rid); S.pop = rid + r.opts[0]; if (!pending(r) && S.active === rid) S.active = ''; } else if (S.platform === 'web') S.active = rid; }
 function doQty(id, d){
+  const wasL = rules().filter(locked).map(r => r.id);
   const cur = prods().find(p => p.id === id).qty, nq = Math.max(1, Math.min(12, cur + d)); S.pq[id] = nq;
   rules().filter(r => r.qtyPer === id).forEach(r => { if (picks(r).length > nq) S.sel[r.id] = picks(r).slice(0, nq); if (d > 0) delete S.dec[r.id]; S.pop = r.id; });
+  rules().forEach(r => { if (wasL.includes(r.id) && !locked(r)) { S.newSlot = r.id; S.unlocked = r.id; if (S.active === r.id) S.active = null; } else if (locked(r) && S.unlocked === r.id) S.unlocked = null; });
 }
 function activeSlot(){ if (S.active !== null) return S.active; const p = pendList()[0]; return p ? p.id : ''; }
 function focusPending(id){ const p = id ? RULE[id] : pendList()[0]; if (!p) return; S.active = p.id; S.scrollTo = p.id; }
@@ -685,6 +885,8 @@ function footRight(r){
 }
 function optionCards(r, grid, cardCls){
   const ps = picks(r), q = rq(r), multi = q > 1, full = ps.length >= q;
+  if (locked(r)) return `<div class="${grid}">${r.opts.map(k => { const o = OPT[k];
+    return `<div class="${cardCls} lock" aria-disabled="true"><div class="img" style="background:${o.bg}">${o.e}</div><span class="lockb" aria-hidden="true">🔒</span><div class="nm">${o.name}</div></div>`; }).join('')}</div>`;
   return `<div class="${grid}">${r.opts.map(k => {
     const o = OPT[k], n = sameCount(r, k), on = n > 0;
     const dim = multi && full && !on, act = `role="button" tabindex="0" data-act="card" data-r="${r.id}" data-k="${k}"`;
@@ -697,6 +899,10 @@ function optionCards(r, grid, cardCls){
 /* ===== WEB · SLOTY ===== */
 function slotsFor(r){
   const ps = picks(r), out = [];
+  if (locked(r)) {
+    for (let i = 0; i < rq(r); i++) out.push(`<div class="slot locked"><button class="tile" data-act="slot" data-r="${r.id}" aria-label="Zamknutý darček, dokúpte ešte za ${gap(r)}">🔒<b>Pozrieť</b></button><div class="lk"><i style="width:${lockPct(r)}%"></i></div><div class="nm">Dokúpte za ${gap(r)}</div></div>`);
+    return out.join('');
+  }
   if (rq(r) > 4) {                                   // veľa kusov: 1 políčko s počtom + 1 prázdne
     const n = ps.length, m = missing(r);
     if (n) { const o = OPT[ps[0].sku]; out.push(`<div class="slot full ${S.pop && S.pop.startsWith(r.id) ? 'pop' : ''}"><button class="tile" style="background:${o.bg}" data-act="slot" data-r="${r.id}" aria-label="${n} darčekov">${o.e}<span class="badge">${n}×</span></button><div class="nm">${n} ${darcek(n)} vo vašom košíku</div></div>`); }
@@ -717,13 +923,19 @@ function slotsFor(r){
 }
 function panelA(rid){
   const r = RULE[rid]; if (!r || !rules().includes(r)) return '';
+  if (locked(r)) return `<div class="spanel" id="panel"><div class="spanel-h"><div><b>🔒 ${title(r)}</b><small>Dokúpte ešte za <b>${gap(r)}</b> a vyberte si ${rq(r) > 1 ? `${rq(r)} z ${r.opts.length}` : `1 z ${r.opts.length}`} darčekov. Takto vyzerá ponuka:</small></div><button class="link mute" data-act="slot" data-r="${r.id}">Zavrieť</button></div>
+    <div class="lockinfo"><div class="lk2"><i style="width:${lockPct(r)}%"></i></div><span>V košíku máte <b>${eur(cartVal())}</b> z ${r.thr} €. Darčeky sa odomknú automaticky.</span></div>
+    ${optionCards(r, r.opts.length === 4 ? 'bgrid c4' : 'bgrid', 'bo')}</div>`;
   return `<div class="spanel" id="panel"><div class="spanel-h"><div><b>${title(r)}${countBadge(r)}</b><small>${reason(r)}</small></div><button class="link mute" data-act="slot" data-r="${r.id}">Zavrieť</button></div>
     ${fullNote(r)}${optionCards(r, r.opts.length === 4 ? 'bgrid c4' : 'bgrid', 'bo')}<div class="spanel-f">${footLeft(r)}${footRight(r)}</div></div>`;
 }
 function headCounter(){ const m = toGet(); return m ? `<span class="cntp">Získajte ešte ${m} ${darcek(m)}</span>` : `<span class="cntp ok">✓ Všetky máte v košíku</span>`; }
-const subline = () => toGet() ? 'Tento nákup sa oplatí. Kliknite na prázdne políčko a vyberte si, čo vám patrí.' : 'Všetko je pripravené. Darček kedykoľvek vymeníte kliknutím alebo odoberiete krížikom.';
+const lockLine = () => { const l = rules().filter(locked).sort((a,b) => a.thr - b.thr)[0]; return l ? ` <b>Dokúpte ešte za ${gap(l)} a odomknete ďalší darček.</b>` : ''; };
+const unlMsg = () => S.unlocked && rules().some(r => r.id === S.unlocked) && !locked(RULE[S.unlocked]) ? `<div class="unl">🎉 Odomkli ste ${title(RULE[S.unlocked]).toLowerCase()}. Vyberte si ho.</div>` : '';
+const subline = () => (!rules().some(r => !locked(r)) ? 'Nakúpte ešte trochu a získate darček zadarmo. Pozrite si, čo vás čaká.' : toGet() ? 'Tento nákup sa oplatí. Kliknite na prázdne políčko a vyberte si, čo vám patrí.' : 'Všetko je pripravené. Darček kedykoľvek vymeníte kliknutím alebo odoberiete krížikom.') + lockLine();
 function groupStatus(r){
   const ps = picks(r);
+  if (locked(r)) return `<span class="gs-ok">🔒 Dokúpte ešte za <b>${gap(r)}</b></span><div class="lk2"><i style="width:${lockPct(r)}%"></i></div>`;
   if (S.dec[r.id] && !ps.length) return '<span class="gs-mute">Bez darčeka</span>';
   if (rq(r) > 1) return pending(r) ? `<span class="gs-need">Vybraté ${ps.length} z ${rq(r)}, získajte ešte ${missing(r)}</span>` : `<span class="gs-ok">Vybraté ${ps.length} z ${rq(r)}</span>`;
   if (pending(r)) return '<span class="gs-need">Čaká na vás, vyberte si</span>';
@@ -737,10 +949,10 @@ function giftsWeb(){
       return `<div class="mg ${one ? 'one' : 'multi'} ${open ? 'active' : ''} ${pending(r) ? 'is-p' : ''}" id="g-${r.id}">
         <div class="g1-row" data-act="slot" data-r="${r.id}" aria-expanded="${open}">${one ? `<div class="g1-tiles">${slotsFor(r)}</div>` : ''}<div class="g1-t"><b>${label(r)}</b>${groupStatus(r)}</div><span class="chev" aria-hidden="true">▾</span></div>
         ${one ? '' : `<div class="g1-tiles">${slotsFor(r)}</div>`}${open ? panelA(r.id) : ''}</div>`; }).join('');
-    return `<section class="n1" id="gifts"><div class="n1-h"><h2>🎁 Vaše darčeky zadarmo</h2></div><div style="margin:2px 0 8px">${headCounter()}</div><div class="n1-sub">${subline()}</div><div class="mgroups">${rows}</div></section>`;
+    return `<section class="n1" id="gifts"><div class="n1-h"><h2>🎁 Vaše darčeky zadarmo</h2></div><div style="margin:2px 0 8px">${headCounter()}</div><div class="n1-sub">${subline()}</div>${unlMsg()}<div class="mgroups">${rows}</div></section>`;
   }
-  const groups = rs.map(r => `<div class="sgrp ${act === r.id ? 'active' : ''}" id="g-${r.id}"><div class="sgrp-h">${label(r)}${rq(r) > 1 ? ` <span>${picks(r).length} z ${rq(r)}</span>` : ''}</div><div class="sgrp-t">${slotsFor(r)}</div></div>`).join('');
-  return `<section class="n1" id="gifts"><div class="n1-h"><h2>🎁 Vaše darčeky zadarmo</h2>${headCounter()}</div><div class="n1-sub">${subline()}</div>
+  const groups = rs.map(r => `<div class="sgrp ${act === r.id ? 'active' : ''}" id="g-${r.id}"><div class="sgrp-h">${locked(r) ? '🔒 ' : ''}${label(r)}${rq(r) > 1 ? ` <span>${picks(r).length} z ${rq(r)}</span>` : ''}</div><div class="sgrp-t">${slotsFor(r)}</div></div>`).join('');
+  return `<section class="n1" id="gifts"><div class="n1-h"><h2>🎁 Vaše darčeky zadarmo</h2>${headCounter()}</div><div class="n1-sub">${subline()}</div>${unlMsg()}
     <div class="groups">${groups}</div>${act ? panelA(act) : ''}</section>`;
 }
 
@@ -759,7 +971,7 @@ function codeBox(){
 function rowsHTML(){
   const t = totals();
   return `<div class="row"><span>Medzisúčet</span><b>${eur(t.sub)}</b></div>${t.disc ? `<div class="row disc"><span>Zľava PINK</span><b>−${eur(t.disc)}</b></div>` : ''}
-    ${S.step !== 'cart' ? `<div class="row"><span>Doprava</span><b>${t.ship ? eur(t.ship) : 'Zadarmo'}</b></div>` : ''}${t.pay ? `<div class="row"><span>Dobierka</span><b>${eur(t.pay)}</b></div>` : ''}
+    ${S.step !== 'cart' && S.ship ? `<div class="row"><span>Doprava</span><b>${t.ship ? eur(t.ship) : 'Zadarmo'}</b></div>` : ''}${t.pay ? `<div class="row"><span>Dobierka</span><b>${eur(t.pay)}</b></div>` : ''}
     <div class="tot"><b>Celkom</b><span>${eur(t.total)}</span></div><div class="vat">vrátane DPH</div>`;
 }
 function giftStatus(){
@@ -776,7 +988,81 @@ function stepper(){
 }
 const promo = () => S.scen === 'code' ? `<div class="promo">Všetky BeastPink produkty so zľavou 20 %. Použite kód: PINK</div>` : '';
 const itemCount = () => { const n = prods().length + giftTotal(); return n + ' ' + plural(n, 'položka', 'položky', 'položiek'); };
-const shipList = () => `<div class="sec"><h2>Doručenie</h2>${Object.entries(SHIP).map(([k,v]) => `<button class="radio ${S.ship === k ? 'on' : ''}" data-act="ship" data-k="${k}"><span class="rd"></span><span class="rb"><b>${v.n}</b><span>${v.d}</span></span><span class="rp">${v.c ? eur(v.c) : 'Zadarmo'}</span></button>`).join('')}<button class="back" data-act="go" data-s="cart">Späť do košíka</button></div>`;
+/* ---------- DORUČENIE ---------- */
+const akey = () => S.adrMode === 'new' ? 'home' : S.sh.addr;
+const hasAddr = () => S.adrMode === 'saved' || S.sh.filled;
+const dist = m => m < 1000 ? m + ' m' : (m / 1000).toFixed(m < 10000 ? 1 : 0).replace('.', ',') + ' km';
+const byDist = k => PP[k].slice().sort((x, y) => x.d[akey()] - y.d[akey()]);
+function nearest(k){ if (!hasAddr()) return null; const p = byDist(k)[0]; return p && p.d[akey()] <= NEAR_MAX ? p : null; }
+function pointOf(k){                         // ručne zvolené má prednosť, inak (variant B) najbližšie
+  const man = S.sh.manual[k]; if (man) return {p:PP[k].find(x => x.id === man), how:'man'};
+  if (S.shv === 'B' && !S.sh.loading) { const n = nearest(k); if (n) return {p:n, how:'auto'}; }
+  return null;
+}
+const addrLine = () => S.adrMode === 'new' ? [S.sh.form.street, S.sh.form.city].filter(Boolean).join(', ') : ADDR[S.sh.addr].l.slice(0, 2).join(', ');
+function shipErr(){
+  if (S.adrMode === 'new' && !S.sh.filled) return 'Vyplňte adresu doručenia.';
+  if (!S.ship) return 'Vyberte spôsob doručenia.';
+  if (SHIP[S.ship].g === 'pick' && !pointOf(S.ship)) return 'Vyberte výdajné miesto.';
+  return '';
+}
+function addrBlock(){
+  if (S.adrMode === 'saved') return `<div class="sp-card"><h3>Adresa doručenia</h3><h4>Moje adresy</h4><div class="adr-list">${Object.entries(ADDR).map(([k, a]) => `<button class="adr ${S.sh.addr === k ? 'on' : ''}" data-act="adr" data-k="${k}" aria-pressed="${S.sh.addr === k}"><b>${a.n}</b>${a.l.join('<br>')}<span class="ed" aria-hidden="true">✎</span><span class="al">${a.tag}</span></button>`).join('')}</div>
+    <div class="adr-add"><span>Pridať novú doručovaciu adresu</span><i aria-hidden="true">+</i></div></div>`;
+  const f = S.sh.form, fld = (k, l, ph, w) => `<div class="fld ${w ? 'w' : ''}"><label for="f-${k}">${l}</label><input id="f-${k}" data-f="${k}" value="${f[k] || ''}" placeholder="${ph}" autocomplete="off"></div>`;
+  return `<div class="sp-card"><h3>Adresa doručenia</h3><div class="fgrid">${fld('name', 'Meno a priezvisko', 'Ján Novák', 1)}${fld('street', 'Ulica a číslo domu', 'Na Hore 16', 1)}${fld('zip', 'PSČ', '040 22')}${fld('city', 'Mesto', 'Košice')}${fld('phone', 'Telefón', '+421 900 123 456', 1)}</div>
+    ${S.sh.filled ? '' : '<div class="fdemo"><button class="link" data-act="fillform">Demo: vyplniť ukážkovú adresu</button> <span style="font-size:12px;color:var(--ink3)">(alebo vyplňte ulicu, PSČ a mesto ručne)</span></div>'}</div>`;
+}
+function ppBlock(k){
+  const on = S.ship === k, pt = pointOf(k), a = akey();
+  if (S.sh.loading && S.shv === 'B' && !S.sh.manual[k]) return `<div class="pp"><div class="pp-load"><i></i>Hľadáme najbližšie výdajné miesto…</div></div>`;
+  const nm = n => n.replace(/^[^–]+–\s*/, '');
+  if (pt && !on) return `<div class="pp pp-peek"><span class="pp-ic" aria-hidden="true"></span><b>${nm(pt.p.n)}</b><span class="pp-d">${dist(pt.p.d[a])}</span></div>`;
+  if (pt) return `<div class="pp pp-sel"><span class="pp-ic" aria-hidden="true"></span><span class="pp-t"><span class="pp-l1"><b>${nm(pt.p.n)}</b><span class="pp-st ${pt.how}">${pt.how === 'auto' ? 'Najbližšie' : 'Vaša voľba'}</span></span><span class="pp-a">${pt.p.a} · <span class="pp-d">${dist(pt.p.d[a])}</span></span></span><button class="pp-ch" data-act="pkopen" data-k="${k}">Zmeniť</button></div>`;
+  if (!on) return '';
+  const none = S.shv === 'B' && hasAddr() && !S.sh.loading;
+  return `<div class="pp">${none ? '<div class="pp-none">V okolí vašej adresy sme nenašli výdajné miesto. Vyberte si ho na mape.</div>' : ''}<button class="pp-btn" data-act="pkopen" data-k="${k}">Vybrať výdajné miesto</button></div>`;
+}
+function dmRow(k){
+  const m = SHIP[k], on = S.ship === k, pp = m.g === 'pick' ? ppBlock(k) : '';
+  return `<div class="dm-r ${on ? 'on' : ''}" data-act="shm" data-k="${k}" role="radio" aria-checked="${on}" tabindex="0"><div class="dm-m"><span><span class="dm-rd"></span></span>${m.lg}
+    <div class="dm-n">${m.n}<div class="dm-dm">${m.d}</div></div><span class="dm-p ${m.c ? '' : 'free'}">${m.c ? eur(m.c) : 'Zadarmo'}</span><span class="dm-d">${m.d}</span><i class="dm-i" aria-hidden="true">i</i>${pp ? `<div class="dm-pp">${pp}</div>` : ''}</div></div>`;
+}
+function shipList(){
+  const ks = g => Object.keys(SHIP).filter(k => SHIP[k].g === g);
+  const hint = S.shv === 'B' && !hasAddr() ? '<small>Po zadaní adresy predvyplníme najbližšie miesto</small>' : '';
+  return `<div class="sp"><div class="sp-h"><h1>Doručenie</h1><span>${itemCount()}</span></div>${addrBlock()}
+    <div class="sp-card" style="padding:14px 16px"><div class="chk-row"><i></i>Chcem pridať fakturačnú adresu</div></div>
+    <div class="sp-card" id="dm"><h3>Spôsob doručenia</h3>${S.sh.err ? `<div class="sp-err">${S.sh.err}</div>` : ''}
+      <div class="dm" role="radiogroup" aria-label="Spôsob doručenia"><div class="dm-g"><span>Výdajné miesta</span>${hint}</div>${ks('pick').map(dmRow).join('')}<div class="dm-g">Doručenie na adresu</div>${ks('addr').map(dmRow).join('')}</div></div>
+    <button class="back" data-act="go" data-s="cart">Späť do košíka</button></div>`;
+}
+function picker(){
+  const k = S.sh.pk; if (!k) return '';
+  const a = akey(), list = byDist(k), sel = S.sh.pkSel, far = list[0].d[a] > NEAR_MAX;
+  const pins = list.map((p, i) => { const r = 9 + Math.min(34, Math.sqrt(p.d[a]) / 1.6), an = i * 2.2 + .6;
+    return `<button class="mp ${sel === p.id ? 'on' : ''}" style="left:${50 + r * Math.cos(an)}%;top:${50 + r * Math.sin(an)}%" data-act="pksel" data-id="${p.id}" aria-label="${p.n}"><span>${i + 1}</span></button>`; }).join('');
+  return `<div class="pk-ov" data-act="pkclose"></div><div class="pk" role="dialog" aria-label="Výber výdajného miesta"><div class="pk-l">
+    <div class="pk-h"><div><b>Vyberte výdajné miesto</b><small>${SHIP[k].n}</small></div><button class="pk-x" data-act="pkclose" aria-label="Zavrieť">✕</button></div>
+    <div class="pk-s">🔍 ${hasAddr() ? addrLine() : 'Hľadať mesto, ulicu alebo PSČ'}</div>
+    <div class="pk-list">${list.map((p, i) => `<button class="pk-i ${sel === p.id ? 'on' : ''}" data-act="pksel" data-id="${p.id}"><span class="dm-rd"></span><span class="pk-b"><b><span class="pk-n">${i + 1}</span>${p.n}</b>${p.a}<br>${p.h}</span>${hasAddr() ? `<span class="pp-d" style="font-size:12.5px">${dist(p.d[a])}</span>` : ''}</button>`).join('')}</div>
+    <div class="pk-f"><button class="link mute" data-act="pkclose">Zrušiť</button><button class="cta" data-act="pkok" ${sel ? '' : 'disabled'}>VYBRAŤ TOTO MIESTO</button></div></div>
+    <div class="pk-map" aria-hidden="true">${hasAddr() ? '<span class="mp home" style="left:50%;top:50%"></span><span class="mp-l" style="left:50%;top:50%">Vaša adresa</span>' : ''}${pins}${far && hasAddr() ? '<div class="pk-far">Najbližšie miesto je ďalej ako 15 km od vašej adresy.</div>' : ''}</div></div>`;
+}
+function shipSumPoint(){
+  if (!S.ship) return '';
+  const m = SHIP[S.ship], pt = m.g === 'pick' ? pointOf(S.ship) : null;
+  return `<div class="sum-pp"><span>${m.g === 'pick' ? '📍' : '🚚'}</span><span><b>${m.short || m.n}</b>${pt ? `<br>${pt.p.n}, ${pt.p.a}` : m.g === 'addr' && hasAddr() ? `<br>${addrLine()}` : ''}</span></div>`;
+}
+function shipAside(){
+  const n = prods().length + giftTotal(), ok = !shipErr();
+  return `<aside><div class="ord">Vaša objednávka (${n})<span>Upraviť ▾</span></div><div class="sum"><h3>Zhrnutie objednávky</h3>${rowsHTML()}${shipSumPoint()}${yellow()}<button class="cta ${ok ? '' : 'dis'}" data-act="next">POKRAČOVAŤ</button></div></aside>`;
+}
+function startPrefill(){
+  S.sh.filled = true; S.sh.loading = S.shv === 'B'; S.sh.err = '';
+  if (!S.sh.loading) return;
+  setTimeout(() => { S.sh.loading = false; S.sh.flash = 'Podľa vašej adresy sme predvyplnili najbližšie výdajné miesta. Kliknutím na „Zmeniť“ si vyberiete iné.'; render(); }, 900);
+}
 const payList = () => `<div class="sec"><h2>Platba</h2>${Object.entries(PAY).map(([k,v]) => `<button class="radio ${S.pay === k ? 'on' : ''}" data-act="pay" data-k="${k}"><span class="rd"></span><span class="rb"><b>${v.n}</b><span>${v.d}</span></span><span class="rp">${v.c ? eur(v.c) : ''}</span></button>`).join('')}<button class="back" data-act="go" data-s="ship">Späť na doručenie</button></div>`;
 const prodMini = () => prods().map(p => `<div class="li-s">${thumb(p, 32)}<span>${p.name}<small>${p.qty} ks</small></span></div>`).join('');
 function doneList(){
@@ -792,8 +1078,9 @@ function desktop(){
   if (S.step === 'cart') return `<div class="desk">${head}<nav class="nav"><span>POTRAVINY</span><span>PROTEÍNY</span><span>ŠPORTOVÁ VÝŽIVA</span><span>OBLEČENIE</span><span>PRÍSLUŠENSTVO</span><span>TOP PONUKY</span></nav>
       <div class="dgrid"><div><div class="h1row"><h1>Nákupný košík</h1><span>${itemCount()}</span></div>${giftsWeb()}${productsHTML()}</div>
       <aside><div class="loy"><span>GB Vernostný program</span><span>▾</span></div><div class="sum"><h3>Zhrnutie objednávky</h3><div class="shipbar">🚚 Doprava zadarmo<i></i></div>${codeBox()}${rowsHTML()}${giftStatus()}${guardMsg()}<button class="cta" data-act="next">${ctaLabel()}</button></div></aside></div></div>`;
-  return `<div class="desk">${head}${stepper()}<div class="dgrid"><div>${S.step === 'ship' ? shipList() : payList()}</div>
-    <aside><div class="sum"><h3>Zhrnutie objednávky</h3>${prodMini()}<div style="height:8px"></div>${rowsHTML()}${yellow()}<button class="cta" data-act="next" style="margin-top:12px">${ctaLabel()}</button></div></aside></div></div>`;
+  if (S.step === 'ship') return `<div class="desk">${head}${stepper()}<div class="dgrid"><div>${shipList()}</div>${shipAside()}</div>${picker()}</div>`;
+  return `<div class="desk">${head}${stepper()}<div class="dgrid"><div>${payList()}</div>
+    <aside><div class="sum"><h3>Zhrnutie objednávky</h3>${prodMini()}<div style="height:8px"></div>${rowsHTML()}${shipSumPoint()}${yellow()}<button class="cta" data-act="next" style="margin-top:12px">${ctaLabel()}</button></div></aside></div></div>`;
 }
 function mobile(){
   const t = totals();
@@ -803,14 +1090,17 @@ function mobile(){
   if (S.step === 'cart') body = `${stepper()}<div class="shipbar">🚚 Doprava zadarmo<i></i></div><div class="h1row"><h1>Nákupný košík</h1><span>${itemCount()}</span></div>
       ${giftsWeb()}<div class="pad">${productsHTML()}</div><div class="loy"><span>GB Vernostný program</span><span>▾</span></div>${codeBox()}
       <div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${rowsHTML()}${giftStatus()}${guardMsg()}<button class="cta" data-act="next">${ctaLabel()}</button></div><div style="height:16px"></div>`;
-  else body = `${stepper()}${yellow()}${S.step === 'ship' ? shipList() : payList()}<div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${prodMini()}<div style="height:6px"></div>${rowsHTML()}<button class="cta" data-act="next">${ctaLabel()}</button></div><div style="height:16px"></div>`;
-  return `<div class="mob"><div class="scroll" id="mscroll">${head}${body}</div></div>`;
+  else if (S.step === 'ship') body = `${stepper()}${yellow()}${shipList()}<div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${rowsHTML()}${shipSumPoint()}<button class="cta ${shipErr() ? 'dis' : ''}" data-act="next">POKRAČOVAŤ</button></div><div style="height:16px"></div>`;
+  else body = `${stepper()}${yellow()}${payList()}<div class="msum"><h3 style="margin:0 0 8px;font-size:15px">Zhrnutie objednávky</h3>${prodMini()}<div style="height:6px"></div>${rowsHTML()}<button class="cta" data-act="next">${ctaLabel()}</button></div><div style="height:16px"></div>`;
+  return `<div class="mob"><div class="scroll" id="mscroll">${head}${body}</div>${S.step === 'ship' ? picker() : ''}</div>`;
 }
 
 /* ===== APP ===== */
 function appTiles(){
   return `<div class="atg">${rules().map(r => {
     const ps = picks(r), tiles = [];
+    if (locked(r)) { for (let i = 0; i < rq(r); i++) tiles.push(`<button class="at lock" data-act="asheet" data-r="${r.id}" aria-label="Zamknutý darček">🔒</button>`);
+      return `<div class="atg-g"><div class="atg-l">${label(r)} · chýba ${gap(r)}</div><div class="atg-r">${tiles.join('')}</div></div>`; }
     if (rq(r) > 4) { const n = ps.length, m = missing(r);
       if (n) tiles.push(`<button class="at" style="background:${OPT[ps[0].sku].bg}" data-act="asheet" data-r="${r.id}">${OPT[ps[0].sku].e}<span class="bd">${n}×</span></button>`);
       if (m) tiles.push(`<button class="at empty" data-act="asheet" data-r="${r.id}" style="font-size:15px;font-weight:800">+${m}</button>`);
@@ -828,19 +1118,21 @@ function appTiles(){
 function appGiftCard(){
   if (!rules().length) return '';
   const m = toGet();
-  return `<div class="agc ${m ? 'is-p' : ''}" id="g-agc"><div class="agc-h"><span class="ic">🎁</span><b>Vaše darčeky zadarmo</b><span class="apill ${m ? '' : 'ok'}">${m ? `Získajte ešte ${m}` : '✓ Všetky máte'}</span></div>
-    <div class="agc-sub">${m ? 'Ťuknite na prázdne políčko a vyberte si, čo vám patrí.' : 'Všetko je v košíku. Ťuknutím darček vymeníte.'}</div>
+  return `<div class="agc ${m ? 'is-p' : ''}" id="g-agc"><div class="agc-h"><span class="ic">🎁</span><b>Vaše darčeky zadarmo</b>${!rules().some(r => !locked(r)) ? '<span class="apill">🔒 Zamknuté</span>' : `<span class="apill ${m ? '' : 'ok'}">${m ? `Získajte ešte ${m}` : '✓ Všetky máte'}</span>`}</div>
+    <div class="agc-sub">${!rules().some(r => !locked(r)) ? 'Nakúpte ešte trochu a získate darček zadarmo.' : m ? 'Ťuknite na prázdne políčko a vyberte si, čo vám patrí.' : 'Všetko je v košíku. Ťuknutím darček vymeníte.'}${lockLine()}</div>
+    ${S.unlocked && !locked(RULE[S.unlocked]) && rules().some(r => r.id === S.unlocked) ? `<div class="agc-new" style="background:var(--ok-soft);color:var(--ok)">🎉 Odomkli ste ${title(RULE[S.unlocked]).toLowerCase()}</div>` : ''}
     ${S.newSlot === 'code' && pending(RULE.code) ? `<div class="agc-new">🎉 Kód PINK vám odomkol darček navyše</div>` : ''}
     ${appTiles()}${m ? `<button class="agc-btn" data-act="asheet">Získať ${m} ${darcek(m)} zadarmo</button>` : ''}</div>`;
 }
 function appSheet(){
   const rs = rules(); if (!S.sheet || !rs.length) return '';
   const tab = rs.find(r => r.id === S.sheetTab) || pendList()[0] || rs[0];
-  const tabs = rs.map(r => { const st = (S.dec[r.id] && !picks(r).length) ? 'd' : pending(r) ? 'p' : 'ok';
-    return `<button class="atb ${r.id === tab.id ? 'on' : ''}" data-act="atab" data-r="${r.id}"><span class="dt ${st}">${st === 'ok' ? '✓' : st === 'd' ? '–' : ''}</span>${label(r)}</button>`; }).join('');
+  const tabs = rs.map(r => { const st = locked(r) ? 'l' : (S.dec[r.id] && !picks(r).length) ? 'd' : pending(r) ? 'p' : 'ok';
+    return `<button class="atb ${r.id === tab.id ? 'on' : ''}" data-act="atab" data-r="${r.id}"><span class="dt ${st}">${st === 'ok' ? '✓' : st === 'd' ? '–' : st === 'l' ? '🔒' : ''}</span>${label(r)}</button>`; }).join('');
   const nextP = rs.find(r => r !== tab && pending(r)), m = toGet();
   let btn;
-  if (pending(tab)) btn = `<button class="ash-next" disabled>${rq(tab) > 1 ? `Vyberte ešte ${missing(tab)}` : 'Vyberte darček'}</button>`;
+  if (locked(tab)) btn = nextP ? `<button class="ash-next" data-act="anext">Ďalší darček</button>` : `<button class="ash-next" data-act="aclose">Pokračovať v nákupe</button>`;
+  else if (pending(tab)) btn = `<button class="ash-next" disabled>${rq(tab) > 1 ? `Vyberte ešte ${missing(tab)}` : 'Vyberte darček'}</button>`;
   else if (nextP) btn = `<button class="ash-next" data-act="anext">Ďalší darček</button>`;
   else btn = S.sheetGuard ? `<button class="ash-next go" data-act="askip">Pokračovať do pokladne</button>` : `<button class="ash-next" data-act="aclose">Hotovo</button>`;
   const left = S.sheetGuard && m ? `<button class="link mute" data-act="askip">Pokračovať bez darčeka</button>` : '';
@@ -848,7 +1140,7 @@ function appSheet(){
     <div class="ash-top"><b>Vyberte si darčeky</b><button class="ash-x" data-act="aclose" aria-label="Zavrieť">✕</button></div>
     ${S.sheetGuard && m ? `<div class="ash-guard">Ešte vám ${m === 1 ? 'patrí 1 darček' : `patria ${m} ${darcek(m)}`} zadarmo. Nenechajte si ich ujsť!</div>` : ''}
     <div class="ash-tabs" id="atabs">${tabs}</div>
-    <div class="ash-rh"><b>${title(tab)}${countBadge(tab)}</b><small>${reason(tab)}</small></div>
+    <div class="ash-rh"><b>${locked(tab) ? '🔒 ' : ''}${title(tab)}${locked(tab) ? '' : countBadge(tab)}</b><small>${locked(tab) ? `Dokúpte ešte za <b>${gap(tab)}</b> a vyberte si 1 z ${tab.opts.length}. Takto vyzerá ponuka:` : reason(tab)}</small>${locked(tab) ? `<div class="ash-lock"><div class="abar"><i style="width:${lockPct(tab)}%;background:var(--a)"></i></div><span>${eur(cartVal())} z ${tab.thr} €</span></div>` : ''}</div>
     <div class="ash-body" id="abody">${fullNote(tab)}${optionCards(tab, 'agrid', 'ao')}<div style="margin-top:14px;display:flex;justify-content:center">${footLeft(tab)}</div></div>
     <div class="ash-ft">${left}${btn}</div></div>`;
 }
@@ -861,7 +1153,7 @@ function appScreen(){
     const code = S.code ? `<div class="acode"><div class="code-ok"><span><b>PINK</b> −20 % na BeastPink</span><button class="link mute" data-act="uncode">Odstrániť</button></div></div>`
       : !S.codeOpen ? `<button class="arow" data-act="acode"><span style="flex:0">🏷️</span><span>Zľavový kód alebo darčekový poukaz</span><span class="ch">›</span></button>`
       : `<div class="acode"><div class="code-r"><input id="codeIn" placeholder="Zadajte kód (skúste PINK)" value="${S.codeInput}" aria-label="Zľavový kód"><button data-act="code">Použiť</button></div>${S.codeMsg === 'err' ? `<div class="code-msg err">Kód „${S.codeInput}“ nie je platný.</div>` : ''}</div>`;
-    body = `<div class="aprog">${rules().length ? `<div class="apr"><span style="color:var(--a)">🎁</span>Darček zadarmo</div><div class="abar"><i style="width:100%;background:#EB542C"></i></div>` : ''}<div class="apr"><span>🚚</span>Doprava zadarmo</div><div class="abar"><i style="width:100%;background:#8BC34A"></i></div></div>
+    body = `<div class="aprog">${rules().length ? `<div class="apr"><span style="color:var(--a)">🎁</span>Darček zadarmo</div><div class="abar"><i style="width:${(() => { const l = rules().filter(locked).sort((a,b) => a.thr - b.thr)[0]; return l ? lockPct(l) : 100; })()}%;background:#EB542C"></i></div>` : ''}<div class="apr"><span>🚚</span>Doprava zadarmo</div><div class="abar"><i style="width:100%;background:#8BC34A"></i></div></div>
       ${appGiftCard()}${prods().map(p => `<div class="apc"><div class="im" style="background:${p.bg}">${p.e}</div><div class="b"><div class="n">${p.name}</div>${p.meta.length ? `<div class="m">${p.meta.map(x => x.split(': ')[1]).join('<br>')}</div>` : ''}<div class="f"><span class="pr">${eur(p.unit * (S.code && p.pink ? .8 : 1))}</span><div class="aq"><i data-act="pq" data-k="${p.id}" data-d="-1">−</i><b>${p.qty}</b><i data-act="pq" data-k="${p.id}" data-d="1">+</i></div></div></div><span class="dots">···</span></div>`).join('')}
       ${code}<button class="arow"><span style="flex:0;color:var(--a)">Ⓖ</span><span>Vernosť sa oplatí</span><b>0 bodov</b><span class="ch">›</span></button>${tot}`;
     cta = `<button class="acta" data-act="acheckout">DO POKLADNE  ${eur(t.total)}</button>`;
@@ -890,13 +1182,18 @@ const NOTE = {
     why:['Taby so stavom ukážu všetky výbery naraz (dnes ich skrývajú bodky)','Žiadny konflikt gest: sheet sa scrolluje len zvisle','Po výbere sa sheet sám prepne na ďalší tab v poradí','Pripomienka je pri palci, tam kde sa rozhoduje'],
     dev:['Sheet: header a taby fixné, ScrollView len pre mriežku','DO POKLADNE pri chýbajúcom darčeku raz otvorí sheet, potom pustí ďalej','Rovnaké generické názvy ako web']}
 };
-const GROUPS = [['Zobrazenie','view',[['desktop','Desktop'],['mobile','Mobil']],'web'],['Scenár','scen',Object.entries(SCEN).map(([k,v]) => [k, v.label])],['Krok','step',[['cart','Košík'],['ship','Doručenie'],['pay','Platba']],'web']];
+NOTE.ship = {name:'Pokladňa · Doručenie, variant B (predvyplnené výdajné miesto)',
+  idea:'Po vyplnení doručovacej adresy sa pri metódach s výdajnými miestami <b>automaticky predvyplní najbližšie výdajné miesto</b> k adrese. Zobrazí sa s názvom, adresou a vzdialenosťou a zákazník ho môže zmeniť cez „Zmeniť“.',
+  why:['Zákazník nemusí otvárať mapu, väčšina si nechá najbližšie miesto','Hneď vidí, kam si pôjde po balík a ako ďaleko to je','Menej krokov a menej opustených pokladní pri výdajných miestach','Ručná voľba sa nikdy neprepíše, ani pri zmene adresy'],
+  dev:['Najbližšie miesto = najmenšia vzdialenosť od adresy (limit napr. 15 km)','Prepočet pri zmene adresy, okrem metód s ručne zvoleným miestom (flag manual)','Ak sa nič nenájde: súčasné správanie, tlačidlo „Vybrať výdajné miesto“ s mapou','Nezvolené metódy: šedý riadok s predvoleným miestom a vzdialenosťou. Zvolená: karta s názvom, adresou, vzdialenosťou, stavom „Najbližšie“ / „Vaša voľba“ a tlačidlom „Zmeniť“']};
+const SHIPEX = 'Prepínajte <b>A · dnes</b> / <b>B · predvyplnenie</b>. V B: 1) po zvolení Balíkova, Packety alebo GymBeam Boxu je hneď vyplnené najbližšie miesto so vzdialenosťou. 2) Kliknite na „Zmeniť“ pri Packete a vyberte iné miesto. 3) Prepnite adresu na „Práca“: ostatné miesta sa prepočítajú, ručne zvolená Packeta ostane. 4) Adresa „Chata“ (Zuberec): pri Balíkove a GymBeam Boxe sa najbližšie miesto nenájde (do 15 km), ostáva súčasné správanie. 5) „Nový zákazník“: miesta sa predvyplnia až po vyplnení adresy.';
+const GROUPS = [['Zobrazenie','view',[['desktop','Desktop'],['mobile','Mobil']],'web'],['Scenár','scen',Object.entries(SCEN).map(([k,v]) => [k, v.label])],['Krok','step',[['cart','Košík'],['ship','Doručenie'],['pay','Platba']],'web'],['Doručenie','shv',[['A','A · dnes'],['B','B · predvyplnenie']],'web','ship'],['Adresa','adrMode',[['saved','Uložené adresy'],['new','Nový zákazník']],'web','ship']];
 const toolbar = () => `<span class="ttl">Darčeky v košíku</span><div class="grp"><span class="lbl">Platforma</span><div class="seg">${[['web','Web'],['app','App']].map(([v,t]) => `<button class="${S.platform === v ? 'on' : ''}" data-tb="platform" data-v="${v}">${t}</button>`).join('')}</div></div>
-  ${GROUPS.filter(g => !g[3] || g[3] === S.platform).map(([l,k,o]) => `<div class="grp"><span class="lbl">${l}</span><div class="seg">${o.map(([v,t]) => `<button class="${S[k] === v ? 'on' : ''}" data-tb="${k}" data-v="${v}">${t}</button>`).join('')}</div></div>`).join('')}<button class="reset" data-act="restart">Reset</button>`;
+  ${GROUPS.filter(g => (!g[3] || g[3] === S.platform) && (!g[4] || g[4] === S.step)).map(([l,k,o]) => `<div class="grp"><span class="lbl">${l}</span><div class="seg">${o.map(([v,t]) => `<button class="${S[k] === v ? 'on' : ''}" data-tb="${k}" data-v="${v}">${t}</button>`).join('')}</div></div>`).join('')}<button class="reset" data-act="restart">Reset</button>`;
 function note(){
-  const c = NOTE[S.platform];
+  const isShip = S.platform === 'web' && S.step === 'ship', c = isShip ? NOTE.ship : NOTE[S.platform];
   return `<div class="box"><div><h3>${c.name}</h3>${c.idea}</div><div><div class="k">Prečo je to pre zákazníka dobré</div><ul>${c.why.map(x => `<li>${x}</li>`).join('')}</ul></div><div><div class="k">Pre dev</div><ul>${c.dev.map(x => `<li>${x}</li>`).join('')}</ul></div>
-    <div class="ex"><b>Scenár „${SCEN[S.scen].label}“:</b> ${SCEN[S.scen].txt}</div></div>`;
+    <div class="ex">${isShip ? `<b>Ako to vyskúšať:</b> ${SHIPEX}` : `<b>Scenár „${SCEN[S.scen].label}“:</b> ${SCEN[S.scen].txt}`}</div></div>`;
 }
 
 /* ===== render ===== */
@@ -916,7 +1213,7 @@ function render(){
 }
 document.addEventListener('click', e => {
   const tb = e.target.closest('[data-tb]');
-  if (tb) { const k = tb.dataset.tb, v = tb.dataset.v; if (k !== 'view' && k !== 'step') { S[k] = v; resetFlow(); } else { S[k] = v; S.guard = false; } S.noKeep = true; render(); return; }
+  if (tb) { const k = tb.dataset.tb, v = tb.dataset.v; if (k === 'shv' || k === 'adrMode') { S[k] = v; resetShip(); } else if (k !== 'view' && k !== 'step') { S[k] = v; resetFlow(); } else { S[k] = v; S.guard = false; } S.noKeep = true; render(); return; }
   const a = e.target.closest('[data-act]'); if (!a) return;
   const act = a.dataset.act, rid = a.dataset.r, k = a.dataset.k, tabBefore = S.sheetTab;
   switch (act) {
@@ -950,11 +1247,22 @@ document.addEventListener('click', e => {
     case 'uncode': S.code = false; S.codeInput = ''; initSel('code'); delete S.dec.code; if (S.active === 'code') S.active = null; break;
     case 'next':
       if (S.step === 'cart') { if (pendList().length && !S.guard) { S.guard = true; focusPending(); break; } S.step = 'ship'; S.guard = false; }
-      else if (S.step === 'ship') S.step = 'pay'; else if (S.step === 'pay') S.step = 'done';
+      else if (S.step === 'ship') { S.sh.err = shipErr(); if (S.sh.err) { S.scrollTo = null; break; } S.step = 'pay'; } else if (S.step === 'pay') S.step = 'done';
       window.scrollTo({top:0}); break;
     case 'go': S.step = a.dataset.s; S.guard = false; break;
     case 'tocart': S.step = 'cart'; focusPending(); break;
-    case 'ship': S.ship = k; break;
+    case 'shm': { S.ship = k; S.sh.err = '';
+      if (SHIP[k].g === 'pick' && !pointOf(k) && !(S.shv === 'B' && S.sh.loading) && !(S.shv === 'B' && hasAddr())) { S.sh.pk = k; S.sh.pkSel = null; }  // dnes: výber metódy hneď otvorí mapu
+      break; }
+    case 'pkopen': S.ship = k; S.sh.err = ''; S.sh.pk = k; S.sh.pkSel = (pointOf(k) || {p:{}}).p.id || null; break;
+    case 'pksel': S.sh.pkSel = a.dataset.id; break;
+    case 'pkok': if (S.sh.pkSel) { S.sh.manual[S.sh.pk] = S.sh.pkSel; S.ship = S.sh.pk; } S.sh.pk = null; S.sh.err = ''; break;
+    case 'pkclose': S.sh.pk = null; break;
+    case 'adr': { if (S.sh.addr === k) break; S.sh.addr = k; S.sh.err = '';
+      if (S.shv === 'B') { const kept = Object.keys(S.sh.manual).map(m => SHIP[m].short), miss = Object.keys(PP).filter(m => !S.sh.manual[m] && !nearest(m)).map(m => SHIP[m].short);
+        S.sh.flash = `Výdajné miesta sme prepočítali podľa adresy ${ADDR[k].l[0]}, ${ADDR[k].l[1].replace(/^[\d ]+/, '')}.${kept.length ? ` Vaše ručne zvolené miesto (${kept.join(', ')}) sme nezmenili.` : ''}${miss.length ? ` Pre ${miss.join(' a ')} sme v okolí nenašli miesto.` : ''}`; }
+      break; }
+    case 'fillform': Object.assign(S.sh.form, {name:'Ján Novák', street:'Na Hore 16', zip:'040 22', city:'Košice', phone:'+421 900 123 456'}); startPrefill(); break;
     case 'pay': S.pay = k; break;
     case 'asheet': openSheet(rid); S.sameTab = false; break;
     case 'atab': S.sheetTab = rid; S.full = null; S.hint = null; break;
@@ -974,9 +1282,12 @@ document.addEventListener('click', e => {
 });
 document.addEventListener('keydown', e => {
   if (e.target.id === 'codeIn' && e.key === 'Enter') document.querySelector('[data-act="code"]').click();
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="radio"][data-act="shm"]')) { e.preventDefault(); e.target.click(); }
   if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"][data-act="card"]')) { e.preventDefault(); e.target.click(); }
 });
 document.addEventListener('change', e => {
+  const fi = e.target.closest('input[data-f]');
+  if (fi) { S.sh.form[fi.dataset.f] = fi.value.trim(); const f = S.sh.form; if (!S.sh.filled && f.street && f.zip && f.city) { startPrefill(); render(); } return; }
   const sel = e.target.closest('select[data-act="gvar"]'); if (!sel) return;
   groupOp(sel.dataset.r, sel.dataset.k, sel.dataset.g, 'var', sel.dataset.f, sel.value); render();
 });
