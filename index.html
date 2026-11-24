@@ -548,24 +548,20 @@ button{font:inherit;cursor:pointer;color:inherit}
 .mob .pp-ch{margin-left:25px}
 .mob .dm-m>.dm-pp{grid-column:1/-1;margin-top:0}
 .pp-ic{width:14px;height:14px;flex-shrink:0;background:var(--brand);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z'/%3E%3C/svg%3E") center/contain no-repeat}
-.pp-peek{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink2);margin-top:-2px;min-width:0}
-.pp-peek .pp-ic{width:12px;height:12px;background:var(--ink3)}
-.pp-peek b{font-weight:600;color:var(--ink2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pp-peek .pp-d{color:var(--ink3);font-weight:500}
-.pp-peek .pp-d::before{content:'·';margin-right:6px}
-.pp-sel{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--brand-line);border-radius:6px;padding:10px 12px;animation:ppIn .35s ease}
-.pp-sel .pp-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.pp-l1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.pp-l1 b{font-size:13.5px;font-weight:700;color:var(--ink)}
-.pp-st{font-size:11px;font-weight:700;color:var(--ok);display:inline-flex;align-items:center;gap:4px}
+.pp-row{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink2);margin-top:-2px;min-width:0;line-height:1.4}
+.pp-row .pp-ic{width:13px;height:13px;background:var(--ink3);transition:background .15s}
+.dm-r.on .pp-row .pp-ic{background:var(--brand)}
+.pp-row .pp-t{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pp-row b{font-weight:700;color:var(--ink);font-size:12.5px}
+.pp-row .pp-a{display:inline}
+.pp-row .pp-d{color:var(--ink);font-weight:600}
+.pp-st{font-size:11px;font-weight:700;color:var(--ok);margin-left:8px;display:inline-flex;align-items:center;gap:4px;vertical-align:1px}
 .pp-st::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor}
-.pp-st.man{color:var(--ink3)}
-.pp-sel .pp-a{font-size:12.5px;color:var(--ink2)}
-.pp-sel .pp-d{color:var(--ink);font-weight:600}
-.pp-sel .pp-ch{border:1.5px solid var(--ink);border-radius:4px;padding:6px 12px;color:var(--ink);text-decoration:none;font-size:12.5px;font-weight:700;background:#fff}
-.pp-sel .pp-ch:hover{background:var(--ink);color:#fff}
-.mob .pp-sel{padding:10px}
-.mob .pp-sel .pp-ch{padding:5px 10px}
+.pp-row .pp-ch{border:0;background:none;padding:2px 0;margin-left:4px;color:var(--brand);font-weight:700;font-size:12.5px;text-decoration:underline;text-underline-offset:2px;flex-shrink:0}
+.pp-row .pp-ch:hover{color:var(--brand-d)}
+.mob .pp-row{align-items:flex-start}
+.mob .pp-row .pp-t{white-space:normal}
+.mob .pp-row .pp-ic{margin-top:2px}
 @keyframes ppIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:none}}
 .pp-none{color:var(--ink2);font-size:12.5px;margin-bottom:6px}
 .pp-btn{border:1.5px solid var(--ink);background:#fff;border-radius:4px;padding:7px 12px;font-weight:700;font-size:12.5px}
@@ -1017,8 +1013,8 @@ function ppBlock(k){
   const on = S.ship === k, pt = pointOf(k), a = akey();
   if (S.sh.loading && S.shv === 'B' && !S.sh.manual[k]) return `<div class="pp"><div class="pp-load"><i></i>Hľadáme najbližšie výdajné miesto…</div></div>`;
   const nm = n => n.replace(/^[^–]+–\s*/, '');
-  if (pt && !on) return `<div class="pp pp-peek"><span class="pp-ic" aria-hidden="true"></span><b>${nm(pt.p.n)}</b><span class="pp-d">${dist(pt.p.d[a])}</span></div>`;
-  if (pt) return `<div class="pp pp-sel"><span class="pp-ic" aria-hidden="true"></span><span class="pp-t"><span class="pp-l1"><b>${nm(pt.p.n)}</b><span class="pp-st ${pt.how}">${pt.how === 'auto' ? 'Najbližšie' : 'Vaša voľba'}</span></span><span class="pp-a">${pt.p.a} · <span class="pp-d">${dist(pt.p.d[a])}</span></span></span><button class="pp-ch" data-act="pkopen" data-k="${k}">Zmeniť</button></div>`;
+  // rovnaký riadok pred aj po zvolení dopravy: žiadne rozbaľovanie, „Zmeniť“ je hneď po ruke
+  if (pt) return `<div class="pp pp-row"><span class="pp-ic" aria-hidden="true"></span><span class="pp-t"><b>${nm(pt.p.n)}</b><span class="pp-a">, ${pt.p.a}</span> <span class="pp-d">· ${dist(pt.p.d[a])}</span></span><button class="pp-ch" data-act="pkopen" data-k="${k}" aria-label="Zmeniť výdajné miesto ${SHIP[k].n}">Zmeniť</button></div>`;
   if (!on) return '';
   const none = S.shv === 'B' && hasAddr() && !S.sh.loading;
   return `<div class="pp">${none ? '<div class="pp-none">V okolí vašej adresy sme nenašli výdajné miesto. Vyberte si ho na mape.</div>' : ''}<button class="pp-btn" data-act="pkopen" data-k="${k}">Vybrať výdajné miesto</button></div>`;
@@ -1185,7 +1181,7 @@ const NOTE = {
 NOTE.ship = {name:'Pokladňa · Doručenie, variant B (predvyplnené výdajné miesto)',
   idea:'Po vyplnení doručovacej adresy sa pri metódach s výdajnými miestami <b>automaticky predvyplní najbližšie výdajné miesto</b> k adrese. Zobrazí sa s názvom, adresou a vzdialenosťou a zákazník ho môže zmeniť cez „Zmeniť“.',
   why:['Zákazník nemusí otvárať mapu, väčšina si nechá najbližšie miesto','Hneď vidí, kam si pôjde po balík a ako ďaleko to je','Menej krokov a menej opustených pokladní pri výdajných miestach','Ručná voľba sa nikdy neprepíše, ani pri zmene adresy'],
-  dev:['Najbližšie miesto = najmenšia vzdialenosť od adresy (limit napr. 15 km)','Prepočet pri zmene adresy, okrem metód s ručne zvoleným miestom (flag manual)','Ak sa nič nenájde: súčasné správanie, tlačidlo „Vybrať výdajné miesto“ s mapou','Nezvolené metódy: šedý riadok s predvoleným miestom a vzdialenosťou. Zvolená: karta s názvom, adresou, vzdialenosťou, stavom „Najbližšie“ / „Vaša voľba“ a tlačidlom „Zmeniť“']};
+  dev:['Najbližšie miesto = najmenšia vzdialenosť od adresy (limit napr. 15 km)','Prepočet pri zmene adresy, okrem metód s ručne zvoleným miestom (flag manual)','Ak sa nič nenájde: súčasné správanie, tlačidlo „Vybrať výdajné miesto“ s mapou','Každá metóda s výdajným miestom má hneď riadok s predvoleným miestom (názov, adresa · vzdialenosť) a hneď za ním „Zmeniť“ (bez štítku „Najbližšie“). Klik na metódu nič nerozbaľuje, len ju zvolí; „Zmeniť“ zvolí metódu a otvorí mapu']};
 const SHIPEX = 'Prepínajte <b>A · dnes</b> / <b>B · predvyplnenie</b>. V B: 1) po zvolení Balíkova, Packety alebo GymBeam Boxu je hneď vyplnené najbližšie miesto so vzdialenosťou. 2) Kliknite na „Zmeniť“ pri Packete a vyberte iné miesto. 3) Prepnite adresu na „Práca“: ostatné miesta sa prepočítajú, ručne zvolená Packeta ostane. 4) Adresa „Chata“ (Zuberec): pri Balíkove a GymBeam Boxe sa najbližšie miesto nenájde (do 15 km), ostáva súčasné správanie. 5) „Nový zákazník“: miesta sa predvyplnia až po vyplnení adresy.';
 const GROUPS = [['Zobrazenie','view',[['desktop','Desktop'],['mobile','Mobil']],'web'],['Scenár','scen',Object.entries(SCEN).map(([k,v]) => [k, v.label])],['Krok','step',[['cart','Košík'],['ship','Doručenie'],['pay','Platba']],'web'],['Doručenie','shv',[['A','A · dnes'],['B','B · predvyplnenie']],'web','ship'],['Adresa','adrMode',[['saved','Uložené adresy'],['new','Nový zákazník']],'web','ship']];
 const toolbar = () => `<span class="ttl">Darčeky v košíku</span><div class="grp"><span class="lbl">Platforma</span><div class="seg">${[['web','Web'],['app','App']].map(([v,t]) => `<button class="${S.platform === v ? 'on' : ''}" data-tb="platform" data-v="${v}">${t}</button>`).join('')}</div></div>
